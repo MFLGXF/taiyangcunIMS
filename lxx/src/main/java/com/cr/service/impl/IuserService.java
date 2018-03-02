@@ -1,5 +1,25 @@
 package com.cr.service.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
+import com.cr.domain.User;
+import com.cr.vo.UserBean;
+import com.cr.vo.UserCountVO;
+
 public interface IuserService {
+	//登录功能
 	public boolean login(String name,String password);
+	//单个人员上传
+	public boolean addUserSingle(User user);
+	//查看人口信息
+	public List<User> userMessage();
+	//查看一个人口的具体信息
+	public UserBean selUserMessage(String id) throws IllegalAccessException, InvocationTargetException;
+	//修改一个人口的状态
+	public boolean updateStatus(String id,String status);
+	//删除一个人
+	public boolean delUser(String id);
+	//查询出生 死亡 在住 离村人员及比例
+	public UserCountVO selPro();
 }

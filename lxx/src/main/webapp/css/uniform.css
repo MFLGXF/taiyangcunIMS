@@ -585,3 +585,7 @@ div.uploader input {
   border: none;
   cursor: default;
 }
+#fileCont{
+	display:flex;
+	flex-flow:row;
+}

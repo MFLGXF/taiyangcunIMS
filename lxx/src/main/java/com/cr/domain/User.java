@@ -26,8 +26,39 @@ public class User {
     private Integer delflag;
 
     private Date createtime;
+    
+    private String photo;
+    
+    private String status;
+    
+    private String birth;
+    
+    
+    public String getStatus() {
+		return status;
+	}
 
-    public String getId() {
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public String getId() {
         return id;
     }
 

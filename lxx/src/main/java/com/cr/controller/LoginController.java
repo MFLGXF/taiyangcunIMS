@@ -9,9 +9,8 @@ import com.cr.common.MD5Utils;
 import com.cr.common.ReturnInfo;
 import com.cr.domain.User;
 import com.cr.service.impl.IuserService;
-
+@RequestMapping("/admin")
 @Controller
-@RequestMapping("/user")
 public class LoginController {
 	@Autowired
 	private IuserService userService;

@@ -31,7 +31,7 @@ $(document).ready(function() {
 	//------------- Masked input fields -------------//
 	$("#mask-phone").mask("(999) 999-9999", {completed:function(){alert("Callback action after complete");}});
 	$("#mask-phoneExt").mask("(999) 999-9999? x99999");
-	$("#mask-phoneInt").mask("+40 999 999 999");
+	$("#mask-phoneInt").mask("+86 999 999 99999");
 	$("#mask-date").mask("99/99/9999");
 	$("#mask-ssn").mask("999-99-9999");
 	$("#mask-productKey").mask("a*-999-a999", { placeholder: "*" });

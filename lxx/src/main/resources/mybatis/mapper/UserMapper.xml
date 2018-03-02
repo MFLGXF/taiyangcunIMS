@@ -11,9 +11,11 @@
     <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
     <result column="homestead" property="homestead" jdbcType="INTEGER" />
     <result column="land" property="land" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
     <result column="role" property="role" jdbcType="CHAR" />
     <result column="delflag" property="delflag" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, password, idcard, phone, address, birthday, homestead, land, role, delflag, 
-    createtime
+    id, name, password, idcard, phone, address, birthday, homestead, land, status, role, 
+    delflag, createtime, photo
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cr.domain.UserExample" >
     select
@@ -110,12 +112,14 @@
   <insert id="insert" parameterType="com.cr.domain.User" >
     insert into user (id, name, password, idcard, 
       phone, address, birthday, 
-      homestead, land, role, 
-      delflag, createtime)
+      homestead, land, status, 
+      role, delflag, createtime, 
+      photo)
     values (#{id,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{password,jdbcType=CHAR}, #{idcard,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
-      #{homestead,jdbcType=INTEGER}, #{land,jdbcType=INTEGER}, #{role,jdbcType=CHAR}, 
-      #{delflag,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP})
+      #{homestead,jdbcType=INTEGER}, #{land,jdbcType=INTEGER}, #{status,jdbcType=CHAR}, 
+      #{role,jdbcType=CHAR}, #{delflag,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{photo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cr.domain.User" >
     insert into user
@@ -147,6 +151,9 @@
       <if test="land != null" >
         land,
       </if>
+      <if test="status != null" >
+        status,
+      </if>
       <if test="role != null" >
         role,
       </if>
@@ -155,6 +162,9 @@
       </if>
       <if test="createtime != null" >
         createtime,
+      </if>
+      <if test="photo != null" >
+        photo,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -185,6 +195,9 @@
       <if test="land != null" >
         #{land,jdbcType=INTEGER},
       </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
       <if test="role != null" >
         #{role,jdbcType=CHAR},
       </if>
@@ -193,6 +206,9 @@
       </if>
       <if test="createtime != null" >
         #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -232,6 +248,9 @@
       <if test="record.land != null" >
         land = #{record.land,jdbcType=INTEGER},
       </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=CHAR},
+      </if>
       <if test="record.role != null" >
         role = #{record.role,jdbcType=CHAR},
       </if>
@@ -240,6 +259,9 @@
       </if>
       <if test="record.createtime != null" >
         createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.photo != null" >
+        photo = #{record.photo,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -257,9 +279,11 @@
       birthday = #{record.birthday,jdbcType=TIMESTAMP},
       homestead = #{record.homestead,jdbcType=INTEGER},
       land = #{record.land,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=CHAR},
       role = #{record.role,jdbcType=CHAR},
       delflag = #{record.delflag,jdbcType=INTEGER},
-      createtime = #{record.createtime,jdbcType=TIMESTAMP}
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      photo = #{record.photo,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -291,6 +315,9 @@
       <if test="land != null" >
         land = #{land,jdbcType=INTEGER},
       </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
       <if test="role != null" >
         role = #{role,jdbcType=CHAR},
       </if>
@@ -299,6 +326,9 @@
       </if>
       <if test="createtime != null" >
         createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=CHAR}
@@ -313,13 +343,43 @@
       birthday = #{birthday,jdbcType=TIMESTAMP},
       homestead = #{homestead,jdbcType=INTEGER},
       land = #{land,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
       role = #{role,jdbcType=CHAR},
       delflag = #{delflag,jdbcType=INTEGER},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      photo = #{photo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
-  
-   <select id="login" resultMap="BaseResultMap" parameterType="com.cr.domain.User" >
+  <!-- 登录 -->
+  <select id="login" resultMap="BaseResultMap" parameterType="com.cr.domain.User" >
    SELECT * FROM `user` where name= #{name,jdbcType=CHAR} and password=#{password,jdbcType=CHAR} and role=#{role,jdbcType=CHAR} and delflag!=1
+  </select>
+  <!-- 显示人口信息 -->
+  <select id="userMessage" resultMap="BaseResultMap"  >
+   SELECT * FROM `user` where   `password` is null and delflag!=1 ORDER BY CONVERT(name USING gbk)
+  </select>
+  <!-- 查看一个人的具体信息 -->
+  <select id="selUserMessage" resultMap="BaseResultMap"  parameterType="java.lang.String">
+   SELECT * FROM `user` where   id=#{id,jdbcType=CHAR} and delflag!=1 
+  </select>
+  <!-- 查看一个人的家庭信息 -->
+  <select id="selUserHome" resultMap="BaseResultMap"  >
+   SELECT * FROM `user` where   id!=#{id,jdbcType=CHAR} and address=#{address,jdbcType=VARCHAR} and delflag!=1 
+  </select>
+  <!--新生-->
+  <select id="selBorn" resultMap="BaseResultMap"  parameterType="java.lang.String">
+  SELECT * FROM `user` where  DATE_FORMAT(birthday,'%Y') = DATE_FORMAT(NOW(),'%Y') and delflag!=1;
+  </select>
+  <!--死亡-->
+  <select id="selDeath" resultMap="BaseResultMap" >
+  SELECT * FROM `user` where  status="已故" and delflag!=1;
+  </select>
+  <!--在住-->
+  <select id="selLive" resultMap="BaseResultMap" >
+  SELECT * FROM `user` where  status="在住" and delflag!=1;
+  </select>
+  <!--离村-->
+  <select id="selStay" resultMap="BaseResultMap" >
+  SELECT * FROM `user` where  status="离村" and delflag!=1;
   </select>
 </mapper>

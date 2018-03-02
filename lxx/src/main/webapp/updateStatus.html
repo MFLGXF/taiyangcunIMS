@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/uniform.css" />
+<link rel="stylesheet" href="css/select2.css" />
+<link rel="stylesheet" href="css/matrix-style2.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div id="content">
+  <div id="content-header">
+      <h1>人口状态修改</h1>
+  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+      
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5 id=""></h5>
+            <span class="label label-info">Featured</span> </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered table-striped">
+              <thead>
+               <tr>
+			    <td >图片</td>
+			    <td >姓名：</td>
+			    <td id="tabName"></td>
+			    <td >当前状态：</td>
+			    <td id="tabStatus"></td>
+			  </tr>
+              </thead>
+              <tbody>
+                <tr>
+				  <td rowspan="2" id="tabPhoto"></td>
+				  <td colspan="4" align="center"><a class="icon-wrench">操作</a></td>
+				</tr>
+				<tr>
+				
+				  <td valign="middle"><button class="btn btn-primary" onclick="A()">离村</button></td>
+				  <td valign="middle"><button class="btn btn-success" onclick="B()">在住</button></td>
+				  <td valign="middle"><button class="btn btn-inverse" onclick="C()">已故</button></td>
+				  <td valign="middle"><button class="btn btn-danger" onclick="Del()">删除</button></br><a class="icon-warning-sign">请在删除前确认！谨慎操作！！！</a></td>
+				
+				</tr>
+              </tbody>
+             
+            </table>
+          </div>
+        </div>
+        
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.uniform.js"></script> 
+<script src="js/select2.min.js"></script> 
+<script src="js/jquery.dataTables.min.js"></script> 
+<script src="js/matrix.js"></script> 
+<script src="js/matrix.tables.js"></script>
+<script src="js/sweet-alert.min.js"></script>
+</body>
+<script>
+	
+	function getQueryVariable(variable)
+		{
+		       var query = window.location.search.substring(1);
+		       var vars = query.split("&");
+		       for (var i=0;i<vars.length;i++) {
+		               var pair = vars[i].split("=");
+		               if(pair[0] == variable){return pair[1];}
+		       }
+		       return(false);
+		}
+
+	</script>
+<script>
+	$(document).ready(function(){
+	var id = getQueryVariable("id");
+		$.ajax({  
+	     type : "POST",  
+	     url : "user/selUserMessage",//路径 
+	     data : {"id" : getQueryVariable("id")},
+	     dataType: "json",
+	     success : function(data) {//返回数据根据结果进行相应的处理  
+	     var data = data.data;
+	    
+	     contentName = data.name;
+	     $("#tabName").html('').append(contentName);
+	
+		 contentStatus = data.status;
+	     $("#tabStatus").html('').append(contentStatus);
+	
+	     contentPhoto = "<img src='upload/"+data.photo+"' alt='' height='120' width='80'>";
+	     $("#tabPhoto").html('').append(contentPhoto);   
+	     
+	     
+	    
+	     } 
+	     });  	   
+	     })
+	</script>
+	<script >
+	function A(){
+	var status = "离村";
+	$.ajax({
+		    type : "POST",  
+            url : "user/updateStatus",//路径  
+            dataType: "json",
+            data : {"id" : getQueryVariable("id"),status:status},
+            success : function(data){
+             console.log(data);
+             if(data.result == 200){
+              sweetAlert("修改成功", "","success");
+              }else if(data.result == 201){
+              sweetAlert("修改失败", "","error");
+              }
+            }
+		})
+	}
+	function B(){
+	var status = "在住";
+	$.ajax({
+		    type : "POST",  
+            url : "user/updateStatus",//路径  
+            dataType: "json",
+            data : {"id" : getQueryVariable("id"),status:status},
+            success : function(data){
+             console.log(data);
+             if(data.result == 200){
+              sweetAlert("修改成功", "","success");
+              }else if(data.result == 201){
+              sweetAlert("修改失败", "","error");
+              }
+            }
+		})
+	}
+	function C(){
+	var status = "已故";
+	$.ajax({
+		    type : "POST",  
+            url : "user/updateStatus",//路径  
+            dataType: "json",
+            data : {"id" : getQueryVariable("id"),status:status},
+            success : function(data){
+             console.log(data);
+             if(data.result == 200){
+              sweetAlert("修改成功", "","success");
+              }else if(data.result == 201){
+              sweetAlert("修改失败", "","error");
+              }
+            }
+		})
+	}
+	function Del(){
+	$.ajax({
+		    type : "POST",  
+            url : "user/delUser",//路径  
+            dataType: "json",
+            data : {"id" : getQueryVariable("id")},
+            success : function(data){
+             
+             if(data.result == 200){
+              sweetAlert("删除成功", "","success");
+              }else if(data.result == 201){
+              sweetAlert("删除失败", "","error");
+              }
+            }
+		})
+	}
+	
+	</script>
+</html>
