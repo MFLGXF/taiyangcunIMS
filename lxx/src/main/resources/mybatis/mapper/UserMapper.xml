@@ -16,6 +16,7 @@
     <result column="delflag" property="delflag" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
     <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, password, idcard, phone, address, birthday, homestead, land, status, role, 
-    delflag, createtime, photo
+    delflag, createtime, photo, message
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cr.domain.UserExample" >
     select
@@ -114,12 +115,12 @@
       phone, address, birthday, 
       homestead, land, status, 
       role, delflag, createtime, 
-      photo)
+      photo, message)
     values (#{id,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{password,jdbcType=CHAR}, #{idcard,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
       #{homestead,jdbcType=INTEGER}, #{land,jdbcType=INTEGER}, #{status,jdbcType=CHAR}, 
       #{role,jdbcType=CHAR}, #{delflag,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{photo,jdbcType=VARCHAR})
+      #{photo,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cr.domain.User" >
     insert into user
@@ -166,6 +167,9 @@
       <if test="photo != null" >
         photo,
       </if>
+      <if test="message != null" >
+        message,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -209,6 +213,9 @@
       </if>
       <if test="photo != null" >
         #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -263,6 +270,9 @@
       <if test="record.photo != null" >
         photo = #{record.photo,jdbcType=VARCHAR},
       </if>
+      <if test="record.message != null" >
+        message = #{record.message,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -283,7 +293,8 @@
       role = #{record.role,jdbcType=CHAR},
       delflag = #{record.delflag,jdbcType=INTEGER},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      photo = #{record.photo,jdbcType=VARCHAR}
+      photo = #{record.photo,jdbcType=VARCHAR},
+      message = #{record.message,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -330,6 +341,9 @@
       <if test="photo != null" >
         photo = #{photo,jdbcType=VARCHAR},
       </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -347,7 +361,8 @@
       role = #{role,jdbcType=CHAR},
       delflag = #{delflag,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
-      photo = #{photo,jdbcType=VARCHAR}
+      photo = #{photo,jdbcType=VARCHAR},
+      message = #{message,jdbcType=VARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
   <!-- 登录 -->
@@ -381,5 +396,9 @@
   <!--离村-->
   <select id="selStay" resultMap="BaseResultMap" >
   SELECT * FROM `user` where  status="离村" and delflag!=1;
+  </select>
+  <!-- 领导 -->
+  <select id="leader" resultMap="BaseResultMap" >
+  SELECT * FROM `user` where role!="admin" and role!="村民" and delflag!=1;
   </select>
 </mapper>

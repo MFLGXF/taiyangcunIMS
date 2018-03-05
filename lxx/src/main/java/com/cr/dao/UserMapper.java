@@ -45,4 +45,6 @@ public interface UserMapper {
     List<UserCountVO> selLive();
     //查离村人员
     List<UserCountVO> selStay();
+    //查看领导
+    List<User> leader();
 }

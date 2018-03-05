@@ -152,5 +152,17 @@ public class userServiceImpl implements IuserService {
 		count.setStayPro(stayPro);
 		return count;
 	}
+	@Override
+	public List<User> leader() {
+		List<User> leaderList = userDao.leader();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+		if(leaderList.size()>0){
+			for(int i=0;i<leaderList.size();i++){			
+				leaderList.get(i).setBirth(sdf.format(leaderList.get(i).getBirthday()));
+			}
+			return leaderList;
+		}
+		return null;
+	}
 
 }

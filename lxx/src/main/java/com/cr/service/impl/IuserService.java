@@ -22,4 +22,6 @@ public interface IuserService {
 	public boolean delUser(String id);
 	//查询出生 死亡 在住 离村人员及比例
 	public UserCountVO selPro();
+	//查看领导
+	public List<User> leader();
 }
