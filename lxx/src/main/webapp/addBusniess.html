@@ -78,6 +78,7 @@
               <label class="control-label">企业介绍 :</label>
               <div class="controls">
                 <textarea class="span8" name="message"></textarea>
+                <a id="isLocal"></a> 
               </div>
             </div>
             <div class="form-actions">
@@ -128,17 +129,25 @@
 	<script>
 	function addBusiness(){
 	 var isLocal = getQueryVariable("flag");
+	 $("#isLocal").html("");
+	 isLocal = "<input type='hidden' name='isLocal' value='"+isLocal+"'>";
+	 $("#isLocal").html('').append(isLocal);
+	 
 	 var formData = new FormData($( "#addBusiness" )[0]);  
 	 $.ajax({
 	  	    type : "POST",  
             url : "business/addBusiness",//路径  
-            data : {isLocal,formData},
+            data : formData,
             async: false,  
             cache: false,  
             contentType: false,  
             processData: false,  
             success : function(data){
-            
+             if(data.result == 200){
+               swal("添加成功！", "","success")
+             }else{
+               swal("添加失败！", "","error")
+             }
             }
 	 })
 	}
