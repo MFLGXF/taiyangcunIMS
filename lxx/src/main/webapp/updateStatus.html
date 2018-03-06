@@ -6,10 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/colorpicker.css" />
+<link rel="stylesheet" href="css/datepicker.css" />
 <link rel="stylesheet" href="css/uniform.css" />
 <link rel="stylesheet" href="css/select2.css" />
 <link rel="stylesheet" href="css/matrix-style2.css" />
 <link rel="stylesheet" href="css/matrix-media.css" />
+<link rel="stylesheet" href="css/bootstrap-wysihtml5.css" />
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
@@ -28,32 +31,54 @@
             <h5 id=""></h5>
             <span class="label label-info">Featured</span> </div>
           <div class="widget-content nopadding">
-            <table class="table table-bordered table-striped">
+        
+           <table class="table table-bordered table-striped">
               <thead>
                <tr>
-			    <td >图片</td>
-			    <td >姓名：</td>
+			    <td  >图片</td>
+			    <td  >姓名：</td>
 			    <td id="tabName"></td>
 			    <td >当前状态：</td>
-			    <td id="tabStatus"></td>
+			    <td  id="tabStatus"></td>
 			  </tr>
               </thead>
               <tbody>
                 <tr>
-				  <td rowspan="2" id="tabPhoto"></td>
-				  <td colspan="4" align="center"><a class="icon-wrench">操作</a></td>
+				  <td rowspan="5" id="tabPhoto"></td>
+				  <td >联系方式：</a></td>
+				  <td id="tabPhone"></td>
+				  <td >职务：</td>
+				  <td id="tabRole"></td>
 				</tr>
-				<tr>
-				
-				  <td valign="middle"><button class="btn btn-primary" onclick="A()">离村</button></td>
-				  <td valign="middle"><button class="btn btn-success" onclick="B()">在住</button></td>
-				  <td valign="middle"><button class="btn btn-inverse" onclick="C()">已故</button></td>
-				  <td valign="middle"><button class="btn btn-danger" onclick="Del()">删除</button></br><a class="icon-warning-sign">请在删除前确认！谨慎操作！！！</a></td>
-				
-				</tr>
-              </tbody>
-             
+                <tr>
+                  <td>耕地面积：</a></td>
+                  <td id="tabLand"></td>
+                  <td>宅基地面积：</td>
+                  <td id="tabHomestead"></td>
+                </tr>
+                <tr>
+                  <td>家庭住址：</td>
+                  <td id="tabAddress"></td>
+                  <td>身份证号：</td>
+                  <td id="tabBirth"></td>
+                  <a id="tabId"></a>
+                </tr>
+                
+               <tr>
+                  <td colspan="4" align="center"><button class="btn btn-large btn-warning" >保存修改</button></td>
+                </tr>
+                <tr>
+                  <td colspan="4" align="center"><a class="icon-wrench">操作</a></td>
+                </tr>
+                 <tr>
+                  <td colspan="2" width="25%"><button class="btn btn-primary" onclick="A()">离村</button></td>
+                  <td width="25%"><button class="btn btn-success" onclick="B()">在住</button></td>
+                  <td width="25%"><button class="btn btn-inverse" onclick="C()">已故</button></td>
+                  <td width="25%"><button class="btn btn-danger" onclick="Del()">删除</button></br><a class="icon-warning-sign">请在删除前确认！谨慎操作！！！</a></td>
+                </tr>			
+              </tbody>         
             </table>
+           
           </div>
         </div>
         
@@ -95,17 +120,32 @@
 	     success : function(data) {//返回数据根据结果进行相应的处理  
 	     var data = data.data;
 	    
-	     contentName = data.name;
+	     contentName = "<input type='text' id='mask-phoneInt' class='span8 mask text' name='name' placeholder='"+data.name+"' value='"+data.name+"'>";
 	     $("#tabName").html('').append(contentName);
 	
 		 contentStatus = data.status;
 	     $("#tabStatus").html('').append(contentStatus);
 	
-	     contentPhoto = "<img src='upload/"+data.photo+"' alt='' height='120' width='80'>";
+	     contentPhoto = "<img src='upload/"+data.photo+"' alt='' height='180' width='120' >";
 	     $("#tabPhoto").html('').append(contentPhoto);   
 	     
+	     contentPhone = "<input type='text' id='mask-phoneInt' class='span8 mask text' name='phone' placeholder='"+data.phone+"' value='"+data.phone+"'>";
+	     $("#tabPhone").html('').append(contentPhone);
 	     
-	    
+	     contentRole = "<select name='role' class='span8'><option selected='selected'>"+data.role+"</option><option value='村民'>村民</option><option value='村长'>村长</option><option value='村支书'>村支书</option><option value='村主任'>村主任</option></select>"
+	     $("#tabRole").html('').append(contentRole);
+	     
+	     contentLand = "<input type='text' id='mask-phoneInt' class='span8 mask text' name='land' placeholder='"+data.land+"（亩）' value='"+data.land+"'>";
+	     $("#tabLand").html('').append(contentLand);
+	     
+	     contentHomestead = "<input type='text' id='mask-phoneInt' class='span8 mask text' name='homestead' placeholder='"+data.homestead+"（平方米）' value='"+data.homestead+"'>";
+	     $("#tabHomestead").html('').append(contentHomestead);
+	     
+	     contentAddress = "<input type='text' id='mask-phoneInt' class='span8 mask text' name='address' placeholder='"+data.address+"'  value='"+data.address+"'>";
+	     $("#tabAddress").html('').append(contentAddress);
+	     
+	     contentBirth =  "<input type='text' id='mask-phoneInt' class='span8 mask text' name='idcard' placeholder='"+data.idcard+"'  value='"+data.idcard+"'>";
+	     $("#tabBirth").html('').append(contentBirth);
 	     } 
 	     });  	   
 	     })
@@ -179,5 +219,34 @@
 		})
 	}
 	
+	</script>
+	<script>
+	function updateUser(){
+		var id = getQueryVariable("id");
+		contentId = "<input type='hidden' name='id' value='"+id+"'>";
+	    $("#tabId").html('').append(contentId);
+	    $.ajax({
+		type : "POST",  
+	    url : "user/updateUser",//路径  
+	    data : $('#form').serialize(),
+	    dataType: "json",
+	    success : function(data) {
+	    var data = data.result;
+	     console.log(data);
+	    if(data == 200){
+	     swal("修改成功","","success");
+	    }else if(data == 202){
+	     swal ( "修改失败" ,  "不允许为空" ,  "warning" );
+	    }else if(data == 203){
+	     swal ( "修改失败" ,  "该职位已存在" ,  "error" );
+	    }else{
+	     swal ( "修改失败" ,  "系统异常" ,  "error" );
+	    }
+	    }
+	    error function(){
+	     alert("asf");
+	    }
+	})		
+	}
 	</script>
 </html>

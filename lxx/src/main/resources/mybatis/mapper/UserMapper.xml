@@ -10,6 +10,7 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
     <result column="homestead" property="homestead" jdbcType="INTEGER" />
+    <result column="worktime" property="worktime" jdbcType="INTEGER" />
     <result column="land" property="land" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="CHAR" />
     <result column="role" property="role" jdbcType="CHAR" />
@@ -400,5 +401,9 @@
   <!-- 领导 -->
   <select id="leader" resultMap="BaseResultMap" >
   SELECT * FROM `user` where role!="admin" and role!="村民" and delflag!=1;
+  </select>
+   <!-- 查该职位是否已存在 -->
+  <select id="selLeader" resultMap="BaseResultMap"  >
+   SELECT * FROM `user` where   id!=#{id,jdbcType=CHAR} and role=#{role,jdbcType=VARCHAR} and role!="村民" and delflag!=1 
   </select>
 </mapper>

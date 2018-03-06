@@ -9,4 +9,6 @@ public interface IplanService {
 	public List<Plan> selPlan();
 	//添加计划
 	public boolean addPlan(Plan plan);
+	public List<Plan> selOldPlan(String time);
+	public boolean delPlan(String id);
 }

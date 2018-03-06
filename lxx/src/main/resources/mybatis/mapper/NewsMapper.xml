@@ -197,4 +197,7 @@
    <select id="selNews" resultMap="BaseResultMap" >
   	select * from news  ORDER BY create_time desc LIMIT 5
   </select>
+    <select id="selOldNews" resultMap="BaseResultMap"  resultType="java.lang.String">
+  	SELECT * FROM `news` where create_time != #{time,jdbcType=VARCHAR};
+  </select>
 </mapper>

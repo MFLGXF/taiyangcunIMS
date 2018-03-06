@@ -47,4 +47,6 @@ public interface UserMapper {
     List<UserCountVO> selStay();
     //查看领导
     List<User> leader();
+    //查看该职位是否存在
+    List<User> selLeader(@Param("id")String id,@Param("role")String role);
 }

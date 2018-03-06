@@ -3,6 +3,9 @@
 <mapper namespace="com.cr.dao.BusinessMapper" >
   <resultMap id="BaseResultMap" type="com.cr.domain.Business" >
     <id column="id" property="id" jdbcType="CHAR" />
+    <result column="y" property="y" jdbcType="VARCHAR" />
+    <result column="x" property="x" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="company_name" property="companyName" jdbcType="CHAR" />
     <result column="company_leader" property="companyLeader" jdbcType="CHAR" />
     <result column="scale" property="scale" jdbcType="INTEGER" />
@@ -74,7 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, company_name, company_leader, scale, revenue, taxes, logo, industry, is_local
+    id, y, x, address, company_name, company_leader, scale, revenue, taxes, logo, industry, 
+    is_local
   </sql>
   <sql id="Blob_Column_List" >
     message
@@ -128,20 +132,29 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cr.domain.Business" >
-    insert into business (id, company_name, company_leader, 
-      scale, revenue, taxes, logo, 
-      industry, is_local, message
-      )
-    values (#{id,jdbcType=CHAR}, #{companyName,jdbcType=CHAR}, #{companyLeader,jdbcType=CHAR}, 
-      #{scale,jdbcType=INTEGER}, #{revenue,jdbcType=CHAR}, #{taxes,jdbcType=CHAR}, #{logo,jdbcType=VARCHAR}, 
-      #{industry,jdbcType=CHAR}, #{isLocal,jdbcType=INTEGER}, #{message,jdbcType=LONGVARCHAR}
-      )
+    insert into business (id, y, x, address, 
+      company_name, company_leader, scale, 
+      revenue, taxes, logo, industry, 
+      is_local, message)
+    values (#{id,jdbcType=CHAR}, #{y,jdbcType=VARCHAR}, #{x,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=CHAR}, #{companyLeader,jdbcType=CHAR}, #{scale,jdbcType=INTEGER}, 
+      #{revenue,jdbcType=CHAR}, #{taxes,jdbcType=CHAR}, #{logo,jdbcType=VARCHAR}, #{industry,jdbcType=CHAR}, 
+      #{isLocal,jdbcType=INTEGER}, #{message,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cr.domain.Business" >
     insert into business
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="y != null" >
+        y,
+      </if>
+      <if test="x != null" >
+        x,
+      </if>
+      <if test="address != null" >
+        address,
       </if>
       <if test="companyName != null" >
         company_name,
@@ -174,6 +187,15 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=CHAR},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
       </if>
       <if test="companyName != null" >
         #{companyName,jdbcType=CHAR},
@@ -216,6 +238,15 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=CHAR},
       </if>
+      <if test="record.y != null" >
+        y = #{record.y,jdbcType=VARCHAR},
+      </if>
+      <if test="record.x != null" >
+        x = #{record.x,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
       <if test="record.companyName != null" >
         company_name = #{record.companyName,jdbcType=CHAR},
       </if>
@@ -251,6 +282,9 @@
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update business
     set id = #{record.id,jdbcType=CHAR},
+      y = #{record.y,jdbcType=VARCHAR},
+      x = #{record.x,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
       company_name = #{record.companyName,jdbcType=CHAR},
       company_leader = #{record.companyLeader,jdbcType=CHAR},
       scale = #{record.scale,jdbcType=INTEGER},
@@ -267,6 +301,9 @@
   <update id="updateByExample" parameterType="map" >
     update business
     set id = #{record.id,jdbcType=CHAR},
+      y = #{record.y,jdbcType=VARCHAR},
+      x = #{record.x,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
       company_name = #{record.companyName,jdbcType=CHAR},
       company_leader = #{record.companyLeader,jdbcType=CHAR},
       scale = #{record.scale,jdbcType=INTEGER},
@@ -282,6 +319,15 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cr.domain.Business" >
     update business
     <set >
+      <if test="y != null" >
+        y = #{y,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        x = #{x,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
       <if test="companyName != null" >
         company_name = #{companyName,jdbcType=CHAR},
       </if>
@@ -314,7 +360,10 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cr.domain.Business" >
     update business
-    set company_name = #{companyName,jdbcType=CHAR},
+    set y = #{y,jdbcType=VARCHAR},
+      x = #{x,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=CHAR},
       company_leader = #{companyLeader,jdbcType=CHAR},
       scale = #{scale,jdbcType=INTEGER},
       revenue = #{revenue,jdbcType=CHAR},
@@ -327,7 +376,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cr.domain.Business" >
     update business
-    set company_name = #{companyName,jdbcType=CHAR},
+    set y = #{y,jdbcType=VARCHAR},
+      x = #{x,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=CHAR},
       company_leader = #{companyLeader,jdbcType=CHAR},
       scale = #{scale,jdbcType=INTEGER},
       revenue = #{revenue,jdbcType=CHAR},
@@ -337,11 +389,11 @@
       is_local = #{isLocal,jdbcType=INTEGER}
     where id = #{id,jdbcType=CHAR}
   </update>
-   <!-- 查外地企业 -->
+  <!-- 查本地企业 -->
    <select id="selBusiness1" resultMap="BaseResultMap" >
   SELECT * FROM `business` where is_local = 0;
   </select>
-  <!-- 查本地企业 -->
+  <!-- 查外地企业 -->
    <select id="selBusiness2" resultMap="BaseResultMap" >
   	SELECT * FROM `business` where is_local = 1;
   </select>

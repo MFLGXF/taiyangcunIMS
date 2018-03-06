@@ -1,5 +1,6 @@
 package com.cr.dao;
 
+import com.cr.domain.News;
 import com.cr.domain.Plan;
 import com.cr.domain.PlanExample;
 import java.util.List;
@@ -29,4 +30,6 @@ public interface PlanMapper {
     int updateByPrimaryKey(Plan record);
     //首页-近期计划
     List<Plan> selPlan();
+    
+    List<Plan> selOldPlan(String time);
 }

@@ -12,27 +12,25 @@ public class businessServiceImpl implements IbusinessService {
 	@Autowired
 	private BusinessMapper businessDao;
 	/**
-	 * 查外来企业
-	 */
+	 * 查看企业  0：本地企业 1：外来企业
+ 	 */
 	@Override
-	public List<Business> selBusiness1() {
-		List<Business> businessList = businessDao.selBusiness1();
+	public List<Business> selBusiness(String isLocal) {
+		List<Business> businessList = null;
+		if("0".equals(isLocal)){
+			businessList = businessDao.selBusiness1();
+		}else if("1".equals(isLocal)){
+		    businessList = businessDao.selBusiness2();
+		}else{
+			return null;
+		}
+		
 		if(businessList.size()>0){
 			return businessList;
 		}
 		return null;
 	}
-	/**
-	 * 查本地企业
-	 */
-	@Override
-	public List<Business> selBusiness2() {
-		List<Business> businessList = businessDao.selBusiness1();
-		if(businessList.size()>0){
-			return businessList;
-		}
-		return null;
-	}
+
 	/**
 	 * 通过ID查询一个企业的具体信息
 	 */

@@ -17,36 +17,23 @@
 
 <div id="content">
   <div id="content-header">
-      <h1>招商引资</h1>
+      <h1>领导信息</h1>
   </div>
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span12">       
+      <div class="span12">
+      
         <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>企业列表</h5> <div></div>
-          </div>
-          
-          <div class="widget-content nopadding">
-            
-            <table class="table table-bordered data-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>企业名称</th>
-                  <th>企业法人</th>
-                  <th>企业规模</th>
-                  <th>详情</th>
-                </tr>
-              </thead>
-              <tbody id="business">
-                
-              </tbody>
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5 id=""></h5>
+            <span class="label label-info">Featured</span> </div>
+          <div class="widget-content nopadding" >
+            <table class='table table-bordered table-striped' id="tab">
+             
             </table>
           </div>
         </div>
-      </div>
-    </div>
+        
   </div>
 </div>
 
@@ -61,22 +48,22 @@
 </body>
 <script>
 	$(document).ready(function(){
+	
 		$.ajax({  
 	     type : "GET",  
-	     url : "business/selBusiness1",//路径  
+	     url : "admin/leader",//路径 
 	     dataType: "json",
-	     success : function(data) {//返回数据根据结果进行相应的处理     
+	     success : function(data) {//返回数据根据结果进行相应的处理  
 	     var data = data.data;
-	  	 var business = "";
-	  	 console.log(data);
-	     for(var i=0;i<data.length;i++){	
-	     	 var id = i+1;     	
-	   		 business+="<tr class='gradeX'><td>"+id+"</td><td>"+data[i].companyName+"</td><td>"+data[i].companyLeader+"</td><td class='center'>"+data[i].scale+"（人）</td><td class='center'><a href='selBusniessByID.html?id="+data[i].id+"' class='btn btn-mini'>查看</a></td></tr>"	
-	     }  
-         $("#business").html('').append(business);   
+	   	 console.log(data)
+	     var content = "";
+	     for(var i=0;i<data.length;i++){
+            content += "<thead><tr><td>照片</th><td>姓名</th><td></th>"+data[i].name+"<td>出生日期</td><td>"+data[i].birth+"</td></tr></thead><tbody><tr><td rowspan='6'><img src='upload/"+data[i].photo+"' alt='' height='150' width='100'/></td><td>联系方式</td><td >"+data[i].phone+"</td><td>在职时间</td><td>"+data[i].worktime+"年</td></tr><tr><td>身份证号</td><td>"+data[i].idcard+"</td><td>政治面貌</td><td>党员</td></tr><tr><td>家庭住址</td><td>"+data[i].address+"</td><td>职务</td><td >"+data[i].role+"</td></tr><tr><td>个人荣誉</td><td colspan='3' rowspan='2' width='80'>"+data[i].message+"</td></tr><tr><td>&nbsp;</td></tr></tbody>";           
+         }  
+         console.log(content)
+	        $("#tab").html('').append(content); 
 	     } 
-	     });  
+	     });  	   
 	     })
-	
 	</script>
 </html>

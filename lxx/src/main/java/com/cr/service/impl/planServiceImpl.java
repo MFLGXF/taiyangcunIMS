@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cr.dao.PlanMapper;
+import com.cr.domain.News;
 import com.cr.domain.Plan;
 @Service
 public class planServiceImpl implements IplanService {
@@ -40,6 +41,22 @@ public class planServiceImpl implements IplanService {
 	public boolean addPlan(Plan plan) {
 		int flag = planDao.insert(plan);
 		if(flag > 0){
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public List<Plan> selOldPlan(String time) {
+		List<Plan> planList = planDao.selOldPlan(time);
+		if(planList.size()>0){
+			return planList;
+		}
+		return null;
+	}
+	@Override
+	public boolean delPlan(String id) {
+		int flag = planDao.deleteByPrimaryKey(id);
+		if(flag >0){
 			return true;
 		}
 		return false;

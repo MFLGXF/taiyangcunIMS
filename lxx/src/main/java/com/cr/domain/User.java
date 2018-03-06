@@ -34,8 +34,18 @@ public class User {
     private String birth;
     
     private String message;
+    
+    private Integer worktime;
+    
+    public Integer getWorktime() {
+		return worktime;
+	}
 
-    public String getMessage() {
+	public void setWorktime(Integer worktime) {
+		this.worktime = worktime;
+	}
+
+	public String getMessage() {
 		return message;
 	}
 

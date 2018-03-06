@@ -44,5 +44,27 @@ public class newsServiceImpl implements InewsService {
 		}
 		return false;
 	}
+	/**
+	 * 删除新闻
+	 */
+	@Override
+	public boolean delNews(News news) {
+		int flag = newsDao.deleteByPrimaryKey(news.getId());
+		if(flag >0){
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * 查询过期的新闻
+	 */
+	@Override
+	public List<News> selOldNews(String time) {
+		List<News> newsList = newsDao.selOldNews(time);
+		if(newsList.size()>0){
+			return newsList;
+		}
+		return null;
+	}
 
 }

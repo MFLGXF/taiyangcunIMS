@@ -116,6 +116,9 @@ public class userServiceImpl implements IuserService {
 		}
 		return false;
 	}
+	/**
+	 * 首页-占比统计
+	 */
 	@Override
 	public UserCountVO selPro() {
 		List<UserCountVO> bornList = userDao.selBorn();
@@ -152,6 +155,9 @@ public class userServiceImpl implements IuserService {
 		count.setStayPro(stayPro);
 		return count;
 	}
+	/**
+	 * 领导信息管理
+	 */
 	@Override
 	public List<User> leader() {
 		List<User> leaderList = userDao.leader();
@@ -163,6 +169,28 @@ public class userServiceImpl implements IuserService {
 			return leaderList;
 		}
 		return null;
+	}
+	/**
+	 * 修改村民信息
+	 */
+	@Override
+	public boolean updateUser(User user) {
+		int flag = userDao.updateByPrimaryKeySelective(user);
+		if(flag > 0){
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * 查看该职位是否存在
+	 */
+	@Override
+	public boolean selLeader(String id, String role) {
+		List<User> list = userDao.selLeader(id, role);
+		if(list.size()>0){
+			return false;
+		}
+		return true;
 	}
 
 }

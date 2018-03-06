@@ -29,4 +29,6 @@ public interface NewsMapper {
     int updateByPrimaryKey(News record);
     //首页-新闻
     List<News> selNews();
+    
+    List<News> selOldNews(String time);
 }

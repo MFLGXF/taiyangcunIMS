@@ -1,10 +1,14 @@
 package com.cr.controller;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +24,7 @@ import com.cr.service.impl.InewsService;
 public class NewsController {
 	@Autowired
 	private InewsService newsService;
+	private  final Logger logger = LoggerFactory.getLogger(NewsController.class);
 	/**
 	 * 首页-新闻
 	 */
@@ -54,5 +59,24 @@ public class NewsController {
 			ret.setResult(201);
 		}
 		return ret;
+	}
+	
+	/**
+	 * 定时删除新闻 - 每天晚上1点定时触发，删除不是今天的新闻
+	 */
+	@Scheduled(cron = "0 0 1 * * ?")
+	public boolean delNews(){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		List<News> newsList = newsService.selOldNews(sdf.format(new Date()));
+		if(newsList!=null){
+			for(int i=0;i<newsList.size();i++){
+				boolean flag = newsService.delNews(newsList.get(i));
+				if(flag == false){
+					  logger.debug("删除失败"+i);
+				}
+			}		
+		}
+		return false;
+		
 	}
 }

@@ -3,6 +3,12 @@ package com.cr.domain;
 public class Business {
     private String id;
 
+    private String y;
+
+    private String x;
+
+    private String address;
+
     private String companyName;
 
     private String companyLeader;
@@ -27,6 +33,30 @@ public class Business {
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
+    }
+
+    public String getY() {
+        return y;
+    }
+
+    public void setY(String y) {
+        this.y = y == null ? null : y.trim();
+    }
+
+    public String getX() {
+        return x;
+    }
+
+    public void setX(String x) {
+        this.x = x == null ? null : x.trim();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 
     public String getCompanyName() {

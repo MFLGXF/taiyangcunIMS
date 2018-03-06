@@ -13,6 +13,8 @@ import javax.security.auth.message.callback.SecretKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.jeecgframework.poi.excel.ExcelExportUtil;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ImportParams;
 import org.jeecgframework.poi.util.PoiPublicUtil;
@@ -26,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cr.common.FileUtils;
 import com.cr.common.ReturnInfo;
+import com.cr.common.StringUtils;
 import com.cr.common.UUIDUtils;
 import com.cr.domain.User;
 import com.cr.service.impl.IuserService;
@@ -119,6 +122,7 @@ public class UserController {
 	@RequestMapping("/addUserBatch")
 	@ResponseBody
 	public ReturnInfo<User> addUserBatch(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request){
+		
 		//以上传时间excel文件时间戳作为文件名
 		String fileName =  new Date().getTime()+file.getOriginalFilename();
 		//文件上传保存路径
@@ -213,6 +217,43 @@ public class UserController {
 		UserCountVO userCount = userService.selPro();
 		if(userCount!=null){
 			ret.setData(userCount);
+		}
+		return ret;
+	}
+	/**
+	 * 修改村民信息
+	 */
+	@RequestMapping(value="/updateUser",method=RequestMethod.POST)
+	@ResponseBody
+	public ReturnInfo<User> updateUser(String id,String name,
+			String phone,String role,Integer land,Integer homestead,
+			String address,String idcard ){
+		ReturnInfo<User> ret = new ReturnInfo<User>();
+		if(StringUtils.isEmpty(id)|StringUtils.isEmpty(name)|StringUtils.isEmpty(phone)|StringUtils.isEmpty(role)|StringUtils.isEmpty(land.toString())|StringUtils.isEmpty(homestead.toString())|StringUtils.isEmpty(address)|StringUtils.isEmpty(idcard)){
+			ret.setResult(202);
+			return ret;
+		}
+		boolean leaderFlag = userService.selLeader(id, role);
+		if(leaderFlag == false){
+			//该职位已存在
+			ret.setResult(203);
+			return ret;
+		}
+		
+		User user = new User();
+		user.setId(id);
+		user.setName(name);
+		user.setPhone(phone);
+		user.setRole(role);
+		user.setLand(land);
+		user.setHomestead(homestead);
+		user.setAddress(address);
+		user.setIdcard(idcard);
+		boolean flag = userService.updateUser(user);
+		if(flag == true){
+			ret.setResult(200);
+		}else{
+			ret.setResult(201);
 		}
 		return ret;
 	}

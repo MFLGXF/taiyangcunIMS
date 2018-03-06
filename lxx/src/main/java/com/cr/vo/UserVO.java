@@ -10,8 +10,6 @@ public class UserVO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Excel(name="ID", isImportField = "true_st",width = 10)
-	private String id;
 	@Excel(name="姓名", isImportField = "true_st",width = 10)
 	private String name;
 	@Excel(name="身份证号", isImportField = "true_st",width = 10)
@@ -30,12 +28,7 @@ public class UserVO implements Serializable {
 	private String role;
 	@Excel(name="上传照片", isImportField = "true_st",width = 10)
 	private String photo;
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	
 	public String getName() {
 		return name;
 	}

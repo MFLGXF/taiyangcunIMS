@@ -24,4 +24,8 @@ public interface IuserService {
 	public UserCountVO selPro();
 	//查看领导
 	public List<User> leader();
+	//修改一个人口的信息
+	public boolean updateUser(User user);
+	//查询当前领导是否存在
+	public boolean selLeader(String id ,String role);
 }

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cr.common.FileUtils;
 import com.cr.common.ReturnInfo;
+import com.cr.common.StringUtils;
 import com.cr.common.UUIDUtils;
 import com.cr.domain.Business;
 import com.cr.service.impl.IbusinessService;
@@ -26,33 +27,20 @@ public class BusniessController {
 	@Autowired
 	private IbusinessService businessService;
 	/**
-	 * 查外来企业
+	 * 查企业  isLocal = 0：本地  1：外地
 	 * @return
 	 */
-	@RequestMapping(value="/selBusiness1",method=RequestMethod.GET)
+	@RequestMapping(value="/selBusiness",method=RequestMethod.POST)
 	@ResponseBody
-	public ReturnInfo<List<Business>> selBusiness1(){
+	public ReturnInfo<List<Business>> selBusiness(String isLocal){
 		ReturnInfo<List<Business>> ret = new ReturnInfo<List<Business>>();
-		List<Business> businessList = businessService.selBusiness1();
+		List<Business> businessList = businessService.selBusiness(isLocal);
 		if(businessList!=null){
 			ret.setData(businessList);
 		}
 		return ret;
 	}
-	/**
-	 * 查本地企业
-	 * @return
-	 */
-	@RequestMapping(value="/selBusiness2",method=RequestMethod.GET)
-	@ResponseBody
-	public ReturnInfo<List<Business>> selBusiness2(){
-		ReturnInfo<List<Business>> ret = new ReturnInfo<List<Business>>();
-		List<Business> businessList = businessService.selBusiness2();
-		if(businessList!=null){
-			ret.setData(businessList);
-		}
-		return ret;
-	}
+	
 	/**
 	 * 通过ID查看企业具体信息
 	 */
@@ -73,6 +61,17 @@ public class BusniessController {
 	@ResponseBody
 	public ReturnInfo<Business> addBusiness(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request) throws ParseException{
 		ReturnInfo<Business> ret = new ReturnInfo<Business>();
+		
+		if(StringUtils.isEmpty(request.getParameter("companyName")) 
+				|StringUtils.isEmpty(request.getParameter("companyLeader"))
+				|StringUtils.isEmpty(request.getParameter("industry"))
+				|StringUtils.isEmpty(request.getParameter("revenue"))
+				|StringUtils.isEmpty(request.getParameter("scale"))|file.getSize()<0){
+		
+			ret.setResult(201);
+			return ret;
+		}
+		
 		Business business = new Business();
 		business.setCompanyName(request.getParameter("companyName"));
 		business.setCompanyLeader(request.getParameter("companyLeader"));
