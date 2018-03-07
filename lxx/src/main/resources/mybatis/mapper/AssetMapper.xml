@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cr.dao.AssetMapper" >
+
+  <resultMap id="BaseResultMap" type="com.cr.domain.Asset" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="asset_number" property="assetNumber" jdbcType="VARCHAR" />
+    <result column="asset_name" property="assetName" jdbcType="INTEGER" />
+    <result column="person_id" property="personId" jdbcType="VARCHAR" />
+    <result column="person_name" property="personName" jdbcType="VARCHAR" />
+    <result column="asset_model" property="assetModel" jdbcType="VARCHAR" />
+    <result column="asset_status" property="assetStatus" jdbcType="INTEGER" />
+    <result column="asset_classify" property="assetClassify" jdbcType="INTEGER" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="change_time" property="changeTime" jdbcType="DATE" />
+    <result column="asset_value" property="assetValue" jdbcType="DATE" />
+    <result column="update_flag" property="updateFlag" jdbcType="INTEGER" />
+  </resultMap>
+
+<sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+
+
+  <sql id="Base_Column_List" >
+    id,
+	asset_number,
+	asset_name,
+	person_id,
+	person_name,
+	asset_model,
+	create_time,
+	change_time,
+	asset_status,
+	delete_flag,
+	asset_classify,
+	asset_value
+  </sql>
+
+
+  <insert id="insert" parameterType="com.cr.domain.Asset" >
+    INSERT INTO asset (
+	id,
+	asset_number,
+	asset_name,
+	person_id,
+	person_name,
+	asset_model,
+	asset_status,
+	asset_classify,
+	delete_flag,
+	create_time,
+	change_time,
+	asset_value
+	)
+    values (
+    #{id,jdbcType=VARCHAR},
+    #{assetNumber,jdbcType=VARCHAR},
+    #{assetName,jdbcType=VARCHAR},
+    #{personId,jdbcType=VARCHAR},
+    #{personName,jdbcType=VARCHAR},
+    #{assetModel,jdbcType=VARCHAR},
+    #{assetStatus,jdbcType=INTEGER},
+    #{assetClassify,jdbcType=INTEGER},
+    #{deleteFlag,jdbcType=INTEGER},
+    #{createTime,jdbcType=DATE},
+    #{changeTime,jdbcType=DATE},
+    #{assetValue,jdbcType=INTEGER}
+   )
+  </insert>
+
+  <select id="selectList"  resultMap="BaseResultMap" >
+    select
+    	<include refid="Base_Column_List" />
+     from
+     	asset
+     where
+     	delete_flag=1
+     limit #{0},#{1}
+  </select>
+
+  <select id="selectCount"  resultType="Integer" >
+    select
+    	count(id)
+     from
+     	asset
+     where
+     	delete_flag=1
+  </select>
+
+
+
+	<select id="selectAssetById" parameterType="String"  resultMap="BaseResultMap" >
+    select
+    	<include refid="Base_Column_List" />
+     from
+     	asset
+     where
+     	id=#{id} and delete_flag=1
+  </select>
+
+  <delete id="deleteAsset" parameterType="String">
+  	update
+  		asset
+  	set
+  		delete_flag=2
+  	where
+  		id=#{id}
+  </delete>
+
+
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=CHAR},
+      </if>
+      <if test="record.idcard != null" >
+        idcard = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.homestead != null" >
+        homestead = #{record.homestead,jdbcType=INTEGER},
+      </if>
+      <if test="record.land != null" >
+        land = #{record.land,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.role != null" >
+        role = #{record.role,jdbcType=CHAR},
+      </if>
+      <if test="record.delflag != null" >
+        delflag = #{record.delflag,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.photo != null" >
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+
+  <update id="updateAssetById" parameterType="com.cr.domain.Asset" >
+    update asset
+    <set >
+      <if test="assetNumber != null" >
+        asset_number = #{assetNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="assetName != null" >
+        asset_name = #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetModel != null" >
+        asset_model = #{assetModel,jdbcType=VARCHAR},
+      </if>
+      <if test="assetStatus != null" >
+        asset_status = #{assetStatus,jdbcType=INTEGER},
+      </if>
+
+      <if test="assetValue != null" >
+        asset_value = #{assetValue,jdbcType=INTEGER},
+      </if>
+
+        person_id = #{personId,jdbcType=VARCHAR},
+
+
+        person_name = #{personName,jdbcType=VARCHAR},
+
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=DATE},
+      </if>
+
+
+    </set>
+    	where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.cr.domain.User" >
+    update user
+    set name = #{name,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      homestead = #{homestead,jdbcType=INTEGER},
+      land = #{land,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      role = #{role,jdbcType=CHAR},
+      delflag = #{delflag,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      photo = #{photo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+
+</mapper>
