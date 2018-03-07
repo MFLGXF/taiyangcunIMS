@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <title>登录</title><meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,11 +20,11 @@
     </style>
 </head>
 <body onkeydown="keydown()">
-    <div id="loginbox">  
-        <div class="control-group normal_text"> 
+    <div id="loginbox">
+        <div class="control-group normal_text">
             <h2 style="color:#B2DFEE;font-size:28px;">太阳升村信息管理系统</h2>
             <span style="font-size:14px;color:gray;">版权所有 &copy; lxx 2014-2018</span>
-        </div>          
+        </div>
         <form id="login" class="form-vertical" >
             <div class="control-group">
                 <label class="control-label">登陆账号</label>
@@ -50,7 +50,7 @@
                 <div style="font-size:14px;color:gray;">推荐使用webkit内核浏览器，如chrome等</div>
             </div>
         </form>
-        
+
 
         <form id="recoverform" action="#" class="form-vertical" style="padding-top:10px;">
             <label class="control-label">登陆账号</label>
@@ -85,16 +85,16 @@
         </form>
 
     </div>
-    
-    <script src="js/jquery.min.js"></script>  
-    <script src="js/matrix.login.js"></script> 
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/matrix.login.js"></script>
     <script src="js/sweet-alert.min.js"></script>
 </body>
 <script>
 	 function login(){
 		$.ajax({
-		    type : "POST",  
-            url : "admin/login",//路径  
+		    type : "POST",
+            url : "admin/login",//路径
             dataType: "json",
             data : $('#login').serialize(),
             success : function(data){

@@ -12,6 +12,7 @@ import java.util.UUID;
 import javax.security.auth.message.callback.SecretKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ImportParams;
@@ -45,22 +46,22 @@ public class UserController {
 	private IuserService userService;
 	/**
 	 * 单个上传人口信息
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 	@RequestMapping(value = "/addUserSingle", method = RequestMethod.POST)
 	@ResponseBody
 	public ReturnInfo<User> addUserSingle(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request) throws ParseException{
-		
+
 		ReturnInfo<User> ret = new ReturnInfo<User>();
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");   
-		
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
 		boolean idcardFlag = IsIdCard.IDCardValidate(request.getParameter("idcard"));
 		if(idcardFlag == false){
 			//身份证验证不通过
 			ret.setResult(202);
 			return ret;
 		}
-		String phone = request.getParameter("phone").replaceAll(" ", ""); 
+		String phone = request.getParameter("phone").replaceAll(" ", "");
 		String str = phone.substring(3, phone.length());
 		boolean phoneFlag = IsPhone.isPhone(str);
 		if(phoneFlag == false){
@@ -98,12 +99,12 @@ public class UserController {
 		try {
 		    FileUtils.uploadFile(file.getBytes(), filePath, fileName);
 		} catch (Exception e) {
-		        
+
 		}
 		user.setPhoto(fileName);
-		
+
 		boolean flag = userService.addUserSingle(user);
-		
+
 		if(flag == true){
 			//添加成功
 			ret.setResult(200);
@@ -111,7 +112,7 @@ public class UserController {
 			//添加失败
 			ret.setResult(201);
 		}
-		return ret;	
+		return ret;
 	}
 	/**
 	 * 批量导入人口信息
@@ -126,7 +127,7 @@ public class UserController {
 		try {
 		    FileUtils.uploadFile(file.getBytes(), filePath, fileName);
 		} catch (Exception e) {
-		        
+
 		}
 		try {
             ImportParams params = new ImportParams();
@@ -142,7 +143,7 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-		return null;	
+		return null;
 	}
 	/**
 	 * 人口详情-人口照片墙
@@ -157,13 +158,14 @@ public class UserController {
 		if(userList != null){
 			ret.setData(userList);
 		}
+		System.out.println("是否请求到这里！");
 		return ret;
 	}
-	
+
 	/**
 	 * 查看单个人的具体信息
-	 * @throws InvocationTargetException 
-	 * @throws IllegalAccessException 
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
 	 */
 	@RequestMapping(value="/selUserMessage",method=RequestMethod.POST)
 	@ResponseBody
