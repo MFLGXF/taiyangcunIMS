@@ -192,5 +192,27 @@ public class userServiceImpl implements IuserService {
 		}
 		return true;
 	}
+	/**
+	 * 查户籍信息
+	 */
+	@Override
+	public List<User> selHome() {
+		List<User> homeList = userDao.selHome();
+		if(homeList.size()>0){
+			return homeList;
+		}
+		return null;
+	}
+	/**
+	 * 查看一家是否有户主存在了
+	 */
+	@Override
+	public boolean selHouseholder(String id,String address,String householder) {
+		User user = userDao.selHouseholder(id, address,householder);
+		if(user == null){
+			return true;
+		}
+		return false;
+	}
 
 }

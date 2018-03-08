@@ -40,20 +40,33 @@
               </thead>
               <tbody>
                 <tr>      
-                 <td rowspan="3" id="tabPhoto"></td>
+                 <td rowspan="5" id="tabPhoto"></td>
 			     <td>联系方式</td>
 			     <td id="tabPhone"></td>
-			     <td>宅基地面积</td>
-			     <td id="tabHome"></td>
+			     <td>职业</td>
+			     <td id="tabOcc"></td>
                 </tr>
+                
                 <tr>
                   <td>身份证号</td>
 			      <td id="tabCard"></td>
-			      <td>耕地面积</td>
-			      <td id="tabLand"></td>
+			      <td>婚姻状况</td>
+			      <td id="tabMar"></td>
                 </tr>
                        
                 <tr>
+				  <td>教育程度</td>
+				  <td id="tabEdu"></td>
+				  <td>民族</td>
+				  <td id="tabNation"></td>
+				</tr>
+				 <tr>
+				  <td>宅基地面积</td>
+				  <td id="tabHome"></td>
+				  <td>耕地面积</td>
+				  <td id="tabLand"></td>
+				</tr>
+				 <tr>
 				  <td>家庭住址</td>
 				  <td id="tabAddress"></td>
 				  <td>职务</td>
@@ -67,7 +80,7 @@
               </thead>
               <tbody id="tab">	 
               </tbody>
-            </table>
+            </table>      
           </div>
         </div>
         
@@ -107,7 +120,7 @@
 	     dataType: "json",
 	     success : function(data) {//返回数据根据结果进行相应的处理  
 	     var data = data.data;
-	    
+	     console.log(data)
 	     contentName = data.name;
 	     contentStatus = data.status;
 	     $("#tabName").html('').append(contentName).append("("+contentStatus+")");
@@ -128,6 +141,10 @@
 	     contentCard = data.idcard;
 	     $("#tabCard").html('').append(contentCard);
 	     
+	     $("#tabOcc").html("");
+	     contentOcc = data.occupation;
+	     $("#tabOcc").html('').append(contentOcc);
+	     
 	     $("#tabLand").html("");
 	     contentLand = data.land;
 	     $("#tabLand").html('').append(contentLand).append("(亩)"); 
@@ -140,8 +157,20 @@
 	     contentRole = data.role;
 	     $("#tabRole").html('').append(contentRole);
 	     
+	     $("#tabMar").html("");
+	     contentMar = data.marriage;
+	     $("#tabMar").html('').append(contentMar);
+	      
+	     $("#tabEdu").html("");
+	     contentEdu = data.education;
+	     $("#tabEdu").html('').append(contentEdu);
+	     
+	     $("#tabNation").html("");
+	     contentNation = data.nation;
+	     $("#tabNation").html('').append(contentNation);
+	     
 	     $("#tabPhoto").html("");
-	     contentPhoto = "<img src='upload/"+data.photo+"' alt='' height='120' width='80'>";
+	     contentPhoto = "<img src='upload/"+data.photo+"' alt='' height='200' width='150'>";
 	     $("#tabPhoto").html('').append(contentPhoto);   
 	     
 	     

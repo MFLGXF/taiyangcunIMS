@@ -37,7 +37,67 @@ public class User {
     
     private Integer worktime;
     
-    public Integer getWorktime() {
+    private String householder;
+
+    private String marriage;
+
+    private String education;
+
+    private String occupation;
+
+    private String nation;
+    
+    private String sex;
+    
+    public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getHouseholder() {
+		return householder;
+	}
+
+	public void setHouseholder(String householder) {
+		this.householder = householder;
+	}
+
+	public String getMarriage() {
+		return marriage;
+	}
+
+	public void setMarriage(String marriage) {
+		this.marriage = marriage;
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+
+	public String getNation() {
+		return nation;
+	}
+
+	public void setNation(String nation) {
+		this.nation = nation;
+	}
+
+	public Integer getWorktime() {
 		return worktime;
 	}
 

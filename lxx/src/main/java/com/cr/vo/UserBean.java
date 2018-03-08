@@ -41,7 +41,87 @@ public class UserBean implements Serializable {
 	
 	private String status;
 	
+	    
+	private String message;
+	    
+	private Integer worktime;
+	    
+	private String householder;
+
+	private String marriage;
+
+	private String education;
+
+	private String occupation;
+
+	private String nation;
+	    
+	private String sex;
+
 	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Integer getWorktime() {
+		return worktime;
+	}
+
+	public void setWorktime(Integer worktime) {
+		this.worktime = worktime;
+	}
+
+	public String getHouseholder() {
+		return householder;
+	}
+
+	public void setHouseholder(String householder) {
+		this.householder = householder;
+	}
+
+	public String getMarriage() {
+		return marriage;
+	}
+
+	public void setMarriage(String marriage) {
+		this.marriage = marriage;
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+
+	public String getNation() {
+		return nation;
+	}
+
+	public void setNation(String nation) {
+		this.nation = nation;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 
 	public String getStatus() {
 		return status;

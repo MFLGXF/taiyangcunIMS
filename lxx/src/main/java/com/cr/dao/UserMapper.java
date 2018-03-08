@@ -49,4 +49,8 @@ public interface UserMapper {
     List<User> leader();
     //查看该职位是否存在
     List<User> selLeader(@Param("id")String id,@Param("role")String role);
+    //查户籍信息
+    List<User> selHome();
+    //查看一家是否有户主存在
+    User selHouseholder(@Param("id")String id,@Param("address")String address,@Param("householder")String householder);
 }

@@ -9,12 +9,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import javax.security.auth.message.callback.SecretKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.jeecgframework.poi.excel.ExcelExportUtil;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ImportParams;
 import org.jeecgframework.poi.util.PoiPublicUtil;
@@ -55,8 +52,12 @@ public class UserController {
 	public ReturnInfo<User> addUserSingle(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request) throws ParseException{
 		
 		ReturnInfo<User> ret = new ReturnInfo<User>();
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");   
-		
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		//必选项不能为空判断
+		if(StringUtils.isEmpty(request.getParameter("name"))|StringUtils.isEmpty(request.getParameter("idcard"))|StringUtils.isEmpty(request.getParameter("birthday"))|StringUtils.isEmpty(request.getParameter("phone"))|StringUtils.isEmpty(request.getParameter("homestead"))|StringUtils.isEmpty(request.getParameter("address"))){
+			ret.setResult(500);
+			return ret;
+		}
 		boolean idcardFlag = IsIdCard.IDCardValidate(request.getParameter("idcard"));
 		if(idcardFlag == false){
 			//身份证验证不通过
@@ -78,24 +79,64 @@ public class UserController {
 			ret.setResult(204);
 			return ret;
 		}
-		if(landFlag == false){
-			//耕地面积输入是否为数字验证不通过
-			ret.setResult(205);
-			return ret;
-		}
+		
 		User user = new User();
-		user.setId(UUIDUtils.getUuid32());
+		String id = UUIDUtils.getUuid32();
+		
+		user.setId(id);
 		user.setName(request.getParameter("name"));
 		user.setIdcard(request.getParameter("idcard"));
 		user.setPhone(request.getParameter("phone"));
-		user.setAddress(request.getParameter("address"));
+		String address = request.getParameter("address");
+		user.setAddress(address);
 		user.setBirthday(format.parse(request.getParameter("birthday")));
 		user.setHomestead(Integer.valueOf(request.getParameter("homestead")));
-		user.setLand(Integer.valueOf(request.getParameter("land")));
-		user.setRole(request.getParameter("role"));
+		if(StringUtils.isEmpty(request.getParameter("land")) == true){
+			user.setLand(0);
+		}else{
+			if(landFlag == false){
+				//耕地面积输入是否为数字验证不通过
+				ret.setResult(205);
+				return ret;
+			}
+			user.setLand(Integer.valueOf(request.getParameter("land")));
+		}
+		String role = request.getParameter("role");
+		user.setRole(role);
 		user.setStatus("在住");
+		String householder = request.getParameter("householder");
+		user.setHouseholder(householder);
+		user.setMarriage(request.getParameter("marriage"));
+		user.setEducation(request.getParameter("education"));
+		if(StringUtils.isEmpty(request.getParameter("occupation")) == true){
+			user.setOccupation("暂无");
+		}else{
+			user.setOccupation(request.getParameter("occupation"));
+		}
+		
+		user.setNation(request.getParameter("nation"));
+		user.setSex(request.getParameter("sex"));
+		if(StringUtils.isEmpty(request.getParameter("message")) == true){
+			user.setMessage("无");
+		}else{
+			user.setMessage(request.getParameter("message"));
+		}
 		user.setDelflag(0);
 		user.setCreatetime(new Date());
+		//添加人员时判断职位是否存在
+		boolean leaderFlag = userService.selLeader(id, role);
+		if(leaderFlag == false){
+			//该职位已存在
+			ret.setResult(400);
+			return ret;
+		}
+		//添加人员时先判断户主是否以存在
+		boolean houseHolder = userService.selHouseholder(id, address,householder);
+		if(houseHolder == false){
+			ret.setResult(300);
+			return ret;
+		}
+		
 		String fileName =  UUID.randomUUID()+file.getOriginalFilename();
 		String filePath = request.getSession().getServletContext().getRealPath("upload/");
 		try {
@@ -195,7 +236,7 @@ public class UserController {
 	/**
 	 * 删除人员信息
 	 */
-	@RequestMapping("/delUser")
+	@RequestMapping(value="/delUser",method=RequestMethod.GET)
 	@ResponseBody
 	public ReturnInfo<User> delUser(String id){
 		ReturnInfo<User> ret = new ReturnInfo<User>();
@@ -223,13 +264,17 @@ public class UserController {
 	/**
 	 * 修改村民信息
 	 */
-	@RequestMapping(value="/updateUser",method=RequestMethod.POST)
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
 	@ResponseBody
-	public ReturnInfo<User> updateUser(String id,String name,
-			String phone,String role,Integer land,Integer homestead,
-			String address,String idcard ){
+	public ReturnInfo<User> updateUser(String id,String name,String status,
+			String phone,String occupation,String marriage,String role,Integer land,Integer homestead,
+			String education,String nation,String address,String idcard ){
 		ReturnInfo<User> ret = new ReturnInfo<User>();
-		if(StringUtils.isEmpty(id)|StringUtils.isEmpty(name)|StringUtils.isEmpty(phone)|StringUtils.isEmpty(role)|StringUtils.isEmpty(land.toString())|StringUtils.isEmpty(homestead.toString())|StringUtils.isEmpty(address)|StringUtils.isEmpty(idcard)){
+		if(StringUtils.isEmpty(id)|StringUtils.isEmpty(name)
+				|StringUtils.isEmpty(phone)|StringUtils.isEmpty(role)
+				|StringUtils.isEmpty(land.toString())|StringUtils.isEmpty(homestead.toString())
+				|StringUtils.isEmpty(address)|StringUtils.isEmpty(idcard)|StringUtils.isEmpty(occupation)
+				|StringUtils.isEmpty(marriage)){
 			ret.setResult(202);
 			return ret;
 		}
@@ -249,6 +294,12 @@ public class UserController {
 		user.setHomestead(homestead);
 		user.setAddress(address);
 		user.setIdcard(idcard);
+		user.setStatus(status);
+		user.setOccupation(occupation);
+		user.setMarriage(marriage);
+		user.setEducation(education);
+		user.setNation(nation);
+
 		boolean flag = userService.updateUser(user);
 		if(flag == true){
 			ret.setResult(200);
@@ -257,4 +308,18 @@ public class UserController {
 		}
 		return ret;
 	}
+	/**
+	 * 查看户籍信息-以一户为单位
+	 */
+	@RequestMapping(value="selHome",method=RequestMethod.GET)
+	@ResponseBody
+	public ReturnInfo<List<User>> selHome(){
+		ReturnInfo<List<User>> ret = new ReturnInfo<List<User>>();
+		List<User> homeList = userService.selHome();
+		if(homeList!=null){
+			ret.setData(homeList);
+		}
+		return ret;
+	}
+	
 }

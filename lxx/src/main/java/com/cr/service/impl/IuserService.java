@@ -28,4 +28,8 @@ public interface IuserService {
 	public boolean updateUser(User user);
 	//查询当前领导是否存在
 	public boolean selLeader(String id ,String role);
+	//查户籍信息
+	public List<User> selHome();
+	//查看一家是否有户主存在了
+	public boolean selHouseholder(String id,String address,String householder);
 }

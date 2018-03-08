@@ -30,71 +30,181 @@
   </div>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span8 fileCont" id="fileCont" >
+   
       <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
           <h5>单个上传</h5>
         </div>
         <div class="widget-content nopadding">
           <form action="#" method="post" class="form-horizontal" id="addUserSingle" enctype="multipart/form-data">
+            <table>
+            	<tr>
+            		<td>
+            		  <div class="control-group">
+		              <label class="control-label"><font color="red">* </font>姓名 :</label>
+		              <div class="controls">
+		                <input type="text" class="span12" name="name"/>
+		              </div>
+		             </div>
+            		</td>
+            		<td>
+            		
+		             <div class="control-group">
+		              <label class="control-label"><font color="red">* </font>身份证号 :</label>
+		              <div class="controls">
+		                <input type="text" class="span13" name="idcard" />
+		              </div>
+		            </div>
+            		</td>
+            	</tr>
+            	<tr>
+            		<td>
+            			<div class="control-group">
+			              <label class="control-label"><font color="red">* </font>性别 :</label>
+			              <div class="controls">
+			                <select class="span12" name="sex">
+			                  <option value="男">男</option>
+			                  <option value="女">女</option>
+			                </select>
+			              </div>
+			            </div>
+            		</td>
+            		<td>
+	            		<div class="control-group">
+				              <label class="control-label"><font color="red">* </font>民族 :</label>
+				              <div class="controls">
+				                <select class="span12" name="nation">
+				                  <option value="汉族">汉族</option>
+				                  <option value="满族">满族</option>
+				                  <option value="回族">回族</option>
+				                  <option value="朝鲜族">朝鲜族</option>
+				                  <option value="其他民族">其他民族</option>
+				                </select>
+				              </div>
+				         </div>
+            		</td>
+            	</tr>
+            	<tr>
+            		<td>
+            		<div class="control-group">
+				              <label class="control-label"><font color="red">* </font>婚姻状况 :</label>
+				              <div class="controls">
+				                <select class="span12" name="marriage">
+				                  <option value="未婚">未婚</option>
+				                  <option value="已婚">已婚</option>
+				                </select>
+				              </div>
+				     </div>
+            		</td>
+            		<td>
+            		<div class="control-group">
+				              <label class="control-label"><font color="red">* </font>学历 :</label>
+				              <div class="controls">
+				                <select class="span12" name="education">
+				                  <option value="无">无</option>
+				                  <option value="小学">小学</option>
+				                  <option value="初中">初中</option>
+				                  <option value="高中">高中</option>
+				                  <option value="学士">学士</option>
+				                  <option value="硕士">硕士</option>
+				                  <option value="博士">博士</option>
+				                </select>
+				              </div>
+				     </div>
+            		</td>
+            	</tr>
+            	<tr>
+            		<td>
+            		<div class="control-group">
+		              <label class="control-label">职业 :</label>
+		              <div class="controls">
+		                <input type="text" class="span12" name="occupation" />
+		              </div>
+		            </div>
+            		</td>
+            		<td>
+            			
+		              <label class="control-label"><font color="red">* </font>出生日期 :</label>
+		              <div class="controls">
+		                <input type="text"  data-date-format="yyyy-mm-dd"  class="datepicker span12" name="birthday">
+		           	  </div>
+		           	 </div>
+            		</td>
+            	</tr>
+            	<tr>
+            		<td>
+            		<div class="control-group">
+            		 <label class="control-label">耕地面积 :</label>
+		              <div class="controls">
+		                <input type="text" class="span12" name="land" placeholder="(亩)"/>
+		              </div>
+		            </div>
+            		</td>
+            		<td>
+            		 <div class="control-group">
+		              <label class="control-label"><font color="red">* </font>宅基地面积 :</label>
+		              <div class="controls">
+		                <input type="text" class="span12" name="homestead" placeholder="(平方米)"/>
+		            </div>
+            		</td>        	
+            	</tr>
+            	<tr>
+            		<td>
+            		<div class="control-group">
+		              <label for="normal" class="control-label"><font color="red">* </font>联系电话 :</label>
+		              <div class="controls">
+		                <input type="text" id="mask-phoneInt" class="span12 mask text" name="phone">
+		              </div>
+		            </div>
+            		</td>
+            		<td>
+            			<div class="control-group">
+		              <label class="control-label"><font color="red">* </font>担任职务 :</label>
+		              <div class="controls">
+		                <select class="span12" name="role">
+		                  <option value="村民">村民</option>
+		                  <option value="村长">村长</option>
+		                  <option value="村支书">村支书</option>
+		                  <option value="村主任">村主任</option>
+		                </select>
+		              </div>
+		            </div>
+            		</td>
+            	</tr>
+            	<tr>
+            		<td >
+            		 <div class="control-group">
+		              <label class="control-label"><font color="red">* </font>家庭住址 :</label>
+		              <div class="controls">
+		                <input type="text" class="span12" name="address" />
+		              </div>
+		            </div>
+            		</td>
+            		<td>
+            		<div class="control-group">
+		              <label class="control-label"><font color="red">* </font>是否为户主 :</label>
+		              <div class="controls">
+		                 <label><input type="radio" name="householder" value="户主"/>是</label> 
+						 <label><input type="radio" name="householder" value="否" checked="checked"/>否</label>
+		           
+		              </div>
+		            </div>         			
+            		</td>
+            	</tr>
+            	
+            </table>
+ 
             <div class="control-group">
-              <label class="control-label">姓名 :</label>
-              <div class="controls">
-                <input type="text" class="span9" name="name"/>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">身份证号 :</label>
-              <div class="controls">
-                <input type="text" class="span9" name="idcard" />
-              </div>
-            </div>
-            
-            <div class="control-group">
-              <label for="normal" class="control-label">联系电话 :</label>
-              <div class="controls">
-                <input type="text" id="mask-phoneInt" class="span9 mask text" name="phone">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">家庭住址 :</label>
-              <div class="controls">
-                <input type="text" class="span9" name="address" />
-              </div>
-            </div>
-              <div class="control-group">
-              <label class="control-label">出生日期 :</label>
-              <div class="controls">
-                <input type="text"  data-date-format="yyyy-mm-dd"  class="datepicker span9" name="birthday">
-           	  </div>
-           	 </div>
-            <div class="control-group">
-              <label class="control-label">宅基地面积 :</label>
-              <div class="controls">
-                <input type="text" class="span9" name="homestead" placeholder="(平方米)"/>
-            </div>
-            <div class="control-group">
-              <label class="control-label">耕地面积 :</label>
-              <div class="controls">
-                <input type="text" class="span9" name="land" placeholder="(亩)"/>
-              </div>
-            </div>
-           <div class="control-group">
-              <label class="control-label">担任职务 :</label>
-              <div class="controls">
-                <select class="span9" name="role">
-                  <option value="村民">村民</option>
-                  <option value="村长">村长</option>
-                  <option value="村支书">村支书</option>
-                  <option value="村主任">村主任</option>
-                </select>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">上传照片 :</label>
+              <label class="control-label"><font color="red">* </font>上传照片 :</label>
               <div class="controls">
                 <input type="file" class="span9" name="file"/>
                  <span class="help-block">(请统一上传蓝底一寸照)</span>
+              </div>
+            </div>
+             <div class="control-group">
+              <label class="control-label">个人荣誉 :</label>
+              <div class="controls">
+                <textarea class="span7" name="message"></textarea>
               </div>
             </div>
             <div class="form-actions">
@@ -106,34 +216,7 @@
       
      
 </div>
-<div class="widget-box" style="margin-left:45px">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>批量上传</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <form action="#" method="post" class="form-horizontal" id="addUserBatch" enctype="multipart/form-data">
-            <div class="control-group">
-             <label class="label label-important">请先下载Excel模板,并使用该模板填写信息</label>
-             <div class="controls">
-             	<a href="/file/excel.xlsx" download="太阳升村人口登记" class="btn btn-large btn-primary">模板下载</a>
-             </div>
-             
-           </div>
-            <div class="control-group">
-              <label class="control-label">上传Excel文件</label>
-              <div class="controls">
-                <input type="file" />
-              </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-success" onclick="addUserBatch()">Save</button>
-            </div>
-            <div class="form-actions">
-              <img src="/images/sxf.jpg"  />
-            </div>
-          </form>
-        </div>
-      </div>
+
 </div>
 
 <script src="js/jquery.min.js"></script> 
@@ -179,36 +262,12 @@
               sweetAlert("请输入正确的宅基地面积", "","warning");
               }else if(data.result == 205){
               sweetAlert("请输入正确的耕地面积", "","warning");
-              }
-           
-            }
-		})
-		}
-</script>
-<script>
-	 function addUserBatch(){
-	  var formData = new FormData($( "#addUserBatch" )[0]);  
-		$.ajax({
-		    type : "POST",  
-            url : "user/addUserBatch",//路径  
-            data : formData,
-            async: false,  
-            cache: false,  
-            contentType: false,  
-            processData: false,  
-            success : function(data){
-             if(data.result == 200){
-              swal("添加成功！", "","success")
-              }else if(data.result == 201){
-              sweetAlert("登录失败", "","error");
-              }else if(data.result == 202){
-              sweetAlert("请输入正确的身份证", "","warning");
-              }else if(data.result == 203){
-              sweetAlert("请输入正确的联系方式", "","warning");
-              }else if(data.result == 204){
-              sweetAlert("请输入正确的宅基地面积", "","warning");
-              }else if(data.result == 205){
-              sweetAlert("请输入正确的耕地面积", "","warning");
+              }else if(data.result == 300){
+              sweetAlert("该家庭已存在户主", "","error");
+              }else if(data.result == 400){
+              sweetAlert("该职务已存在", "","error");
+              }else if(data.result == 500){
+              sweetAlert("必填项不能为空", "","warning");
               }
            
             }
