@@ -21,6 +21,33 @@
   <div id="content-header">
       <h1>资产所属信息</h1>
   </div>
+
+<div class="widget-box">
+
+        <div class="widget-content">
+
+  <form class="form-inline" role="form">
+  <div class="form-group">
+    <label class="sr-only" for="name">名称</label>
+    <input type="text" class="form-control" id="assetNo" placeholder="请输入编号">
+
+    				<select style="width:220px;" name="personId" id="selectAssetPerson">
+                  	<option value="">--请选择使用人--</option>
+                  </select>
+
+		<select style="width:220px;" name="assetStatus" id="selectAssetType">
+                  	<option value="0">--请选择资产使用状态--</option>
+                  	<option value="1">使用中</option>
+                  	<option value="2">闲置</option>
+                  </select>
+
+    <button type="button" onclick="searchAssetData();"  class="btn btn-info">查询</button>
+  </div>
+</form>
+</div>
+</div>
+
+
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
@@ -83,13 +110,34 @@
 		*/
 		loadTableData();
 
+
+			/*
+			*	当页面加载的时候就要从后台拿过来所有的人员相关的数据
+			*/
+			var selectAreaPerson = $("select#selectAssetPerson");
+			//向后台发送get请求，接收用户数据
+			$.get("user/userMessage",{},function(data){
+				//然后将人员数据导入到下拉列表中
+				var result = data.data;
+				for(var i = 0;i < result.length; i++){
+					//var option = $("<option>"+result[i].name+"</option>");
+					selectAreaPerson.append($("<option value='"+result[i].id+"'>"+result[i].name+"</option>"));
+				}
+
+		});
+
 	});
 
 
 
 	function loadTableData(){
 		//每次方法执行之前把全局变量清空
+
+		//alert("assetNo="+assetNumber+",person="+assetPersonId+",assetStatus="+assetStatus);
+
+
 		$('#page3').bPage({
+
 		    url:'asset/datagrid2',
 		    //开启异步处理模式
 		    asyncLoad : true,
@@ -140,7 +188,7 @@
 						"<td>"+singleData.assetModel+"</td>"+
 						"<td>"+personName+"</td>"+
 						"<td>"+assetStatus+"</td>"+
-						"<td>"+singleData.assetValue+"</td>"+
+						"<td>"+singleData.assetValue+"(元)</td>"+
 						"<td>"+createTime+"</td>"+
 						"<td>"+changeTime+"</td>"+
 						"<td>"+
@@ -153,9 +201,15 @@
 		        }
 		    },
 		    params : function(){
+		    	var assetNumber = $("#assetNo").val();
+				var assetPersonId = $("#selectAssetPerson").val();
+				var assetStatus = parseInt($("#selectAssetType").val());
+		    	//alert("assetNo="+assetNumber+",person="+assetPersonId+",assetStatus="+assetStatus);
+
 		        return {
-		            offset : 3,
-		            limit : 42
+		        	assetNumber : assetNumber,
+		        	assetPersonId : assetPersonId,
+		        	assetStatus : assetStatus
 		        };
 		    }
 		});
@@ -187,7 +241,9 @@
 						success:function(data){
 							swal('提示','该数据已被成功删除','success').then(function(isConfirm){
 								$("#"+areaId).remove();
-								location.reload();
+								//location.reload();
+								$('.bPageRight:first').remove();
+								loadTableData();
 							});
 
 						},
@@ -216,6 +272,12 @@
 
 		window.location.href = "addAsset.html?areaId="+updateData.id;
 
+	}
+
+
+	function searchAssetData(){
+		$('.bPageRight:first').remove();
+		loadTableData();
 	}
 
 
