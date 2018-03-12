@@ -17,6 +17,7 @@
     <result column="update_time" property="updateTime" jdbcType="DATE" />
     <result column="rent_time" property="rentTime" jdbcType="DATE" />
     <result column="rent_person_name" property="rentPersonName" jdbcType="VARCHAR" />
+    <result column="area_rent" property="areaRent" jdbcType="INTEGER" />
   </resultMap>
 
 <sql id="Example_Where_Clause" >
@@ -93,7 +94,8 @@
 	delete_flag,
 	area_house_size,
 	rent_person_id,
-	rent_person_name
+	rent_person_name,
+	area_rent
   </sql>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -128,7 +130,8 @@
 	delete_flag,
 	area_house_size,
 	rent_person_id,
-	rent_person_name
+	rent_person_name,
+	area_rent
 	)
     values (
     #{id,jdbcType=VARCHAR},
@@ -143,7 +146,8 @@
     #{deleteFlag,jdbcType=INTEGER},
     #{areaHouseSize,jdbcType=INTEGER},
     #{rentPersonId,jdbcType=VARCHAR},
-    #{rentPersonName,jdbcType=VARCHAR}
+    #{rentPersonName,jdbcType=VARCHAR},
+    #{areaRent,jdbcType=INTEGER}
    )
   </insert>
 
@@ -154,8 +158,62 @@
      	area
      where
      	delete_flag=1
+
+     	<if test="areaAddress != ''" >
+	        and
+	        	area_address = #{areaAddress,jdbcType=VARCHAR}
+	     </if>
+	     <if test="personId != ''" >
+	        and
+	        	person_id = #{personId,jdbcType=VARCHAR}
+	     </if>
+	     <if test="rentPersonId != ''" >
+	        and
+	        	rent_person_id = #{rentPersonId,jdbcType=VARCHAR}
+	     </if>
+	     <if test="areaConfirm != 0" >
+	        and
+	        	area_confirm = #{areaConfirm,jdbcType=INTEGER}
+	     </if>
+	     <if test="areaRent != 0" >
+	        and
+	        	area_rent = #{areaRent,jdbcType=INTEGER}
+	     </if>
+	  limit #{start},#{end}
   </select>
 
+
+
+  <select id="selectCount"  resultType="Integer" >
+    select
+    	count(id)
+     from
+     	area
+     where
+     	delete_flag=1
+
+	     <if test="areaAddress != ''" >
+	        and
+	        	area_address = #{areaAddress,jdbcType=VARCHAR}
+	     </if>
+	     <if test="personId != ''" >
+	        and
+	        	person_id = #{personId,jdbcType=VARCHAR}
+	     </if>
+	     <if test="rentPersonId != ''" >
+	        and
+	        	rent_person_id = #{rentPersonId,jdbcType=VARCHAR}
+	     </if>
+	     <if test="areaConfirm != 0" >
+	        and
+	        	area_confirm = #{areaConfirm,jdbcType=INTEGER}
+	     </if>
+	     <if test="areaRent != 0" >
+	        and
+	        	area_rent = #{areaRent,jdbcType=INTEGER}
+	     </if>
+
+  </select>
 
 
 	<select id="selectAreaById" parameterType="String"  resultMap="BaseResultMap" >
@@ -166,6 +224,24 @@
      where
      	id=#{id} and delete_flag=1
   </select>
+
+  	<select id="findAreaByRecord" parameterType="java.util.Map" resultType="Integer" >
+    select
+    	count(id)
+     from
+     	area
+     where
+     	delete_flag=1
+     	<if test="record == 'confirm'">
+     		and
+     			area_confirm = 1
+     	</if>
+     	<if test="record == 'rent'">
+     		and
+     			area_rent = 1
+     	</if>
+  </select>
+
 
   <delete id="deleteArea" parameterType="String">
   	update

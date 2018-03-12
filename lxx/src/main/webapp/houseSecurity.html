@@ -200,7 +200,7 @@
 							if(parseInt(singleData.isSecurity) == 2){
 								isSecurity = "不安全";
 								securityContent = singleData.securityContent;
-								alert(singleData.securityContent);
+								//alert(singleData.securityContent);
 							}else if(parseInt(singleData.isSecurity) == 1){
 								isSecurity = "安全";
 								securityContent = "--"
@@ -351,7 +351,7 @@
 
 		function updateHouseData(){
 
-			alert("这里的方法执行了");
+			//alert("这里的方法执行了");
 
 			/*获取隐藏域中的id属性*/
 			var securityId = $("#securityId").val();
@@ -362,7 +362,7 @@
 
 		    var securityContent = $("#securityContent").val();
 
-		    alert("houseAddress="+houseAddress+",personName="+personName+",isSecurity="+isSecurity+",securityContent="+securityContent);
+		    //alert("houseAddress="+houseAddress+",personName="+personName+",isSecurity="+isSecurity+",securityContent="+securityContent);
 
 		    var securityData = {};
 

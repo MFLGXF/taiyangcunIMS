@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cr.dao.AssetMapper" >
+<mapper namespace="com.cr.dao.SecurityMapper" >
 
-  <resultMap id="BaseResultMap" type="com.cr.domain.Asset" >
+  <resultMap id="BaseResultMap" type="com.cr.domain.SecurityHouse" >
     <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="asset_number" property="assetNumber" jdbcType="VARCHAR" />
-    <result column="asset_name" property="assetName" jdbcType="INTEGER" />
+    <result column="house_address" property="houseAddress" jdbcType="VARCHAR" />
+    <result column="security_confirm" property="securityConfirm" jdbcType="INTEGER" />
+    <result column="security_content" property="securityContent" jdbcType="VARCHAR" />
     <result column="person_id" property="personId" jdbcType="VARCHAR" />
     <result column="person_name" property="personName" jdbcType="VARCHAR" />
-    <result column="asset_model" property="assetModel" jdbcType="VARCHAR" />
-    <result column="asset_status" property="assetStatus" jdbcType="INTEGER" />
-    <result column="asset_classify" property="assetClassify" jdbcType="INTEGER" />
     <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="DATE" />
-    <result column="change_time" property="changeTime" jdbcType="DATE" />
-    <result column="asset_value" property="assetValue" jdbcType="DATE" />
     <result column="update_flag" property="updateFlag" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+
+     <result column="is_security" property="isSecurity" jdbcType="INTEGER" />
   </resultMap>
 
 <sql id="Example_Where_Clause" >
@@ -80,48 +79,42 @@
 
   <sql id="Base_Column_List" >
     id,
-	asset_number,
-	asset_name,
+	house_address,
+	security_confirm,
+	security_content,
 	person_id,
 	person_name,
-	asset_model,
 	create_time,
-	change_time,
-	asset_status,
 	delete_flag,
-	asset_classify,
-	asset_value
+	area_id,
+	is_security
   </sql>
 
 
-  <insert id="insert" parameterType="com.cr.domain.Asset" >
-    INSERT INTO asset (
+  <insert id="insert" parameterType="com.cr.domain.SecurityHouse" >
+    INSERT INTO security_house (
 	id,
-	asset_number,
-	asset_name,
+	house_address,
+	security_confirm,
+	security_content,
 	person_id,
 	person_name,
-	asset_model,
-	asset_status,
-	asset_classify,
 	delete_flag,
 	create_time,
-	change_time,
-	asset_value
+	area_id,
+	is_security
 	)
     values (
     #{id,jdbcType=VARCHAR},
-    #{assetNumber,jdbcType=VARCHAR},
-    #{assetName,jdbcType=VARCHAR},
+    #{houseAddress,jdbcType=VARCHAR},
+    #{securityConfirm,jdbcType=INTEGER},
+    #{securityContent,jdbcType=VARCHAR},
     #{personId,jdbcType=VARCHAR},
     #{personName,jdbcType=VARCHAR},
-    #{assetModel,jdbcType=VARCHAR},
-    #{assetStatus,jdbcType=INTEGER},
-    #{assetClassify,jdbcType=INTEGER},
     #{deleteFlag,jdbcType=INTEGER},
     #{createTime,jdbcType=DATE},
-    #{changeTime,jdbcType=DATE},
-    #{assetValue,jdbcType=INTEGER}
+    #{areaId,jdbcType=VARCHAR},
+    #{isSecurity,jdbcType=INTEGER}
    )
   </insert>
 
@@ -129,22 +122,11 @@
     select
     	<include refid="Base_Column_List" />
      from
-     	asset
+     	security_house
      where
      	delete_flag=1
-
-     <if test="assetNumber != ''" >
-        and
-        	asset_number = #{assetNumber,jdbcType=VARCHAR}
-     </if>
-     <if test="assetPersonId != ''" >
-        and
-        	person_id = #{assetPersonId,jdbcType=VARCHAR}
-     </if>
-     <if test="assetStatus != 0" >
-        and
-        	asset_status = #{assetStatus,jdbcType=INTEGER}
-     </if>
+     	and
+     	person_id != ''
      limit #{start},#{end}
   </select>
 
@@ -152,21 +134,10 @@
     select
     	count(id)
      from
-     	asset
+     	security_house
      where
      	delete_flag=1
-     <if test="assetNumber != ''" >
-        and
-        	asset_number = #{assetNumber,jdbcType=VARCHAR}
-     </if>
-     <if test="assetPersonId != ''" >
-        and
-        	person_id = #{assetPersonId,jdbcType=VARCHAR}
-     </if>
-     <if test="assetStatus != 0" >
-        and
-        	asset_status = #{assetStatus,jdbcType=INTEGER}
-     </if>
+
   </select>
 
 
@@ -175,103 +146,32 @@
     select
     	<include refid="Base_Column_List" />
      from
-     	asset
+     	security_house
      where
      	id=#{id} and delete_flag=1
   </select>
 
-  <delete id="deleteAsset" parameterType="String">
+  <delete id="deleteSecurity" parameterType="String">
   	update
-  		asset
+  		security_house
   	set
   		delete_flag=2
   	where
-  		id=#{id}
+  		area_id=#{id}
   </delete>
 
 
-  <update id="updateByExampleSelective" parameterType="map" >
-    update user
+
+
+  <update id="updateSecurityById" parameterType="com.cr.domain.SecurityHouse" >
+    update security_house
     <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=CHAR},
+      <if test="isSecurity != null" >
+        is_security = #{isSecurity,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=CHAR},
+      <if test="securityContent != null" >
+        security_content = #{securityContent,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null" >
-        password = #{record.password,jdbcType=CHAR},
-      </if>
-      <if test="record.idcard != null" >
-        idcard = #{record.idcard,jdbcType=VARCHAR},
-      </if>
-      <if test="record.phone != null" >
-        phone = #{record.phone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.address != null" >
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
-      <if test="record.birthday != null" >
-        birthday = #{record.birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.homestead != null" >
-        homestead = #{record.homestead,jdbcType=INTEGER},
-      </if>
-      <if test="record.land != null" >
-        land = #{record.land,jdbcType=INTEGER},
-      </if>
-      <if test="record.status != null" >
-        status = #{record.status,jdbcType=CHAR},
-      </if>
-      <if test="record.role != null" >
-        role = #{record.role,jdbcType=CHAR},
-      </if>
-      <if test="record.delflag != null" >
-        delflag = #{record.delflag,jdbcType=INTEGER},
-      </if>
-      <if test="record.createtime != null" >
-        createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.photo != null" >
-        photo = #{record.photo,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-
-
-
-  <update id="updateAssetById" parameterType="com.cr.domain.Asset" >
-    update asset
-    <set >
-      <if test="assetNumber != null" >
-        asset_number = #{assetNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="assetName != null" >
-        asset_name = #{assetName,jdbcType=VARCHAR},
-      </if>
-      <if test="assetModel != null" >
-        asset_model = #{assetModel,jdbcType=VARCHAR},
-      </if>
-      <if test="assetStatus != null" >
-        asset_status = #{assetStatus,jdbcType=INTEGER},
-      </if>
-
-      <if test="assetValue != null" >
-        asset_value = #{assetValue,jdbcType=INTEGER},
-      </if>
-
-        person_id = #{personId,jdbcType=VARCHAR},
-
-
-        person_name = #{personName,jdbcType=VARCHAR},
-
-      <if test="changeTime != null" >
-        change_time = #{changeTime,jdbcType=DATE},
-      </if>
-
 
     </set>
     	where id = #{id,jdbcType=VARCHAR}
