@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>太阳升村信息管理系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/matrix-style.css" />
+    <link rel="stylesheet" href="css/matrix-media.css" />
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+</head>
+<body>
+    <!--Header-part-->
+    <div id="header">
+      <h1><a href="dashboard.html">太阳升村信息管理系统</a></h1>
+    </div>
+    <!--close-Header-part-->
+
+    <!--top-Header-menu-->
+    <div id="user-nav" class="navbar navbar-inverse">
+        <ul class="nav">
+            <li  class="dropdown" id="profile-messages" >
+                <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle">
+                    <i class="icon icon-user"></i>&nbsp;
+                    <span class="text">欢迎你，admin</span>&nbsp;
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-user"></i> 个人资料</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="icon-check"></i> 我的任务</a></li>
+                    <li class="divider"></li>
+                    <li><a href="login.html"><i class="icon-key"></i> 退出系统</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" id="menu-messages">
+
+            </li>
+            <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">&nbsp;设置</span></a></li>
+            <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">&nbsp;退出系统</span></a></li>
+        </ul>
+    </div>
+    <!--close-top-Header-menu-->
+
+    <!--start-top-serch-->
+    <div id="search">
+        <input type="text" placeholder="搜索..."/>
+        <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+    </div>
+    <!--close-top-serch-->
+
+    <!--sidebar-menu-->
+    <div id="sidebar" style="OVERFLOW-Y: auto; OVERFLOW-X:hidden;">
+        <ul>
+            <li class="submenu active">
+                <a class="menu_a" link="index2.html"><i class="icon icon-home"></i> <span>主页</span></a>
+            </li>
+            <li class="submenu">
+                <a href="#">
+                    <i class="icon icon-table"></i>
+                    <span>表单</span>
+                    <span class="label label-important">3</span>
+                </a>
+                <ul>
+                    <li><a class="menu_a" link="form-common.html"><i class="icon icon-caret-right"></i>基本表单</a></li>
+                    <li><a class="menu_a" link="form-validation.html"><i class="icon icon-caret-right"></i>校验表单</a></li>
+                    <li><a class="menu_a" link="form-wizard.html"><i class="icon icon-caret-right"></i>密码修改样式表单</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+				<a href="#">
+                    <i class="icon icon-th"></i>
+                    <span>布局表格组件</span>
+                    <span class="label label-important">6</span>
+                </a>
+				<ul>
+                    <li><a class="menu_a" link="buttons.html"><i class="icon icon-caret-right"></i> 按钮 &amp; 图标</a></li>
+                    <li><a class="menu_a" link="grid.html"><i class="icon icon-caret-right"></i>页面布局</a></li>
+                    <li><a class="menu_a" link="tables.html"><i class="icon icon-caret-right"></i>表格</a></li>
+                    <li><a class="menu_a" link="widgets.html"><i class="icon icon-caret-right"></i>插件</a></li>
+					<li><a class="menu_a" link="charts.html"><i class="icon icon-caret-right"></i>曲线图 &amp; 统计图</a></li>
+					<li><a class="menu_a" link="interface.html"><i class="icon icon-caret-right"></i>元素</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#">
+                    <i class="icon icon-stop"></i>
+                    <span>人口管理</span>
+                    <span class="label label-important">3</span>
+                </a>
+                <ul>
+                    <li><a class="menu_a" link="gallery.html"><i class="icon icon-caret-right"></i>人口详情</a></li>
+                    <li><a class="menu_a" link="selHome.html"><i class="icon icon-caret-right"></i>户籍信息</a></li>
+                    <li><a class="menu_a" link="addpeople.html"><i class="icon icon-caret-right"></i>人口登记</a></li>
+
+                </ul>
+            </li>
+
+            <li class="submenu">
+                <a href="#">
+                    <i class="icon icon-stop"></i>
+                    <span>土地管理</span>
+                    <span class="label label-important">3</span>
+                </a>
+                <ul>
+                    <li><a class="menu_a" link="addArea.html"><i class="icon icon-caret-right"></i>土地登记</a></li>
+                    <li><a class="menu_a" link="areaConfirm.html"><i class="icon icon-caret-right"></i>土地确权</a></li>
+                    <li><a class="menu_a" link="areaStatistics.html"><i class="icon icon-caret-right"></i>土地统计</a></li>
+                </ul>
+            </li>
+
+            <li class="submenu">
+                <a href="#">
+                    <i class="icon icon-stop"></i>
+                    <span>资产管理</span>
+                    <span class="label label-important">3</span>
+                </a>
+                <ul>
+                    <li><a class="menu_a" link="addAsset.html"><i class="icon icon-caret-right"></i>资产登记</a></li>
+                    <li><a class="menu_a" link="assetList.html"><i class="icon icon-caret-right"></i>资产查询</a></li>
+                   </ul>
+            </li>
+
+            <li class="submenu">
+                <a href="#">
+                    <i class="icon icon-stop"></i>
+                    <span>安全管理</span>
+                    <span class="label label-important">1</span>
+                </a>
+                <ul>
+                    <li><a class="menu_a" link="houseSecurity.html"><i class="icon icon-caret-right"></i>房屋安全</a></li>
+                   </ul>
+            </li>
+
+            <li class="submenu">
+                <a href="#">
+                    <i class="icon icon-envelope-alt"></i>
+                    <span>信息管理</span>
+                    <span class="label label-important">2</span>
+                </a>
+                <ul>
+                    <li><a class="menu_a" link="plan.html"><i class="icon icon-caret-right"></i>计划管理</a></li>
+                    <li><a class="menu_a" link="news.html"><i class="icon icon-caret-right"></i>新闻管理</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#">
+                    <i class="icon icon-legal"></i>
+                    <span>业务管理</span>
+                    <span class="label label-important">2</span>
+                </a>
+                <ul>
+                    <li><a class="menu_a" link="busniess1.html"><i class="icon icon-caret-right"></i>招商引资</a></li>
+                    <li><a class="menu_a" link="busniess2.html"><i class="icon icon-caret-right"></i>本土企业</a></li>
+                </ul>
+            </li>
+             <li class="submenu">
+                <a href="#">
+                    <i class="icon icon-eye-open"></i>
+                    <span>领导管理</span>
+                    <span class="label label-important">1</span>
+                </a>
+                <ul>
+                    <li><a class="menu_a" link="leader.html"><i class="icon icon-caret-right"></i>领导信息</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#">
+                    <i class="icon icon-info-sign"></i>
+                    <span>其他</span>
+                    <span class="label label-important">4</span>
+                </a>
+                <ul>
+                    <li><a class="menu_a" link="error403.html"><i class="icon icon-caret-right"></i>预留1</a></li>
+                    <li><a class="menu_a" link="error404.html"><i class="icon icon-caret-right"></i>预留2</a></li>
+                    <li><a class="menu_a" link="error405.html"><i class="icon icon-caret-right"></i>预留3</a></li>
+                    <li><a class="menu_a" link="error500.html"><i class="icon icon-caret-right"></i>预留4</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!--sidebar-menu-->
+
+    <!--main-container-part-->
+    <div id="content">
+        <!--breadcrumbs-->
+        <div id="content-header">
+          <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+        </div>
+        <!--End-breadcrumbs-->
+        <iframe src="index2.html" id="iframe-main" frameborder='0' style="width:100%;"></iframe>
+    </div>
+    <!--end-main-container-part-->
+
+    <script src="js/excanvas.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.ui.custom.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="js/matrix.js"></script>
+
+
+    <script type="text/javascript">
+
+    //初始化相关元素高度
+    function init(){
+        $("body").height($(window).height()-80);
+        $("#iframe-main").height($(window).height()-90);
+        $("#sidebar").height($(window).height()-50);
+    }
+
+    $(function(){
+        init();
+        $(window).resize(function(){
+            init();
+        });
+    });
+
+    // This function is called from the pop-up menus to transfer to
+    // a different page. Ignore if the value returned is a null string:
+    function goPage (newURL) {
+        // if url is empty, skip the menu dividers and reset the menu selection to default
+        if (newURL != "") {
+            // if url is "-", it is this page -- reset the menu:
+            if (newURL == "-" ) {
+                resetMenu();
+            }
+            // else, send page to designated URL
+            else {
+                document.location.href = newURL;
+            }
+        }
+    }
+
+    // resets the menu selection upon entry to this page:
+    function resetMenu() {
+        document.gomenu.selector.selectedIndex = 2;
+    }
+
+    // uniform使用示例：
+    // $.uniform.update($(this).attr("checked", true));
+    </script>
+</body>
+
+</html>

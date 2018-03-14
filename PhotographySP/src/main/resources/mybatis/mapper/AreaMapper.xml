@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cr.dao.AreaMapper" >
+
+  <resultMap id="BaseResultMap" type="com.cr.domain.Area" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="area_address" property="areaAddress" jdbcType="VARCHAR" />
+    <result column="area_type" property="areaType" jdbcType="INTEGER" />
+    <result column="person_id" property="personId" jdbcType="VARCHAR" />
+    <result column="area_land_size" property="areaLandSize" jdbcType="INTEGER" />
+    <result column="person_name" property="personName" jdbcType="VARCHAR" />
+    <result column="area_confirm" property="areaConfirm" jdbcType="INTEGER" />
+    <result column="area_house_size" property="areaHouseSize" jdbcType="INTEGER" />
+    <result column="rent_person_id" property="rentPersonId" jdbcType="VARCHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="rent_time" property="rentTime" jdbcType="DATE" />
+    <result column="rent_person_name" property="rentPersonName" jdbcType="VARCHAR" />
+    <result column="area_rent" property="areaRent" jdbcType="INTEGER" />
+  </resultMap>
+
+<sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+
+
+  <sql id="Base_Column_List" >
+    id,
+	area_address,
+	area_type,
+	person_id,
+	area_land_size,
+	person_name,
+	area_confirm,
+	create_time,
+	update_time,
+	rent_time,
+	delete_flag,
+	area_house_size,
+	rent_person_id,
+	rent_person_name,
+	area_rent
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=CHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+
+  <delete id="deleteByExample" parameterType="com.cr.domain.UserExample" >
+    delete from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cr.domain.Area" >
+    INSERT INTO area (
+	id,
+	area_address,
+	area_type,
+	person_id,
+	area_land_size,
+	person_name,
+	area_confirm,
+	create_time,
+	rent_time,
+	delete_flag,
+	area_house_size,
+	rent_person_id,
+	rent_person_name,
+	area_rent
+	)
+    values (
+    #{id,jdbcType=VARCHAR},
+    #{areaAddress,jdbcType=VARCHAR},
+    #{areaType,jdbcType=INTEGER},
+    #{personId,jdbcType=VARCHAR},
+    #{areaLandSize,jdbcType=INTEGER},
+    #{personName,jdbcType=VARCHAR},
+    #{areaConfirm,jdbcType=INTEGER},
+    #{createTime,jdbcType=DATE},
+    #{rentTime,jdbcType=DATE},
+    #{deleteFlag,jdbcType=INTEGER},
+    #{areaHouseSize,jdbcType=INTEGER},
+    #{rentPersonId,jdbcType=VARCHAR},
+    #{rentPersonName,jdbcType=VARCHAR},
+    #{areaRent,jdbcType=INTEGER}
+   )
+  </insert>
+
+  <select id="selectList"  resultMap="BaseResultMap" >
+    select
+    	<include refid="Base_Column_List" />
+     from
+     	area
+     where
+     	delete_flag=1
+
+     	<if test="areaAddress != ''" >
+	        and
+	        	area_address = #{areaAddress,jdbcType=VARCHAR}
+	     </if>
+	     <if test="personId != ''" >
+	        and
+	        	person_id = #{personId,jdbcType=VARCHAR}
+	     </if>
+	     <if test="rentPersonId != ''" >
+	        and
+	        	rent_person_id = #{rentPersonId,jdbcType=VARCHAR}
+	     </if>
+	     <if test="areaConfirm != 0" >
+	        and
+	        	area_confirm = #{areaConfirm,jdbcType=INTEGER}
+	     </if>
+	     <if test="areaRent != 0" >
+	        and
+	        	area_rent = #{areaRent,jdbcType=INTEGER}
+	     </if>
+	  limit #{start},#{end}
+  </select>
+
+
+
+  <select id="selectCount"  resultType="Integer" >
+    select
+    	count(id)
+     from
+     	area
+     where
+     	delete_flag=1
+
+	     <if test="areaAddress != ''" >
+	        and
+	        	area_address = #{areaAddress,jdbcType=VARCHAR}
+	     </if>
+	     <if test="personId != ''" >
+	        and
+	        	person_id = #{personId,jdbcType=VARCHAR}
+	     </if>
+	     <if test="rentPersonId != ''" >
+	        and
+	        	rent_person_id = #{rentPersonId,jdbcType=VARCHAR}
+	     </if>
+	     <if test="areaConfirm != 0" >
+	        and
+	        	area_confirm = #{areaConfirm,jdbcType=INTEGER}
+	     </if>
+	     <if test="areaRent != 0" >
+	        and
+	        	area_rent = #{areaRent,jdbcType=INTEGER}
+	     </if>
+
+  </select>
+
+
+	<select id="selectAreaById" parameterType="String"  resultMap="BaseResultMap" >
+    select
+    	<include refid="Base_Column_List" />
+     from
+     	area
+     where
+     	id=#{id} and delete_flag=1
+  </select>
+
+  	<select id="findAreaByRecord" parameterType="java.util.Map" resultType="Integer" >
+    select
+    	count(id)
+     from
+     	area
+     where
+     	delete_flag=1
+     	<if test="record == 'confirm'">
+     		and
+     			area_confirm = 1
+     	</if>
+     	<if test="record == 'rent'">
+     		and
+     			area_rent = 1
+     	</if>
+  </select>
+
+
+  <delete id="deleteArea" parameterType="String">
+  	update
+  		area
+  	set
+  		delete_flag=2
+  	where
+  		id=#{id}
+  </delete>
+
+
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=CHAR},
+      </if>
+      <if test="record.idcard != null" >
+        idcard = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.homestead != null" >
+        homestead = #{record.homestead,jdbcType=INTEGER},
+      </if>
+      <if test="record.land != null" >
+        land = #{record.land,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.role != null" >
+        role = #{record.role,jdbcType=CHAR},
+      </if>
+      <if test="record.delflag != null" >
+        delflag = #{record.delflag,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.photo != null" >
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <update id="updateAreaById" parameterType="com.cr.domain.Area" >
+    update area
+    <set >
+      <if test="areaAddress != null" >
+        area_address = #{areaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="areaType != null" >
+        area_type = #{areaType,jdbcType=INTEGER},
+      </if>
+      <if test="areaLandSize != null" >
+        area_land_size = #{areaLandSize,jdbcType=INTEGER},
+      </if>
+      <if test="areaHouseSize != null" >
+        area_house_size = #{areaHouseSize,jdbcType=INTEGER},
+      </if>
+      <if test="personId != null" >
+        person_id = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null" >
+        person_name = #{personName,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rentPersonId != null" >
+        rent_person_id = #{rentPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="rentPersonName != null" >
+        rent_person_name = #{rentPersonName,jdbcType=INTEGER},
+      </if>
+
+
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="rentTime != null" >
+        rent_time = #{rentTime,jdbcType=TIMESTAMP},
+      </if>
+
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cr.domain.User" >
+    update user
+    set name = #{name,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      homestead = #{homestead,jdbcType=INTEGER},
+      land = #{land,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      role = #{role,jdbcType=CHAR},
+      delflag = #{delflag,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      photo = #{photo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+
+</mapper>
