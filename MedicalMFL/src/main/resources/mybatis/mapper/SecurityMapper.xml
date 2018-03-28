@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cr.dao.SecurityMapper" >
+
+  <resultMap id="BaseResultMap" type="com.cr.domain.SecurityHouse" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="house_address" property="houseAddress" jdbcType="VARCHAR" />
+    <result column="security_confirm" property="securityConfirm" jdbcType="INTEGER" />
+    <result column="security_content" property="securityContent" jdbcType="VARCHAR" />
+    <result column="person_id" property="personId" jdbcType="VARCHAR" />
+    <result column="person_name" property="personName" jdbcType="VARCHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_flag" property="updateFlag" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+
+     <result column="is_security" property="isSecurity" jdbcType="INTEGER" />
+  </resultMap>
+
+<sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+
+
+  <sql id="Base_Column_List" >
+    id,
+	house_address,
+	security_confirm,
+	security_content,
+	person_id,
+	person_name,
+	create_time,
+	delete_flag,
+	area_id,
+	is_security
+  </sql>
+
+
+  <insert id="insert" parameterType="com.cr.domain.SecurityHouse" >
+    INSERT INTO security_house (
+	id,
+	house_address,
+	security_confirm,
+	security_content,
+	person_id,
+	person_name,
+	delete_flag,
+	create_time,
+	area_id,
+	is_security
+	)
+    values (
+    #{id,jdbcType=VARCHAR},
+    #{houseAddress,jdbcType=VARCHAR},
+    #{securityConfirm,jdbcType=INTEGER},
+    #{securityContent,jdbcType=VARCHAR},
+    #{personId,jdbcType=VARCHAR},
+    #{personName,jdbcType=VARCHAR},
+    #{deleteFlag,jdbcType=INTEGER},
+    #{createTime,jdbcType=DATE},
+    #{areaId,jdbcType=VARCHAR},
+    #{isSecurity,jdbcType=INTEGER}
+   )
+  </insert>
+
+  <select id="selectList"  resultMap="BaseResultMap" >
+    select
+    	<include refid="Base_Column_List" />
+     from
+     	security_house
+     where
+     	delete_flag=1
+     	and
+     	person_id != ''
+     limit #{start},#{end}
+  </select>
+
+  <select id="selectCount"  resultType="Integer" >
+    select
+    	count(id)
+     from
+     	security_house
+     where
+     	delete_flag=1
+
+  </select>
+
+
+
+	<select id="selectAssetById" parameterType="String"  resultMap="BaseResultMap" >
+    select
+    	<include refid="Base_Column_List" />
+     from
+     	security_house
+     where
+     	id=#{id} and delete_flag=1
+  </select>
+
+  <delete id="deleteSecurity" parameterType="String">
+  	update
+  		security_house
+  	set
+  		delete_flag=2
+  	where
+  		area_id=#{id}
+  </delete>
+
+
+
+
+  <update id="updateSecurityById" parameterType="com.cr.domain.SecurityHouse" >
+    update security_house
+    <set >
+      <if test="isSecurity != null" >
+        is_security = #{isSecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="securityContent != null" >
+        security_content = #{securityContent,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    	where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.cr.domain.User" >
+    update user
+    set name = #{name,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      homestead = #{homestead,jdbcType=INTEGER},
+      land = #{land,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      role = #{role,jdbcType=CHAR},
+      delflag = #{delflag,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      photo = #{photo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+
+</mapper>
