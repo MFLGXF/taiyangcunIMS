@@ -11,4 +11,7 @@ public interface IplanService {
 	public boolean addPlan(Plan plan);
 	public List<Plan> selOldPlan(String time);
 	public boolean delPlan(String id);
+	public boolean updatePlan(String id,String planName,String planMessage);
+	public Plan selPlanByID(String id);
+	public List<Plan> todayPlan();
 }

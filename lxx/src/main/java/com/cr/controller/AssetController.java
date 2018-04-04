@@ -103,15 +103,12 @@ public class AssetController {
 
 	@RequestMapping("/datagrid2")
 	@ResponseBody
-	public ReturnInfo<PageInfo<Asset>> dataGrid2(Integer pageNumber,
-			Integer pageSize,String assetNumber,String assetPersonId,Integer assetStatus){
-
+	public ReturnInfo<PageInfo<Asset>> dataGrid2(Integer pageNumber,Integer pageSize){
 		ReturnInfo<PageInfo<Asset>> result = new ReturnInfo<>();
 
-		PageInfo<Asset> areaData = assetService.selectList(pageNumber,pageSize,assetNumber,assetPersonId,assetStatus);
+		PageInfo<Asset> areaData = assetService.selectList(pageNumber,pageSize);
 
-		log.info("获取分页数据：pageNumber="+pageNumber+",pageSize="+pageSize
-				+",assetNo="+assetNumber+",person="+assetPersonId+",assetStat="+assetStatus);
+		log.info("获取分页数据：pageNumber="+pageNumber+",pageSize="+pageSize);
 
 		result.setData(areaData);
 

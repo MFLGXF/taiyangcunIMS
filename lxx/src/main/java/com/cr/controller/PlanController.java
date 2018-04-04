@@ -19,7 +19,6 @@ import com.cr.common.ReturnInfo;
 import com.cr.common.UUIDUtils;
 import com.cr.domain.Plan;
 import com.cr.service.impl.IplanService;
-import com.cr.service.impl.newsServiceImpl;
 
 @Controller
 @RequestMapping("/plan")
@@ -68,7 +67,7 @@ public class PlanController {
 	 * 定时删除新闻 - 每天晚上1点定时触发，删除前一天的计划
 	 */
 	@Scheduled(cron = "0 0 0 * * ?")
-	public boolean delNews(){
+	public boolean delPlan(){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Integer lastDay = Integer.valueOf(sdf.format(new Date()))-1;
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -84,5 +83,64 @@ public class PlanController {
 		}
 		return false;
 		
+	}
+	/**
+	 * 手动删除计划
+	 */
+	@RequestMapping(value="delPlan",method=RequestMethod.POST)
+	@ResponseBody
+	public ReturnInfo<Plan> delPlan(String id){
+		ReturnInfo<Plan> ret = new ReturnInfo<Plan>();
+		boolean flag = planService.delPlan(id);
+		if(flag == true){
+			ret.setResult(200);
+		}else{
+			ret.setResult(201);
+		}
+		return ret;
+	}
+	/**
+	 * 编辑计划
+	 */
+	@RequestMapping(value="updatePlan",method=RequestMethod.POST)
+	@ResponseBody
+	public ReturnInfo<Plan> updatePlan(String id,String planName,String planMessage){
+		ReturnInfo<Plan> ret = new ReturnInfo<Plan>();
+		boolean flag = planService.updatePlan(id, planName, planMessage);
+		if(flag == true){
+			ret.setResult(200);
+		}else{
+			ret.setResult(201);
+		}
+		return ret;
+	}
+	/**
+	 * 通过ID查看计划
+	 */
+	@RequestMapping(value="selPlanByID",method=RequestMethod.POST)
+	@ResponseBody
+	public ReturnInfo<Plan> selPlanByID(String id){
+		ReturnInfo<Plan> ret = new ReturnInfo<Plan>();
+		Plan plan = planService.selPlanByID(id);
+		if(plan != null){
+			ret.setData(plan);
+		}
+		return ret;
+	}
+	/**
+	 * 提示今天计划
+	 */
+	@RequestMapping(value="todayPlan",method=RequestMethod.GET)
+	@ResponseBody
+	public ReturnInfo<Plan> todayPlan(){
+		ReturnInfo<Plan> ret = new ReturnInfo<Plan>();
+		List<Plan> planList = planService.todayPlan();
+		if(planList!=null){
+			ret.setResult(200);
+			ret.setMsg(String.valueOf(planList.size()));
+		}else{
+			ret.setResult(201);
+		}
+		return ret;
 	}
 }

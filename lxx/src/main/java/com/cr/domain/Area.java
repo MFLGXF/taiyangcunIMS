@@ -80,22 +80,7 @@ public class Area {
 	 */
 	private Integer updateFlag;
 
-	/*
-	 * 是否承包出去
-	 */
-	private Integer areaRent;
 
-
-
-
-
-	public Integer getAreaRent() {
-		return areaRent;
-	}
-
-	public void setAreaRent(Integer areaRent) {
-		this.areaRent = areaRent;
-	}
 
 	public String getRentTime() {
 		return rentTime;

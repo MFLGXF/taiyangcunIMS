@@ -1,7 +1,6 @@
 package com.cr.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.cr.domain.Area;
 import com.cr.domain.Asset;
@@ -37,9 +36,9 @@ public interface AssetMapper {
 	/*
 	 * 查询当前数据条数
 	 */
-	public Integer selectCount(Map<String,Object> queryMap);
+	public Integer selectCount();
 
-	public List<Asset> selectList(Map<String,Object> queryMap);
+	public List<Asset> selectList(int start, int end);
 
 
 }

@@ -32,4 +32,6 @@ public interface PlanMapper {
     List<Plan> selPlan();
     
     List<Plan> selOldPlan(String time);
+    
+    List<Plan> todayPlan(String time);
 }

@@ -212,4 +212,11 @@
    <select id="selPlan" resultMap="BaseResultMap" >
   	select * from plan where del_flag!=1 ORDER BY create_time  LIMIT 7
   </select>
+  
+   <select id="todayPlan" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from plan
+    where create_time = #{time} and del_flag!=1
+  </select>
 </mapper>

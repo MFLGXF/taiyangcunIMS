@@ -1,7 +1,6 @@
 package com.cr.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.cr.domain.Area;
 
@@ -16,7 +15,7 @@ public interface AreaMapper {
     /*
      * 获取全部土地信息
      */
-	public List<Area> selectList(Map<String, Object> queryMap);
+	public List<Area> selectList();
 
 	/*
 	 * 根据id删除区域
@@ -32,16 +31,6 @@ public interface AreaMapper {
 	 * 根据地点数据更新数据
 	 */
 	public Integer updateAreaById(Area area);
-
-	/*
-	 * 各种条件下统计数量
-	 */
-	public Integer selectCount(Map<String, Object> queryMap);
-
-	/*
-	 * 根据标记查询数据
-	 */
-	public Integer findAreaByRecord(Map<String,Object> recordMap);
 
 
 }

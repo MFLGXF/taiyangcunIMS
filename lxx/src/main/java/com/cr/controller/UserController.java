@@ -52,6 +52,7 @@ public class UserController {
 	public ReturnInfo<User> addUserSingle(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request) throws ParseException{
 		
 		ReturnInfo<User> ret = new ReturnInfo<User>();
+		
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		//必选项不能为空判断
 		if(StringUtils.isEmpty(request.getParameter("name"))|StringUtils.isEmpty(request.getParameter("idcard"))|StringUtils.isEmpty(request.getParameter("birthday"))|StringUtils.isEmpty(request.getParameter("phone"))|StringUtils.isEmpty(request.getParameter("homestead"))|StringUtils.isEmpty(request.getParameter("address"))){
@@ -136,15 +137,19 @@ public class UserController {
 			ret.setResult(300);
 			return ret;
 		}
-		
-		String fileName =  UUID.randomUUID()+file.getOriginalFilename();
-		String filePath = request.getSession().getServletContext().getRealPath("upload/");
-		try {
-		    FileUtils.uploadFile(file.getBytes(), filePath, fileName);
-		} catch (Exception e) {
-		        
+		if(file.isEmpty() == false){
+			String fileName =  UUID.randomUUID()+file.getOriginalFilename();
+			String filePath = request.getSession().getServletContext().getRealPath("upload/");
+			try {
+			    FileUtils.uploadFile(file.getBytes(), filePath, fileName);
+			} catch (Exception e) {
+			        
+			}
+			user.setPhoto(fileName);
+		}else{
+			user.setPhoto("admin.jpg");
 		}
-		user.setPhoto(fileName);
+		
 		
 		boolean flag = userService.addUserSingle(user);
 		
@@ -160,10 +165,14 @@ public class UserController {
 	/**
 	 * 批量导入人口信息
 	 */
-	@RequestMapping("/addUserBatch")
+	@RequestMapping(value="/addUserBatch",method=RequestMethod.POST)
 	@ResponseBody
 	public ReturnInfo<User> addUserBatch(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request){
-		
+		ReturnInfo<User> ret = new ReturnInfo<User>();
+		if(file.isEmpty() == true){
+			ret.setResult(203);
+			return ret;
+		}
 		//以上传时间excel文件时间戳作为文件名
 		String fileName =  new Date().getTime()+file.getOriginalFilename();
 		//文件上传保存路径
@@ -173,21 +182,27 @@ public class UserController {
 		} catch (Exception e) {
 		        
 		}
-		try {
-            ImportParams params = new ImportParams();
-            params.setNeedSave(true);
-            params.setSaveUrl(filePath);
-            List<UserVO> result = ExcelImportUtil.importExcel(
-                    new File(PoiPublicUtil.getWebRootPath("excel/"+fileName+".xls")),
-                    UserVO.class, params);
-            for (int i = 0; i < result.size(); i++) {
-                System.out.println(ReflectionToStringBuilder.toString(result.get(i)));
-            }
-            Assert.assertTrue(result.size() == 4);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-		return null;	
+		ImportParams params = new ImportParams();
+	    params.setTitleRows(1);
+	    params.setHeadRows(1);
+	    
+	    List<UserVO> list = ExcelImportUtil.importExcel(
+	       new File(filePath+fileName),
+	       UserVO.class, params);
+	    if(list.size() == 0){
+	    	ret.setResult(202);
+	    	return ret;
+	    }
+	    boolean flag = userService.addUserBatch(list);
+	    if(flag == true){    	
+	    	boolean delFlag = FileUtils.delete(filePath+fileName);
+	    	if(delFlag == true){
+	    		ret.setResult(200);
+	    	}
+	    }else{
+	    	ret.setResult(201);
+	    }
+		return ret;	
 	}
 	/**
 	 * 人口详情-人口照片墙
@@ -321,5 +336,20 @@ public class UserController {
 		}
 		return ret;
 	}
-	
+	/**
+	 * 模糊查询 - 用户
+	 */
+	@RequestMapping(value="selUser",method=RequestMethod.POST)
+	@ResponseBody
+	public ReturnInfo<List<User>> selUser(String name){
+		ReturnInfo<List<User>> ret = new ReturnInfo<List<User>>();
+		List<User> userList = userService.selUser(name);
+		if(userList != null){
+			ret.setData(userList);
+			ret.setResult(200);
+		}else{
+			ret.setResult(201);
+		}
+		return ret;
+	}
 }

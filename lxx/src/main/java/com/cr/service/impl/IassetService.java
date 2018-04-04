@@ -39,6 +39,6 @@ public interface IassetService {
 	/*
 	 * 分页查询数据
 	 */
-	public PageInfo<Asset> selectList(Integer offset, Integer limit, String assetNumber, String assetPersonId, Integer assetStatus);
+	public PageInfo<Asset> selectList(Integer offset, Integer limit);
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.cr.domain.User;
 import com.cr.vo.UserBean;
 import com.cr.vo.UserCountVO;
+import com.cr.vo.UserVO;
 
 public interface IuserService {
 	//登录功能
@@ -32,4 +33,8 @@ public interface IuserService {
 	public List<User> selHome();
 	//查看一家是否有户主存在了
 	public boolean selHouseholder(String id,String address,String householder);
+	//批量上传
+	public boolean addUserBatch(List<UserVO> list);
+	//模糊查询
+	public List<User> selUser(String name);
 }

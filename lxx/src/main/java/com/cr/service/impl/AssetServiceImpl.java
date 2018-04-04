@@ -2,9 +2,7 @@ package com.cr.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,19 +126,13 @@ public class AssetServiceImpl implements IassetService{
 	 * @see com.cr.service.impl.IassetService#selectList(java.lang.Integer, java.lang.Integer)
 	 */
 	@Override
-	public PageInfo<Asset> selectList(Integer pageNumber, Integer pageSize, String assetNumber, String assetPersonId,
-			Integer assetStatus) {
+	public PageInfo<Asset> selectList(Integer pageNumber, Integer pageSize) {
 		PageInfo<Asset> page = new PageInfo<>();
 
-		log.info("获取到pageNumber和pageSize的值为：pageNumber="+pageNumber+",pageSize="+pageSize);
+		log.info("获取到offset和limit的值为：pageNumber="+pageNumber+",pageSize="+pageSize);
 
 		/*首先查询当前有多少条数据*/
-		Map<String,Object> queryMap = new HashMap<>();
-		queryMap.put("assetNumber", assetNumber);
-		queryMap.put("assetPersonId", assetPersonId);
-		queryMap.put("assetStatus", assetStatus);
-
-		Integer count = assetMapper.selectCount(queryMap);
+		Integer count = assetMapper.selectCount();
 		page.setTotalRow(count);
 		page.setPageSize(pageSize);
 		/*需要计算当前的页数和总页数*/
@@ -152,26 +144,9 @@ public class AssetServiceImpl implements IassetService{
 		}
 		page.setTotalPage(totalPage);
 		page.setTotalPage(2);
-
-		if(pageNumber <= 0){
-			pageNumber = 1;
-		}
-
-		int start = (pageNumber*pageSize)-pageSize;
-		int end = (pageNumber*pageSize);
-		if(start <= 0){
-			start = 0;
-		}
-
-
-		queryMap.put("start", start);
-		queryMap.put("end", end);
-
-
-		List<Asset> result = assetMapper.selectList(queryMap);
+		List<Asset> result = assetMapper.selectList((pageNumber*pageSize)-pageSize,(pageNumber*pageSize));
 		page.setList(result);
 		return page;
 	}
-
 
 }

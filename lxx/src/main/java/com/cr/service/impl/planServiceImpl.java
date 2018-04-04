@@ -55,11 +55,43 @@ public class planServiceImpl implements IplanService {
 	}
 	@Override
 	public boolean delPlan(String id) {
-		int flag = planDao.deleteByPrimaryKey(id);
+		Plan plan = new Plan();
+		plan.setDelFlag("1");
+		plan.setId(id);
+		int flag = planDao.updateByPrimaryKeySelective(plan);
 		if(flag >0){
 			return true;
 		}
 		return false;
+	}
+	@Override
+	public boolean updatePlan(String id, String planName, String planMessage) {
+		Plan plan = new Plan();
+		plan.setPlanName(planName);
+		plan.setId(id);
+		plan.setPlanMessage(planMessage);
+		int flag = planDao.updateByPrimaryKeySelective(plan);
+		if(flag >0){
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public Plan selPlanByID(String id) {
+		Plan plan = planDao.selectByPrimaryKey(id);
+		if(plan != null){
+			return plan;
+		}
+		return null;
+	}
+	@Override
+	public List<Plan> todayPlan() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		List<Plan> plan = planDao.todayPlan(sdf.format(new Date()));
+		if(plan.size()>0){
+			return plan;
+		}
+		return null;
 	}
 
 }

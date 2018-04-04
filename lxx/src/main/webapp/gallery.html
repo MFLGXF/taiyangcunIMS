@@ -23,6 +23,13 @@
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-picture"></i> </span>
             <h5>照片墙</h5>
+            
+            <form action="#" id="nameForm">
+            <input type="text" placeholder="搜索..." id="name" name="name" />
+            <button type="button" class="btn btn-success"  onclick="selUser()" style="padding-top：0px;"><i class="icon-search icon-white"></i></button>
+                     
+            </form>
+             
           </div>
           <div class="widget-content">
           
@@ -63,5 +70,29 @@
 	     }  ,
 	     });  
 	})
+	</script>
+	<script>
+	function selUser(){
+	
+	$.ajax({
+		type : "POST",  
+	    url : "user/selUser",//路径  
+	    dataType: "json",
+	    data : $('#nameForm').serialize(),
+	    success : function(data){
+	   var data = data.data;
+	      $("#tab").html("");
+	      var content = "";
+	    	 for(var i=0;i<data.length;i++){
+                var n = i+1;   
+            	content += " <li class='span1'> <a><img src='upload/"+data[i].photo+"' alt=''></a><div class='actions'><a class='lightbox_trigger' href='updateStatus.html?id="+data[i].id+"'><i class='icon-pencil'></i></a> <a class='lightbox_trigger' href='selPeople.html?id="+data[i].id+"'><i class='icon-search'></i></a> </div><a>"+data[i].name+"</a> </li>"
+            
+            }  
+          
+             $("#tab").html('').append(content); 
+	   }
+	});
+		
+	}
 	</script>
 </html>

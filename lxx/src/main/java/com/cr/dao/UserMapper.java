@@ -3,6 +3,7 @@ package com.cr.dao;
 import com.cr.domain.User;
 import com.cr.domain.UserExample;
 import com.cr.vo.UserCountVO;
+import com.cr.vo.UserVO;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -53,4 +54,10 @@ public interface UserMapper {
     List<User> selHome();
     //查看一家是否有户主存在
     User selHouseholder(@Param("id")String id,@Param("address")String address,@Param("householder")String householder);
+    //批量上传
+    int addUserBatch(List<UserVO> list);
+    
+    int insertUser(UserVO user);
+    
+    List<User> selUser(String name);
 }

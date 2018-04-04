@@ -132,20 +132,7 @@
      	asset
      where
      	delete_flag=1
-
-     <if test="assetNumber != ''" >
-        and
-        	asset_number = #{assetNumber,jdbcType=VARCHAR}
-     </if>
-     <if test="assetPersonId != ''" >
-        and
-        	person_id = #{assetPersonId,jdbcType=VARCHAR}
-     </if>
-     <if test="assetStatus != 0" >
-        and
-        	asset_status = #{assetStatus,jdbcType=INTEGER}
-     </if>
-     limit #{start},#{end}
+     limit #{0},#{1}
   </select>
 
   <select id="selectCount"  resultType="Integer" >
@@ -155,18 +142,6 @@
      	asset
      where
      	delete_flag=1
-     <if test="assetNumber != ''" >
-        and
-        	asset_number = #{assetNumber,jdbcType=VARCHAR}
-     </if>
-     <if test="assetPersonId != ''" >
-        and
-        	person_id = #{assetPersonId,jdbcType=VARCHAR}
-     </if>
-     <if test="assetStatus != 0" >
-        and
-        	asset_status = #{assetStatus,jdbcType=INTEGER}
-     </if>
   </select>
 
 

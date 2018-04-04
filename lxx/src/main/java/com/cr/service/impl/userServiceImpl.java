@@ -3,16 +3,19 @@ package com.cr.service.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cr.common.UUIDUtils;
 import com.cr.dao.UserMapper;
 import com.cr.domain.User;
 import com.cr.vo.UserBean;
 import com.cr.vo.UserCountVO;
+import com.cr.vo.UserVO;
 @Service
 public class userServiceImpl implements IuserService {
 	@Autowired
@@ -213,6 +216,48 @@ public class userServiceImpl implements IuserService {
 			return true;
 		}
 		return false;
+	}
+	/**
+	 * 批量上传
+	 */
+	@Override
+	public boolean addUserBatch(List<UserVO> list) {
+		for(int i=0;i<list.size();i++){
+			list.get(i).setId(UUIDUtils.getUuid32());
+			list.get(i).setPhoto("admin.jpg");
+			String phone = list.get(i).getPhone();
+			String phone1 = "+86 "+phone.substring(0, 3)+" "+phone.substring(3, 6)+" "+phone.substring(6);
+			list.get(i).setPhone(phone1);
+			list.get(i).setStatus("在住");
+			list.get(i).setDelflag(0);
+			list.get(i).setCreatetime(new Date());
+			list.get(i).setMessage("无");
+			if("".equals(list.get(i).getOccupation())){
+				list.get(i).setOccupation("暂无");
+			}
+			if("是".equals(list.get(i).getHouseholder())){
+				list.get(i).setHouseholder("户主");
+			}
+			if(list.get(i).getLand() == null){
+				list.get(i).setLand("0");
+			}
+		}
+		int flag = userDao.addUserBatch(list);
+		if(flag > 0){
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * 模糊查询
+	 */
+	@Override
+	public List<User> selUser(String name) {
+		List<User> userList = userDao.selUser(name);
+		if(userList.size()>0){
+			return userList;
+		}
+		return null;
 	}
 
 }

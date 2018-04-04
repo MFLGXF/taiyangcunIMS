@@ -523,4 +523,14 @@
   <select id="selHouseholder" resultMap="BaseResultMap"  >
    SELECT * FROM `user` where id!=#{id,jdbcType=CHAR} and address=#{address,jdbcType=VARCHAR} and householder=#{householder,jdbcType=CHAR}; 
   </select>
+  <insert id="addUserBatch" parameterType="java.util.List">
+	INSERT INTO user (id, name,idcard,phone,address,birthday,homestead,land,status,role,delflag,createtime,photo,message,householder,marriage,education,occupation,nation,sex) VALUES
+	<foreach collection="list" item="user" index="index" separator=","  >
+	(#{user.id}, #{user.name}, #{user.idcard}, #{user.phone}, #{user.address}, #{user.birthday}, #{user.homestead}, #{user.land}, #{user.status}, #{user.role}, #{user.delflag}, #{user.createtime}, #{user.photo}, #{user.message}, #{user.householder}, #{user.marriage}, #{user.education}, #{user.occupation}, #{user.nation}, #{user.sex})
+	</foreach>
+ </insert>
+  <!-- 模糊查询 -->
+   <select id="selUser" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   SELECT * FROM `user` where name like concat("%",#{name},"%") and delflag !=1;
+  </select>
 </mapper>

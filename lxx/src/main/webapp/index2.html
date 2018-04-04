@@ -19,10 +19,10 @@
   <div  class="quick-actions_homepage">
     <ul class="quick-actions">
       <li class="bg_lb"> <a href="addpeople.html"> <i class="icon-group"></i> 人口登记 </a> </li>
-      <li class="bg_lg"> <a href="#"> <i class="icon-shopping-cart"></i> Shopping Cart</a> </li>
+      <li class="bg_lg"> <a href="addArea.html"> <i class="icon-linkedin-sign"></i> 土地登记 </a> </li>
       <li class="bg_ly"> <a href="news.html"> <i class=" icon-globe"></i> 新闻发布 </a> </li>
       <li class="bg_lo"> <a href="plan.html"> <i class="icon-edit"></i> 添加计划 </a> </li>
-      <li class="bg_ls"> <a href="#"> <i class="icon-signal"></i> Check Statistics</a> </li>
+      <li class="bg_ls"> <a href="addAsset.html"> <i class="icon-signal"></i> 资产登记 </a> </li>
     </ul>
   </div>
   <div class="container-fluid">
@@ -117,6 +117,7 @@
 <script src="js/jquery.dataTables.min.js"></script> 
 <script src="js/matrix.tables.js"></script> 
 <script src="js/matrix.interface.js"></script> 
+<script src="js/sweet-alert.min.js"></script>
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
   // a different page. Ignore if the value returned is a null string:
@@ -212,8 +213,10 @@ function resetMenu() {
 	     dataType: "json",
 	     success : function(data) {//返回数据根据结果进行相应的处理     
 	     var data = data.data;
+	     console.log(data);
 	  	 var plan = "";
 	     for(var i=0;i<data.length;i++){
+	    
 	     	 var clas = "";
 	     	 if(data[i].time == "Today"){
 	     	 clas = "date badge badge-success";
@@ -222,7 +225,8 @@ function resetMenu() {
 	     	 }else{
 	     	 clas = "date badge badge-info";
 	     	 }
-	   		 plan+=" <li class='clearfix'><div class='txt'>"+data[i].planMessage+" <span class='by label'>"+data[i].planName+"</span> <span class='"+clas+"'>"+data[i].time+"</span> </div><div class='pull-right'> <a class='tip' href='#' title='Edit Task'><i class='icon-pencil'></i></a> <a class='tip' href='#' title='Delete'><i class='icon-remove'></i></a> </div></li>"	
+	     	
+	   		 plan+=" <li class='clearfix'><div class='txt'>"+data[i].planMessage+" <span class='by label'>"+data[i].planName+"</span> <span class='"+clas+"'>"+data[i].time+"</span> </div><div class='pull-right'> <a class='tip' href='selPlan.html?id="+data[i].id+"' title='Edit Task'><i class='icon-pencil'></i></a> <a class='tip' href='' onclick='delPlan(&quot;"+ data[i].id + "&quot;)' title='Delete'><i class='icon-remove'></i></a> </div></li>"	
 	     }  
          $("#plan").html('').append(plan);   
 	     } 
@@ -240,11 +244,49 @@ function resetMenu() {
 	     success : function(data) {//返回数据根据结果进行相应的处理     
 	     var data = data.data;
 	  	 var news = "";
-	  	 console.log(data);
-	     for(var i=0;i<data.length;i++){	     	
+	  	
+	     for(var i=0;i<data.length;i++){
+	   	     	
 	   		 news+="<div class='new-update clearfix'><i class='icon-ok-sign'></i><div class='update-done'><a title='' href='#'><strong>"+data[i].newsName+"</strong></a> <span>"+data[i].newsMessage+"</span> </div><div class='update-date'><span class='update-day'>"+data[i].day+"</span>"+data[i].month+"</div></div>"	
 	     }  
          $("#news").html('').append(news);   
+	     } 
+	     });  
+	     })
+	
+	</script>
+		<script>
+	function delPlan(id){
+
+	var id = id;
+	
+				$.ajax({
+				type : "POST",  
+	            url : "plan/delPlan",//路径  
+	            dataType: "json",
+	            data : {"id" : id},
+	            success : function(data){
+	             
+	             if(data.result == 200){
+	              sweetAlert("删除成功", "","success");
+	              }else if(data.result == 201){
+	              sweetAlert("删除失败", "","error");
+	              }
+	            }
+			    });
+		
+	}
+	</script>
+		<script>
+	$(document).ready(function(){
+		$.ajax({  
+	     type : "GET",  
+	     url : "plan/todayPlan",//路径  
+	     dataType: "json",
+	     success : function(data) {//返回数据根据结果进行相应的处理     
+	  	 if(data.result == 200){
+	  	 	alert("今天有【"+data.msg+"】条新计划请关注！");
+	  	 }
 	     } 
 	     });  
 	     })
