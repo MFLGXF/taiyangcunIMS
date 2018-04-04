@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwx.dao.WorkerMapper" >
+  <resultMap id="BaseResultMap" type="com.fwx.domain.Worker" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="worker_name" property="workerName" jdbcType="CHAR" />
+    <result column="worker_idcard" property="workerIdcard" jdbcType="VARCHAR" />
+    <result column="worker_post" property="workerPost" jdbcType="CHAR" />
+    <result column="worker_phone" property="workerPhone" jdbcType="CHAR" />
+    <result column="join_time" property="joinTime" jdbcType="DATE" />
+    <result column="wages" property="wages" jdbcType="CHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="ava_flag" property="avaFlag" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="worker_bank_card" property="workerBankCard" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, worker_name, worker_idcard, worker_post, worker_phone, join_time, wages, del_flag, 
+    ava_flag, create_time, worker_bank_card, photo
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fwx.domain.WorkerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from worker
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from worker
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from worker
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fwx.domain.WorkerExample" >
+    delete from worker
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fwx.domain.Worker" >
+    insert into worker (id, worker_name, worker_idcard, 
+      worker_post, worker_phone, join_time, 
+      wages, del_flag, ava_flag, create_time, 
+      worker_bank_card, photo)
+    values (#{id,jdbcType=INTEGER}, #{workerName,jdbcType=CHAR}, #{workerIdcard,jdbcType=VARCHAR}, 
+      #{workerPost,jdbcType=CHAR}, #{workerPhone,jdbcType=CHAR}, #{joinTime,jdbcType=DATE}, 
+      #{wages,jdbcType=CHAR}, #{delFlag,jdbcType=CHAR}, #{avaFlag,jdbcType=CHAR}, #{createTime,jdbcType=DATE}, 
+      #{workerBankCard,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fwx.domain.Worker" >
+    insert into worker
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="workerName != null" >
+        worker_name,
+      </if>
+      <if test="workerIdcard != null" >
+        worker_idcard,
+      </if>
+      <if test="workerPost != null" >
+        worker_post,
+      </if>
+      <if test="workerPhone != null" >
+        worker_phone,
+      </if>
+      <if test="joinTime != null" >
+        join_time,
+      </if>
+      <if test="wages != null" >
+        wages,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="avaFlag != null" >
+        ava_flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="workerBankCard != null" >
+        worker_bank_card,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="workerName != null" >
+        #{workerName,jdbcType=CHAR},
+      </if>
+      <if test="workerIdcard != null" >
+        #{workerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="workerPost != null" >
+        #{workerPost,jdbcType=CHAR},
+      </if>
+      <if test="workerPhone != null" >
+        #{workerPhone,jdbcType=CHAR},
+      </if>
+      <if test="joinTime != null" >
+        #{joinTime,jdbcType=DATE},
+      </if>
+      <if test="wages != null" >
+        #{wages,jdbcType=CHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="avaFlag != null" >
+        #{avaFlag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="workerBankCard != null" >
+        #{workerBankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fwx.domain.WorkerExample" resultType="java.lang.Integer" >
+    select count(*) from worker
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update worker
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.workerName != null" >
+        worker_name = #{record.workerName,jdbcType=CHAR},
+      </if>
+      <if test="record.workerIdcard != null" >
+        worker_idcard = #{record.workerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workerPost != null" >
+        worker_post = #{record.workerPost,jdbcType=CHAR},
+      </if>
+      <if test="record.workerPhone != null" >
+        worker_phone = #{record.workerPhone,jdbcType=CHAR},
+      </if>
+      <if test="record.joinTime != null" >
+        join_time = #{record.joinTime,jdbcType=DATE},
+      </if>
+      <if test="record.wages != null" >
+        wages = #{record.wages,jdbcType=CHAR},
+      </if>
+      <if test="record.delFlag != null" >
+        del_flag = #{record.delFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.avaFlag != null" >
+        ava_flag = #{record.avaFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.workerBankCard != null" >
+        worker_bank_card = #{record.workerBankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null" >
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update worker
+    set id = #{record.id,jdbcType=INTEGER},
+      worker_name = #{record.workerName,jdbcType=CHAR},
+      worker_idcard = #{record.workerIdcard,jdbcType=VARCHAR},
+      worker_post = #{record.workerPost,jdbcType=CHAR},
+      worker_phone = #{record.workerPhone,jdbcType=CHAR},
+      join_time = #{record.joinTime,jdbcType=DATE},
+      wages = #{record.wages,jdbcType=CHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      ava_flag = #{record.avaFlag,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=DATE},
+      worker_bank_card = #{record.workerBankCard,jdbcType=VARCHAR},
+      photo = #{record.photo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fwx.domain.Worker" >
+    update worker
+    <set >
+      <if test="workerName != null" >
+        worker_name = #{workerName,jdbcType=CHAR},
+      </if>
+      <if test="workerIdcard != null" >
+        worker_idcard = #{workerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="workerPost != null" >
+        worker_post = #{workerPost,jdbcType=CHAR},
+      </if>
+      <if test="workerPhone != null" >
+        worker_phone = #{workerPhone,jdbcType=CHAR},
+      </if>
+      <if test="joinTime != null" >
+        join_time = #{joinTime,jdbcType=DATE},
+      </if>
+      <if test="wages != null" >
+        wages = #{wages,jdbcType=CHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="avaFlag != null" >
+        ava_flag = #{avaFlag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="workerBankCard != null" >
+        worker_bank_card = #{workerBankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fwx.domain.Worker" >
+    update worker
+    set worker_name = #{workerName,jdbcType=CHAR},
+      worker_idcard = #{workerIdcard,jdbcType=VARCHAR},
+      worker_post = #{workerPost,jdbcType=CHAR},
+      worker_phone = #{workerPhone,jdbcType=CHAR},
+      join_time = #{joinTime,jdbcType=DATE},
+      wages = #{wages,jdbcType=CHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      ava_flag = #{avaFlag,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      worker_bank_card = #{workerBankCard,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

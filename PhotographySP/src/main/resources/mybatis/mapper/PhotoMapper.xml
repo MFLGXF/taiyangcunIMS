@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwx.dao.PhotoMapper" >
+  <resultMap id="BaseResultMap" type="com.fwx.domain.Photo" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="photo_name" property="photoName" jdbcType="CHAR" />
+    <result column="photo_time" property="photoTime" jdbcType="DATE" />
+    <result column="photo_type" property="photoType" jdbcType="CHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="user_name" property="userName" jdbcType="CHAR" />
+    <result column="create_name" property="createName" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.fwx.domain.Photo" extends="BaseResultMap" >
+    <result column="photo_url" property="photoUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, photo_name, photo_time, photo_type, del_flag, user_name, create_name,photo_url
+  </sql>
+  <sql id="Blob_Column_List" >
+    photo_url
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.fwx.domain.PhotoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from photo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fwx.domain.PhotoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from photo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from photo
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from photo
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fwx.domain.PhotoExample" >
+    delete from photo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fwx.domain.Photo" >
+    insert into photo (id, photo_name, photo_time, 
+      photo_type, del_flag, user_name, 
+      create_name, photo_url)
+    values (#{id,jdbcType=CHAR}, #{photoName,jdbcType=CHAR}, #{photoTime,jdbcType=DATE}, 
+      #{photoType,jdbcType=CHAR}, #{delFlag,jdbcType=CHAR}, #{userName,jdbcType=CHAR}, 
+      #{createName,jdbcType=CHAR}, #{photoUrl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fwx.domain.Photo" >
+    insert into photo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="photoName != null" >
+        photo_name,
+      </if>
+      <if test="photoTime != null" >
+        photo_time,
+      </if>
+      <if test="photoType != null" >
+        photo_type,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="createName != null" >
+        create_name,
+      </if>
+      <if test="photoUrl != null" >
+        photo_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="photoName != null" >
+        #{photoName,jdbcType=CHAR},
+      </if>
+      <if test="photoTime != null" >
+        #{photoTime,jdbcType=DATE},
+      </if>
+      <if test="photoType != null" >
+        #{photoType,jdbcType=CHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=CHAR},
+      </if>
+      <if test="createName != null" >
+        #{createName,jdbcType=CHAR},
+      </if>
+      <if test="photoUrl != null" >
+        #{photoUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fwx.domain.PhotoExample" resultType="java.lang.Integer" >
+    select count(*) from photo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update photo
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.photoName != null" >
+        photo_name = #{record.photoName,jdbcType=CHAR},
+      </if>
+      <if test="record.photoTime != null" >
+        photo_time = #{record.photoTime,jdbcType=DATE},
+      </if>
+      <if test="record.photoType != null" >
+        photo_type = #{record.photoType,jdbcType=CHAR},
+      </if>
+      <if test="record.delFlag != null" >
+        del_flag = #{record.delFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=CHAR},
+      </if>
+      <if test="record.createName != null" >
+        create_name = #{record.createName,jdbcType=CHAR},
+      </if>
+      <if test="record.photoUrl != null" >
+        photo_url = #{record.photoUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update photo
+    set id = #{record.id,jdbcType=CHAR},
+      photo_name = #{record.photoName,jdbcType=CHAR},
+      photo_time = #{record.photoTime,jdbcType=DATE},
+      photo_type = #{record.photoType,jdbcType=CHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      user_name = #{record.userName,jdbcType=CHAR},
+      create_name = #{record.createName,jdbcType=CHAR},
+      photo_url = #{record.photoUrl,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update photo
+    set id = #{record.id,jdbcType=CHAR},
+      photo_name = #{record.photoName,jdbcType=CHAR},
+      photo_time = #{record.photoTime,jdbcType=DATE},
+      photo_type = #{record.photoType,jdbcType=CHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      user_name = #{record.userName,jdbcType=CHAR},
+      create_name = #{record.createName,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fwx.domain.Photo" >
+    update photo
+    <set >
+      <if test="photoName != null" >
+        photo_name = #{photoName,jdbcType=CHAR},
+      </if>
+      <if test="photoTime != null" >
+        photo_time = #{photoTime,jdbcType=DATE},
+      </if>
+      <if test="photoType != null" >
+        photo_type = #{photoType,jdbcType=CHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=CHAR},
+      </if>
+      <if test="createName != null" >
+        create_name = #{createName,jdbcType=CHAR},
+      </if>
+      <if test="photoUrl != null" >
+        photo_url = #{photoUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fwx.domain.Photo" >
+    update photo
+    set photo_name = #{photoName,jdbcType=CHAR},
+      photo_time = #{photoTime,jdbcType=DATE},
+      photo_type = #{photoType,jdbcType=CHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      user_name = #{userName,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=CHAR},
+      photo_url = #{photoUrl,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fwx.domain.Photo" >
+    update photo
+    set photo_name = #{photoName,jdbcType=CHAR},
+      photo_time = #{photoTime,jdbcType=DATE},
+      photo_type = #{photoType,jdbcType=CHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      user_name = #{userName,jdbcType=CHAR},
+      create_name = #{createName,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+    <select id="selectList"  resultMap="BaseResultMap" >
+    select
+    	<include refid="Base_Column_List" />
+     from
+     	photo
+     where
+     	del_flag!=1
+     <if test="photoType != null" >
+       and  photo_type = #{photoType,jdbcType=CHAR}
+      </if>
+      <if test="username != null" >
+       and  user_name = #{username,jdbcType=CHAR}
+      </if>
+      ORDER BY photo_time desc
+     limit #{start},#{end}
+  </select>
+   <delete id="delPhoto" parameterType="java.lang.String">
+     delete from photo where id in
+      <foreach item="id" collection="array" open="(" separator="," close=")">
+              #{id}
+      </foreach>
+   </delete>
+   <select id="selPhotoByID" parameterType="java.lang.String" resultMap="BaseResultMap">
+   		select <include refid="Base_Column_List" /> from photo 
+   		where id in 
+   		<foreach item="id" collection="array" open="(" separator="," close=")">
+              #{id}
+      </foreach>
+   </select>
+</mapper>

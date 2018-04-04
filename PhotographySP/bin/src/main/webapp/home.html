@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>主页</title>
+  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/plugin.css">
+  <link rel="stylesheet" href="css/landing.css">
+
+</head>
+<body>
+  <!-- header -->
+	<header id="header" class="navbar">
+    <ul class="nav navbar-nav navbar-avatar pull-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="hidden-sm-only">Mika Sokeil</span>
+          <span class="thumb-small avatar inline"><img src="images/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
+          <b class="caret hidden-sm-only"></b>
+        </a>
+        <ul class="dropdown-menu">
+         <!--  <li><a href="#">Settings</a></li> -->
+          <li><a href="#">Profile</a></li>
+          <li><a href="#"><span class="badge bg-danger pull-right">3</span>Notifications</a></li>
+          <li class="divider"></li>
+          <li><a href="docs.html">Help</a></li>
+          <li><a href="signin.html">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+    <a class="navbar-brand" href="#">随身拍</a>
+    <button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+      <i class="icon-reorder icon-xlarge text-default"></i>
+    </button>
+    <ul class="nav navbar-nav hidden-sm">
+
+      <li><div class="m-t-small"><a class="btn btn-small btn-info" data-toggle="modal" href="#modal"><i class="icon-plus"></i> POST</a></div></li>
+      <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-xlarge visible-sm visible-sm-inline"></i>设置 <b class="caret hidden-sm-only"></b></a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#" data-toggle="class:navbar-fixed" data-target='body'>工具栏
+              <span class="text-active">自定义</span>
+              <span class="text">固定</span>
+            </a>
+          </li>
+          <li class="visible-lg">
+            <a href="#" data-toggle="class:nav-vertical" data-target="#nav">工具栏
+              <span class="text-active">垂直</span>
+              <span class="text">水平</span>
+            </a>
+          </li>
+          <li class="divider hidden-sm"></li>
+
+          <li>
+            <a href="#" data-toggle="class:bg bg-black" data-target='.navbar'>工具横栏
+              <span class="text-active">白色</span>
+              <span class="text">暗色</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-toggle="class:bg-light" data-target='#nav'>工具竖栏
+              <span class="text-active">暗色</span>
+              <span class="text">白色</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
+      <i class="icon-search text-muted"></i>
+      <input type="text" class="input-small form-control" placeholder="Search">
+    </form>
+	</header>
+  <!-- / header -->
+  <!-- nav -->
+  <nav id="nav" class="nav-primary visible-lg nav-vertical">
+    <ul class="nav" data-spy="affix" data-offset-top="50">
+      <li class="active"><a href="index.html"><i class="icon-dashboard icon-xlarge"></i>主页</a></li>
+      <li class="dropdown-submenu">
+        <a href="#"><i class="icon-th icon-xlarge"></i>摄影管理</a>
+        <ul class="dropdown-menu">
+          <li><a href="buttons.html">Buttons</a></li>
+          <li><a href="icons.html"><b class="badge pull-right">302</b>Icons</a></li>
+          <li><a href="grid.html">Grid</a></li>
+          <li><a href="widgets.html"><b class="badge bg-primary pull-right">8</b>Widgets</a></li>
+          <li><a href="components.html"><b class="badge pull-right">18</b>Components</a></li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a href="#"><i class="icon-list icon-xlarge"></i>基础资料管理</a>
+        <ul class="dropdown-menu">
+          <li><a href="list.html">客户信息管理</a></li>
+          <li><a href="table.html">员工信息管理</a></li>
+        </ul>
+      </li>      <li class="dropdown-submenu">        <a href="#"><i class="icon-edit icon-xlarge"></i>会员管理</a>        <ul class="dropdown-menu">          <li><a href="list.html">卡档案管理</a></li>          <li><a href="table.html">优惠方案</a></li>        </ul>      </li>      <li class="dropdown-submenu">        <a href="#"><i class="icon-signal icon-xlarge"></i>设备管理</a>        <ul class="dropdown-menu">          <li><a href="list.html">拍照设备管理</a></li>          <li><a href="table.html">服装管理</a></li>        </ul>      </li>      <li class="dropdown-submenu">        <a href="#"><i class="icon-signal icon-xlarge"></i>产品及套系管理</a>        <ul class="dropdown-menu">          <li><a href="list.html">产品类别设置</a></li>          <li><a href="table.html">产品设置</a></li>          <li><a href="list.html">套系设置</a></li>          <li><a href="table.html">套系产品设置</a></li>          <li><a href="list.html">产品销售统计</a></li>        </ul>      </li>      <li class="dropdown-submenu">        <a href="#"><i class="icon-signal icon-xlarge"></i>财务信息管理</a>        <ul class="dropdown-menu">          <li><a href="list.html">业绩管理</a></li>          <li><a href="table.html">费用管理</a></li>        </ul>      </li>
+
+    </ul>
+  </nav>
+  <!-- / nav -->
+  <section id="content" >
+    <section class="main padder">
+		<div>          <section class="panel bg-inverse"  >            <div class="carousel slide carousel-fade" id="c-fade">                <ol class="carousel-indicators out">                  <li data-target="#c-fade" data-slide-to="0" class=""></li>                  <li data-target="#c-fade" data-slide-to="1" class="active"></li>                  <li data-target="#c-fade" data-slide-to="2" class=""></li>                </ol>                <div class="carousel-inner">                  <div class="item  active">                    <p class="text-center bg-inverse">                      <em class="h3 text-mute">Save your time</em><br>                      <small class="text-muted">Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br></small>                    </p>                  </div>                  <div class="item">                    <p class="text-center bg-inverse">                      <em class="h3 text-mute">Save your time</em><br>                      <span style="padding-top:50px;" class="h5 text-muted">Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br></span>                    </p>                  </div>                  <div class="item">                    <p class="text-center bg-inverse">                      <em class="h3 text-mute">Save your time</em><br>                      <small class=" h5 text-muted">Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br>                      Many components<br></small>                    </p>                  </div>                </div>                <a class="left carousel-control" href="#c-fade" data-slide="prev">                  <i class="icon-chevron-left"></i>                </a>                <a class="right carousel-control" href="#c-fade" data-slide="next">                  <i class="icon-chevron-right"></i>                </a>            </div>          </section>          <!-- / .carousel fade -->        </div>
+
+    </section>    <section class="panel">            <header class="panel-heading bg-white">              <ul class="nav nav-pills pull-right">                <li><a href="#" data-toggle="class:btn-circle" data-target="#circle-buttons a">Toggle</a></li>              </ul>              <h2  style="width: 400px; margin-left: auto; margin-right: auto;">摄影拍照综合服务系统</h2>            </header>            <p id="circle-buttons" class="doc-buttons" style="width: 900px; margin-left: auto; margin-right: auto;">				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>              <a href="#" class="btn btn-large btn-circle"><i class="icon-camera"></i>摄影管理</a>				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>              <a href="#" class="btn btn-large btn-circle"><i class="icon-bar-chart"></i>基础资料管理</a>				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>              <a href="#" class="btn btn-large btn-success btn-circle"><i class="icon-group"></i>会员管理</a>				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>              <a href="#" class="btn btn-large btn-inverse btn-circle"><i class="icon-time"></i>设备管理</a>				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>              <a href="#" class="btn btn-large btn-warning btn-circle"><i class="icon-calendar-empty"></i>产品及套系管理</a>              <a href="#" class="btn btn-large btn-danger btn-circle"><i class="icon-group"></i>财务信息管理</a><!--              <a href="#" class="btn btn-large btn-white btn-circle"><i class="icon-plus"></i>More</a> -->            </p>          </section>
+  </section>
+  <!-- .modal -->
+  <div id="modal" class="modal fade">
+    <form class="m-b-none">
+      <div class="modal-dialog pos-abt" style="margin-top:-235px; top:50%">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+            <h4 class="modal-title" id="myModalLabel">Post your first idea</h4>
+          </div>
+          <div class="modal-body">
+            <div class="block">
+              <label class="control-label">Title</label>
+              <input type="text" class="form-control" placeholder="Post title">
+            </div>
+            <div class="block">
+              <label class="control-label">Content</label>
+              <textarea class="form-control" placeholder="Content" rows="5"></textarea>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Share with all memebers of first
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-small btn-default" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-small btn-primary" data-loading-text="Publishing...">Publish</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div>
+    </form>
+  </div>
+  <!-- / .modal -->
+  <!-- footer -->
+  <footer id="footer">    <div class="text-center padder clearfix">      <p>        <small>&copy; 随身拍 2018 | 东北林业大学  | 冯文秀</small><br><br>      </p>    </div>  </footer>
+  <a href="#" class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
+  <!-- / footer -->
+	<script src="js/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="js/bootstrap.js"></script>
+  <!-- app -->
+  <script src="js/app.js"></script>
+  <script src="js/app.plugin.js"></script>
+  <script src="js/app.data.js"></script>
+
+  <!-- Sparkline Chart -->
+  <script src="js/charts/sparkline/jquery.sparkline.min.js"></script>
+  <!-- Easy Pie Chart -->
+  <script src="js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+  <script src="js/ie/excanvas.js"></script>
+</body>
+</html>

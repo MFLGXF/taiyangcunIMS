@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>Mobile first web app theme | first</title>
+
+  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="css/plugin.css">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!--[if lt IE 9]>
+
+    <script src="js/ie/respond.min.js"></script>
+
+    <script src="js/ie/html5.js"></script>
+
+  <![endif]-->
+
+</head>
+
+<body>
+
+  <!-- header -->
+
+  <header id="header" class="navbar">
+
+    <ul class="nav navbar-nav navbar-avatar pull-right">
+
+      <li class="dropdown">
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+          <span class="hidden-sm-only">FWX</span>
+
+          <span class="thumb-small avatar inline"><img src="images/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
+
+          <b class="caret hidden-sm-only"></b>
+
+        </a>
+
+        <ul class="dropdown-menu">
+
+         <!--  <li><a href="#">Settings</a></li> -->
+
+          <li><a href="#">Profile</a></li>
+
+          <li><a href="#"><span class="badge bg-danger pull-right">3</span>Notifications</a></li>
+
+          <li class="divider"></li>
+
+          <li><a href="docs.html">Help</a></li>
+
+          <li><a href="signin.html">Logout</a></li>
+
+        </ul>
+
+      </li>
+
+    </ul>
+
+    <a class="navbar-brand" href="#"><img src="images/xiaobiao.jpg" height="25" width="100"/></a>
+
+    <button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+
+      <i class="icon-reorder icon-xlarge text-default"></i>
+
+    </button>
+
+    <ul class="nav navbar-nav hidden-sm">
+
+
+
+      <li><div class="m-t-small"><a class="btn btn-small btn-info" data-toggle="modal" href="#modal"><i class="icon-plus"></i> POST</a></div></li>
+
+      <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-xlarge visible-sm visible-sm-inline"></i>设置 <b class="caret hidden-sm-only"></b></a>
+
+        <ul class="dropdown-menu">
+
+          <li>
+
+            <a href="#" data-toggle="class:navbar-fixed" data-target='body'>工具栏
+
+              <span class="text-active">自定义</span>
+
+              <span class="text">固定</span>
+
+            </a>
+
+          </li>
+
+          <li class="visible-lg">
+
+            <a href="#" data-toggle="class:nav-vertical" data-target="#nav">工具栏
+
+              <span class="text-active">垂直</span>
+
+              <span class="text">水平</span>
+
+            </a>
+
+          </li>
+
+          <li class="divider hidden-sm"></li>
+
+
+
+          <li>
+
+            <a href="#" data-toggle="class:bg bg-black" data-target='.navbar'>工具横栏
+
+              <span class="text-active">白色</span>
+
+              <span class="text">暗色</span>
+
+            </a>
+
+          </li>
+
+          <li>
+
+            <a href="#" data-toggle="class:bg-light" data-target='#nav'>工具竖栏
+
+              <span class="text-active">暗色</span>
+
+              <span class="text">白色</span>
+
+            </a>
+
+          </li>
+
+        </ul>
+
+      </li>
+
+    </ul>
+
+    <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
+
+      <i class="icon-search text-muted"></i>
+
+      <input type="text" class="input-small form-control" placeholder="Search">
+
+    </form>
+
+	</header>
+
+  <!-- / header -->
+
+  <!-- nav -->
+
+  <nav id="nav" class="nav-primary visible-lg nav-vertical">
+
+    <ul class="nav" data-spy="affix" data-offset-top="50">
+
+      <li class="active"><a href="home.html"><i class="icon-dashboard icon-xlarge"></i>主页</a></li>
+
+   <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-instagram icon-xlarge"></i>摄影管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="photo1.html">添加照片</a></li>
+
+          <li><a href="photo.html">浏览照片</a></li>
+
+        </ul>
+
+      </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-list icon-xlarge"></i>基础资料管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="list.html">客户信息管理</a></li>
+
+          <li><a href="table.html">员工信息管理</a></li>
+
+        </ul>
+
+      </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-edit icon-xlarge"></i>会员管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="list.html">卡档案管理</a></li>
+
+          <li><a href="table.html">优惠方案</a></li>
+
+        </ul>
+
+      </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-facetime-video icon-xlarge"></i>设备管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="list.html">拍照设备管理</a></li>
+
+          <li><a href="table.html">服装管理</a></li>
+
+        </ul>
+
+      </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-signal icon-xlarge"></i>产品及套系管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="list.html">产品类别设置</a></li>
+
+          <li><a href="table.html">产品设置</a></li>
+
+          <li><a href="list.html">套系设置</a></li>
+
+          <li><a href="table.html">套系产品设置</a></li>
+
+          <li><a href="list.html">产品销售统计</a></li>
+
+
+        </ul>
+
+      </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-signal icon-xlarge"></i>财务信息管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="list.html">业绩管理</a></li>
+
+          <li><a href="table.html">费用管理</a></li>
+
+
+
+        </ul>
+
+      </li>
+
+
+    </ul>
+
+  </nav>
+
+  <!-- / nav -->
+
+  <section id="content">
+
+    <section class="main padder">
+
+      <div class="clearfix">
+
+      
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-12">
+
+          <section class="panel">
+
+            <header class="panel-heading">照片墙 <i class="icon-info-sign text-muted" data-toggle="popover" data-html="true" data-placement="top" data-content="The datagrid use ajax to load the data. please put this file on a server to preview." title="" data-trigger="hover" data-original-title="Help"></i> </header>
+
+            <div class="pull-out">
+		<form id="photoGrid" method="post" action="#">
+              <table id="MyStretchGrid" border="1" bordercolor="#E0E4E8" cellspacing="1" cellpadding="1"  width="100%">
+				<tr>
+				    <td colspan="2" height="50">  
+				    <select class="input-small inline form-control" style="width:130px" id="photoType">
+ 					<option value="全部">全 部</option>
+	                 <option value="风景">风 景</option>
+
+                    <option value="街拍">街 拍</option>
+                    
+                    <option value="写真">写 真</option>
+                     
+                    <option value="婚庆">婚 庆</option>
+                    
+                    <option value="亲子">亲 子</option>
+                    
+                    <option value="证件">证 件</option>
+                    <option value="其他">其 他</option>
+	
+	                </select>
+
+	                <button type="button" class="btn btn-small btn-white" onclick="page()">查找</button>  
+	                 </td>
+	                 <td colspan="2">
+	                  <div class="input-group">
+
+                      <input type="text" placeholder="请输入顾客姓名" class="form-control" id="username">
+
+                      <span class="input-group-btn">
+
+                        <button class="btn btn-primary" type="button" onclick="page()">查找</button>
+
+                      </span>
+
+                    </div>      
+	                 </td>
+	                 <td align="right">
+	                  <button class="btn btn-danger" type="button" onclick="del()">删除</button>
+	                 </td>
+				  </tr>
+				  <tbody>
+				  <tr id="photo1">
+				  
+				  </tr>
+				   <tr id="photo2">
+				   
+				  </tr>
+				  </tbody>
+				   <tr>
+				    <td colspan="5" height="50"  align="right"> 
+				     <ul class="pagination pagination-small" id="totalPage">
+
+		              
+		
+		              <li class="active"><a href="#">1</a></li>
+		
+		            
+		
+		              <li><a href="#">3</a></li>
+		
+		              <li><a href="#">4</a></li>
+		
+		              <li><a href="#">5</a></li>
+		
+		              <li><a href="#"><i class="icon-chevron-right"></i></a></li>
+		
+		            </ul>
+        		    </td>
+				  </tr>
+              </table>
+</form>
+            </div>
+
+          </section>
+
+         
+
+  <!-- footer -->
+
+  <footer id="footer">
+
+    <div class="text-center padder clearfix">
+
+      <p>
+
+        <small>&copy; 随身拍 2018 | 东北林业大学  | 冯文秀</small><br><br>
+
+        <a href="#" class="btn btn-mini btn-circle btn-twitter"><i class="icon-twitter"></i></a>
+
+        <a href="#" class="btn btn-mini btn-circle btn-facebook"><i class="icon-facebook"></i></a>
+
+        <a href="#" class="btn btn-mini btn-circle btn-gplus"><i class="icon-google-plus"></i></a>
+
+      </p>
+
+    </div>
+
+  </footer>
+
+  <!-- / footer -->
+
+	<script src="js/jquery.min.js"></script>
+
+  <!-- Bootstrap -->
+
+  <script src="js/bootstrap.js"></script>
+
+  <!-- fuelux -->
+
+  <script src="js/fuelux/fuelux.js"></script>
+
+  <script src="js/underscore-min.js"></script>
+
+  <!-- datatables -->
+
+  <script src="js/datatables/jquery.dataTables.min.js"></script>
+
+  <!-- Sparkline Chart -->
+
+  <script src="js/charts/sparkline/jquery.sparkline.min.js"></script>
+
+  <!-- Easy Pie Chart -->
+
+  <script src="js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+
+
+
+  <!-- app -->
+
+  <script src="js/app.js"></script>
+
+  <script src="js/app.plugin.js"></script>
+
+  <script src="js/app.data.js"></script>
+ <script src="js/sweet-alert.min.js"></script>
+</body>
+	
+	<script>
+	var pageNumber ;
+	function page(pageNumber){
+	 pageNumber = pageNumber ;
+	 if(pageNumber == null){
+	 pageNumber = 1;
+	 }
+	 var photoType = document.getElementById('photoType').value;
+	var username = document.getElementById('username').value;
+	console.log(username);
+	 $.ajax({  
+	     type : "POST",  
+	     url : "photo/selPhoto",//路径  
+	     dataType: "json",
+	     data:{"pageNumber":pageNumber , "pageSize":10,"photoType":photoType,"username":username},
+	     success : function(data) {//返回数据根据结果进行相应的处理    ;
+	    
+	  	 if(data.result == 200){
+	  	 data = data.data;
+	  	 var photo1 = "";
+	  	 var photo2 = "";
+	  	 var totalPage = "";
+	  		 if(data.list.length<5){
+	  	 for(var i=0;i<data.list.length;i++){
+	  			photo1 += "<td align='center'><input type='hidden' value='"+data.list[i].id+"'/><img src='upload"+data.list[i].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[i].id+"' /></td>";
+	  			
+	  		}
+	  	 }else{
+	  	  for(var i=0;i<5;i++){
+	  			photo1 += "<td align='center'><input type='hidden' value='"+data.list[i].id+"'/><img src='upload"+data.list[i].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[i].id+"' /></td>";
+	  			
+	  		}
+	  	 
+	  	 }
+	  		
+	  		if( data.list.length > 5){
+	  		for(var j=5;j<data.list.length;j++){
+	  		photo2 += "<td align='center'><input type='hidden' value='"+data.list[j].id+"'/><img src='upload"+data.list[j].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[j].id+"' /></td>";
+	  		}
+	  		}
+	  		for(var q=0;q<data.totalPage;q++){
+	  		var x = q+1 ;
+	  		totalPage += "<li><a href='#' onclick='page("+x+")'>"+x+"</a></li>";
+	  		}
+	  		console.log(data.totalPage);
+	  		left = "<li><a href='#'><i class='icon-chevron-left'></i></a></li>";
+	  		right = "<li><a href='#'><i class='icon-chevron-right'></i></a></li>";
+	  		 $("#photo1").html('').append(photo1);   
+	  		 $("#photo2").html('').append(photo2);
+	  		 $("#totalPage").html('').append(left).append(totalPage).append(right);
+	     } 
+	     }
+	     });  
+	}
+	
+	$(document).ready(function (){
+		if(pageNumber == null){
+			pageNumber =1 ;
+		}
+		$.ajax({  
+	     type : "POST",  
+	     url : "photo/selPhoto",//路径  
+	     dataType: "json",
+	     data:{"pageNumber":pageNumber , "pageSize":10},
+	     success : function(data) {//返回数据根据结果进行相应的处理    ;
+	    
+	  	 if(data.result == 200){
+	  	 data = data.data;
+	  	 var photo1 = "";
+	  	 var photo2 = "";
+	  	 var totalPage = "";
+	  	 if(data.list.length<5){
+	  	 for(var i=0;i<data.list.length;i++){
+	  			photo1 += "<td align='center'><input type='hidden' value='"+data.list[i].id+"'/><img src='upload"+data.list[i].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[i].id+"' /></td>";
+	  			
+	  		}
+	  	 }else{
+	  	  for(var i=0;i<5;i++){
+	  			photo1 += "<td align='center'><input type='hidden' value='"+data.list[i].id+"'/><img src='upload"+data.list[i].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[i].id+"' /></td>";
+	  			
+	  		}
+	  	 
+	  	 }
+	  		
+	  		
+	  		if( data.list.length > 5){
+	  		for(var j=5;j<10;j++){
+	  		photo2 += "<td align='center'><input type='hidden' value='"+data.list[j].id+"'/><img src='upload"+data.list[j].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[i].id+"' /></td>";
+	  		}
+	  		}
+	  		
+	  		for(var q=0;q<data.totalPage;q++){
+	  		var x = q+1 ;
+	  		totalPage += "<li><a href='#' onclick='page("+x+")'>"+x+"</a></li>";
+	  		}
+	  		console.log(data.totalPage);
+	  		left = "<li><a href='#'><i class='icon-chevron-left'></i></a></li>";
+	  		right = "<li><a href='#'><i class='icon-chevron-right'></i></a></li>";
+	  		 $("#photo1").html('').append(photo1);   
+	  		 $("#photo2").html('').append(photo2);
+	  		 $("#totalPage").html('').append(left).append(totalPage).append(right);
+	     } 
+	     }
+	     });  
+	     })
+	
+	</script>
+	<script>
+	 function del(){
+	swal({ 
+		  title: '确定要删除吗?',
+		  text: "删除后将无法恢复，请谨慎操作！",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '删除'
+		}).then(function (isConfirm){
+			console.log(isConfirm);
+			 if(isConfirm.value == true){
+				$.ajax({
+				type : "POST",  
+	            url : "photo/delPhoto",//路径  
+	            dataType: "json",
+	            data : $('#photoGrid').serialize(),
+	            success : function(data){
+	             
+	             if(data.result == 200){
+	              sweetAlert("删除成功", "","success");
+	              }else if(data.result == 201){
+	              sweetAlert("删除失败", "","error");
+	              }
+	            }
+			    })
+			}
+		}
+		);
+		
+	 }
+	</script>
+</html>
