@@ -34,4 +34,6 @@ public interface WorkerMapper {
     List<Worker> selectAll();
     
     int delWorker(String[] id);
+    
+    List<Worker> searchWorker(String name);
 }

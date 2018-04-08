@@ -26,8 +26,18 @@ public class Worker {
     private String workerBankCard;
 
     private String photo;
+    private String time;
+    
 
-    public Integer getId() {
+    public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public Integer getId() {
         return id;
     }
 

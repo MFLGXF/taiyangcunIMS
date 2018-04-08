@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fwx.dao.CustomerMapper" >
-  <resultMap id="BaseResultMap" type="com.fwx.domain.Customer" >
+<mapper namespace="com.fwx.dao.ClothesMapper" >
+  <resultMap id="BaseResultMap" type="com.fwx.domain.Clothes" >
     <id column="id" property="id" jdbcType="CHAR" />
-    <result column="name" property="name" jdbcType="CHAR" />
-    <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="is_vip" property="isVip" jdbcType="CHAR" />
-    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
-    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="style" property="style" jdbcType="CHAR" />
+    <result column="size" property="size" jdbcType="CHAR" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="usename" property="usename" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, phone, is_vip, del_flag, create_time
+    id, sex, style, size, price, usename
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fwx.domain.CustomerExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fwx.domain.ClothesExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from customer
+    from clothes
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,94 +87,94 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from customer
+    from clothes
     where id = #{id,jdbcType=CHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from customer
+    delete from clothes
     where id = #{id,jdbcType=CHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fwx.domain.CustomerExample" >
-    delete from customer
+  <delete id="deleteByExample" parameterType="com.fwx.domain.ClothesExample" >
+    delete from clothes
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fwx.domain.Customer" >
-    insert into customer (id, name, phone, is_vip, 
-      del_flag, create_time)
-    values (#{id,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{phone,jdbcType=VARCHAR}, #{isVip,jdbcType=CHAR}, 
-      #{delFlag,jdbcType=CHAR}, #{createTime,jdbcType=DATE})
+  <insert id="insert" parameterType="com.fwx.domain.Clothes" >
+    insert into clothes (id, sex, style, size, 
+      price, usename)
+    values (#{id,jdbcType=CHAR}, #{sex,jdbcType=CHAR}, #{style,jdbcType=CHAR}, #{size,jdbcType=CHAR}, 
+      #{price,jdbcType=INTEGER}, #{usename,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.fwx.domain.Customer" >
-    insert into customer
+  <insert id="insertSelective" parameterType="com.fwx.domain.Clothes" >
+    insert into clothes
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="sex != null" >
+        sex,
       </if>
-      <if test="phone != null" >
-        phone,
+      <if test="style != null" >
+        style,
       </if>
-      <if test="isVip != null" >
-        is_vip,
+      <if test="size != null" >
+        size,
       </if>
-      <if test="delFlag != null" >
-        del_flag,
+      <if test="price != null" >
+        price,
       </if>
-      <if test="createTime != null" >
-        create_time,
+      <if test="usename != null" >
+        usename,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=CHAR},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=CHAR},
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
       </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
+      <if test="style != null" >
+        #{style,jdbcType=CHAR},
       </if>
-      <if test="isVip != null" >
-        #{isVip,jdbcType=CHAR},
+      <if test="size != null" >
+        #{size,jdbcType=CHAR},
       </if>
-      <if test="delFlag != null" >
-        #{delFlag,jdbcType=CHAR},
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
+      <if test="usename != null" >
+        #{usename,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fwx.domain.CustomerExample" resultType="java.lang.Integer" >
-    select count(*) from customer
+  <select id="countByExample" parameterType="com.fwx.domain.ClothesExample" resultType="java.lang.Integer" >
+    select count(*) from clothes
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update customer
+    update clothes
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=CHAR},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=CHAR},
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=CHAR},
       </if>
-      <if test="record.phone != null" >
-        phone = #{record.phone,jdbcType=VARCHAR},
+      <if test="record.style != null" >
+        style = #{record.style,jdbcType=CHAR},
       </if>
-      <if test="record.isVip != null" >
-        is_vip = #{record.isVip,jdbcType=CHAR},
+      <if test="record.size != null" >
+        size = #{record.size,jdbcType=CHAR},
       </if>
-      <if test="record.delFlag != null" >
-        del_flag = #{record.delFlag,jdbcType=CHAR},
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=INTEGER},
       </if>
-      <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=DATE},
+      <if test="record.usename != null" >
+        usename = #{record.usename,jdbcType=CHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -182,56 +182,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update customer
+    update clothes
     set id = #{record.id,jdbcType=CHAR},
-      name = #{record.name,jdbcType=CHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      is_vip = #{record.isVip,jdbcType=CHAR},
-      del_flag = #{record.delFlag,jdbcType=CHAR},
-      create_time = #{record.createTime,jdbcType=DATE}
+      sex = #{record.sex,jdbcType=CHAR},
+      style = #{record.style,jdbcType=CHAR},
+      size = #{record.size,jdbcType=CHAR},
+      price = #{record.price,jdbcType=INTEGER},
+      usename = #{record.usename,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fwx.domain.Customer" >
-    update customer
+  <update id="updateByPrimaryKeySelective" parameterType="com.fwx.domain.Clothes" >
+    update clothes
     <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=CHAR},
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
       </if>
-      <if test="phone != null" >
-        phone = #{phone,jdbcType=VARCHAR},
+      <if test="style != null" >
+        style = #{style,jdbcType=CHAR},
       </if>
-      <if test="isVip != null" >
-        is_vip = #{isVip,jdbcType=CHAR},
+      <if test="size != null" >
+        size = #{size,jdbcType=CHAR},
       </if>
-      <if test="delFlag != null" >
-        del_flag = #{delFlag,jdbcType=CHAR},
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DATE},
+      <if test="usename != null" >
+        usename = #{usename,jdbcType=CHAR},
       </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fwx.domain.Customer" >
-    update customer
-    set name = #{name,jdbcType=CHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      is_vip = #{isVip,jdbcType=CHAR},
-      del_flag = #{delFlag,jdbcType=CHAR},
-      create_time = #{createTime,jdbcType=DATE}
+  <update id="updateByPrimaryKey" parameterType="com.fwx.domain.Clothes" >
+    update clothes
+    set sex = #{sex,jdbcType=CHAR},
+      style = #{style,jdbcType=CHAR},
+      size = #{size,jdbcType=CHAR},
+      price = #{price,jdbcType=INTEGER},
+      usename = #{usename,jdbcType=CHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
-   <select id="selCustomer" resultMap="BaseResultMap" >
-    select * from customer
-    order by name
-  </select>
-   <select id="searchCustomer" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from customer
-    where name like concat("%",#{name,jdbcType=CHAR},"%")
-    order by name 
-  </select>
 </mapper>

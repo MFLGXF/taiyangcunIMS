@@ -14,8 +14,17 @@ public class Customer {
     private String delFlag;
 
     private Date createTime;
+    private String time;
+    
+    public String getTime() {
+		return time;
+	}
 
-    public String getId() {
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getId() {
         return id;
     }
 
