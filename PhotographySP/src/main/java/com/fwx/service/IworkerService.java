@@ -16,4 +16,5 @@ public interface IworkerService {
 	public List<Customer> selCustomer();
 	public List<Customer> searchCustomer(String name);
 	public List<Worker> searchWorker(String name);
+	public List<Worker> selPhoto();
 }

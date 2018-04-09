@@ -27,6 +27,34 @@
     <script src="js/ie/html5.js"></script>
 
   <![endif]-->
+     <style> 
+        .black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 55%; 
+            height: 55%; 
+            padding: 20px; 
+            border: 10px solid orange; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        } 
+    </style> 
 
 </head>
 
@@ -34,15 +62,16 @@
 
   <!-- header -->
 
-  <header id="header" class="navbar">    
+  
+	<header id="header" class="navbar">
 
     <ul class="nav navbar-nav navbar-avatar pull-right">
 
       <li class="dropdown">
 
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-          <span class="hidden-sm-only">Mika Sokeil</span>
+          <span class="hidden-sm-only">admin</span>
 
           <span class="thumb-small avatar inline"><img src="images/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
 
@@ -52,7 +81,7 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="#">Settings</a></li>
+         <!--  <li><a href="#">Settings</a></li> -->
 
           <li><a href="#">Profile</a></li>
 
@@ -70,9 +99,9 @@
 
     </ul>
 
-    <a class="navbar-brand" href="#">first</a>
+    <a class="navbar-brand" href="#"><img src="images/xiaobiao.jpg" height="25" width="100"/></a>
 
-    <button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:show" data-target="#nav">
+    <button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:slide-nav slide-nav-left" data-target="body">
 
       <i class="icon-reorder icon-xlarge text-default"></i>
 
@@ -80,79 +109,23 @@
 
     <ul class="nav navbar-nav hidden-sm">
 
-      <li>
 
-        <div class="m-t m-b-small" id="panel-notifications">
-
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-comment-alt icon-xlarge text-default"></i><b class="badge badge-notes bg-danger count-n">2</b></a>
-
-          <section class="dropdown-menu m-l-small m-t-mini">
-
-            <section class="panel panel-large arrow arrow-top">
-
-              <header class="panel-heading bg-white"><span class="h5"><strong>You have <span class="count-n">2</span> notifications</strong></span></header>
-
-              <div class="list-group list-group-flush m-t-n">
-
-                <a href="#" class="media list-group-item">
-
-                  <span class="pull-left thumb-small"><img src="images/avatar.jpg" alt="John said" class="img-circle"></span>
-
-                  <span class="media-body block m-b-none">
-
-                    Moved to Bootstrap 3.0<br>
-
-                    <small class="text-muted">23 June 13</small>
-
-                  </span>
-
-                </a>
-
-                <a href="#" class="media list-group-item">
-
-                  <span class="media-body block m-b-none">
-
-                    first v.1 (Bootstrap 2.3 based) released<br>
-
-                    <small class="text-muted">19 June 13</small>
-
-                  </span>
-
-                </a>
-
-              </div>
-
-              <footer class="panel-footer text-small">
-
-                <a href="#" class="pull-right"><i class="icon-cog"></i></a>
-
-                <a href="#">See all the notifications</a>
-
-              </footer>
-
-            </section>
-
-          </section>
-
-        </div>
-
-      </li>
 
       <li><div class="m-t-small"><a class="btn btn-small btn-info" data-toggle="modal" href="#modal"><i class="icon-plus"></i> POST</a></div></li>
 
       <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
 
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-xlarge visible-sm visible-sm-inline"></i>Settings <b class="caret hidden-sm-only"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-xlarge visible-sm visible-sm-inline"></i>设置 <b class="caret hidden-sm-only"></b></a>
 
         <ul class="dropdown-menu">
 
           <li>
 
-            <a href="#" data-toggle="class:navbar-fixed" data-target='body'>Navbar 
+            <a href="#" data-toggle="class:navbar-fixed" data-target='body'>工具栏
 
-              <span class="text-active">auto</span>
+              <span class="text-active">自定义</span>
 
-              <span class="text">fixed</span>
+              <span class="text">固定</span>
 
             </a>
 
@@ -160,11 +133,11 @@
 
           <li class="visible-lg">
 
-            <a href="#" data-toggle="class:nav-vertical" data-target="#nav">Nav 
+            <a href="#" data-toggle="class:nav-vertical" data-target="#nav">工具栏
 
-              <span class="text-active">vertical</span>
+              <span class="text-active">垂直</span>
 
-              <span class="text">horizontal</span>
+              <span class="text">水平</span>
 
             </a>
 
@@ -172,15 +145,15 @@
 
           <li class="divider hidden-sm"></li>
 
-          <li class="dropdown-header">Colors</li>
+
 
           <li>
 
-            <a href="#" data-toggle="class:bg bg-black" data-target='.navbar'>Navbar 
+            <a href="#" data-toggle="class:bg bg-black" data-target='.navbar'>工具横栏
 
-              <span class="text-active">white</span>
+              <span class="text-active">白色</span>
 
-              <span class="text">inverse</span>
+              <span class="text">暗色</span>
 
             </a>
 
@@ -188,11 +161,11 @@
 
           <li>
 
-            <a href="#" data-toggle="class:bg-light" data-target='#nav'>Nav 
+            <a href="#" data-toggle="class:bg-light" data-target='#nav'>工具竖栏
 
-              <span class="text-active">inverse</span>
+              <span class="text-active">暗色</span>
 
-              <span class="text">light</span>
+              <span class="text">白色</span>
 
             </a>
 
@@ -212,7 +185,8 @@
 
     </form>
 
-  </header>
+	</header>
+
 
   <!-- / header -->
 
@@ -222,67 +196,110 @@
 
     <ul class="nav" data-spy="affix" data-offset-top="50">
 
-      <li><a href="index.html"><i class="icon-dashboard icon-xlarge"></i>Dashboard</a></li>
+      <li class="active"><a href="home.html"><i class="icon-dashboard icon-xlarge"></i>主页</a></li>
+
+   <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-instagram icon-xlarge"></i>摄影管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="photo1.html">添加照片</a></li>
+
+          <li><a href="photo.html">浏览照片</a></li>
+
+        </ul>
+
+      </li>
 
       <li class="dropdown-submenu">
 
-        <a href="#"><i class="icon-th icon-xlarge"></i>Elements</a>
+        <a href="#"><i class="icon-list icon-xlarge"></i>基础资料管理</a>
 
         <ul class="dropdown-menu">
+ 		  <li><a href="indexuser.html">添加基础资料</a></li>
+          <li><a href="selcustomer.html">客户信息列表</a></li>
 
-          <li><a href="buttons.html">Buttons</a></li>
-
-          <li><a href="icons.html"><b class="badge pull-right">302</b>Icons</a></li>            
-
-          <li><a href="grid.html">Grid</a></li>
-
-          <li><a href="widgets.html"><b class="badge bg-primary pull-right">8</b>Widgets</a></li>
-
-          <li><a href="components.html"><b class="badge pull-right">18</b>Components</a></li>
+          <li><a href="selworker.html">员工信息列表</a></li>
 
         </ul>
 
       </li>
-
-      <li class="dropdown-submenu active">
-
-        <a href="#"><i class="icon-list icon-xlarge"></i>Lists</a>
-
-        <ul class="dropdown-menu">
-
-          <li><a href="list.html">List groups</a></li>
-
-          <li><a href="table.html">Table</a></li>
-
-        </ul>
-
-      </li>
-
-      <li><a href="form.html"><i class="icon-edit icon-xlarge"></i>Form</a></li>
-
-      <li><a href="chart.html"><i class="icon-signal icon-xlarge"></i>Chart</a></li>
 
       <li class="dropdown-submenu">
 
-        <a href="#"><i class="icon-link icon-xlarge"></i>Others</a>
+        <a href="#"><i class="icon-edit icon-xlarge"></i>会员管理</a>
 
         <ul class="dropdown-menu">
 
-          <li><a href="signin.html">Signin page</a></li>
+          <li><a href="list.html">卡档案管理</a></li>
 
-          <li><a href="signup.html">Signup page</a></li>
-
-          <li><a href="404.html">404 page</a></li>
+          <li><a href="table.html">优惠方案</a></li>
 
         </ul>
 
       </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-facetime-video icon-xlarge"></i>设备管理</a>
+
+        <ul class="dropdown-menu">
+ 		  <li><a href="indexdevice.html">下载模板</a></li>
+          <li><a href="seldevice.html">拍照设备管理</a></li>
+
+          <li><a href="selclothes.html">服装管理</a></li>
+
+        </ul>
+
+      </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-signal icon-xlarge"></i>产品及套系管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="list.html">产品类别设置</a></li>
+
+          <li><a href="table.html">产品设置</a></li>
+
+          <li><a href="list.html">套系设置</a></li>
+
+          <li><a href="table.html">套系产品设置</a></li>
+
+          <li><a href="list.html">产品销售统计</a></li>
+
+
+        </ul>
+
+      </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-signal icon-xlarge"></i>财务信息管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="list.html">业绩管理</a></li>
+
+          <li><a href="table.html">费用管理</a></li>
+
+
+
+        </ul>
+
+      </li>
+
 
     </ul>
 
   </nav>
 
   <!-- / nav -->
+
+
+
 
   <section id="content">
 
@@ -305,39 +322,42 @@
 
             <header class="panel-heading">
 
-              客户列表
+              <i class="icon-arrow-right"><a href="indexdevice.html"><font color="red">请先下载模板并填写模板上传</font></a></i>
 
             </header>
 
             <div class="row text-small">
 
               <div class="col-lg-4 m-b-mini">
-
+					<form action="#" id="clothes">
+             	    <div class="btn-group" >
+             	   
+					 <input type="file" class="btn btn-white btn-mini" name="file">
+					 <button class="btn btn-small btn-white" type="button" onclick="addClothes()">Up!</button>
               
+                </div>
+             	   </form>
               </div>
 
               <div class="col-lg-4 m-b-mini">
 
-                <div class="btn-group" data-toggle="buttons">
-	
+                <div class="btn-group" >
+	 
                 </div>
 
               </div>
 
               <div class="col-lg-4">
-<form action="#" id="search">
+
                 <div class="input-group">
 					
-                  <input type="text" class="input-small form-control" placeholder="Search" name="name">
+                 
+ 					
 
-                  <span class="input-group-btn">
-
-                    <button class="btn btn-small btn-white" type="button" onclick="search()">Go!</button>
-
-                  </span>
+             	   
 				
                 </div>
-</form>
+
               </div>
 
             </div>
@@ -345,33 +365,22 @@
             <div class="pull-out m-t-small">
 
               <table class="table table-striped b-t text-small">
-
+				<form action="#" id="device" method="post">
                 <thead>
 
                   <tr>
 
                     <th >序号</th>
 
-                    <th class="th-sortable" data-toggle="class">客户姓名
+                    <th class="th-sortable" data-toggle="class">设备名称 </th>
 
-                      <span class="th-sort">
+                    <th>设备编号</th>
 
-                        <i class="icon-sort-down text"></i>
+                    <th>设备价格</th>
 
-                        <i class="icon-sort-up text-active"></i>
-
-                        <i class="icon-sort"></i>
-
-                      </span>
-
-                    </th>
-
-                    <th>联系方式</th>
-
-                    <th>注册日期</th>
-
-                    <th >VIP用户</th>
-
+                    <th >当前状态</th>
+					
+					
                   </tr>
 
                 </thead>
@@ -381,7 +390,7 @@
                 
 
                 </tbody>
-
+				</form>
               </table>
 
             </div>
@@ -422,6 +431,13 @@
   </footer>
 
   <!-- / footer -->
+   <div id="light" class="white_content">
+   <select id="photo" class="input-small inline form-control">
+   
+   </select> 
+   
+<a  class="btn btn-inverse" onclick = "updateUse() ">提交</a></div> 
+        <div id="fade" class="black_overlay"></div> 
 
 	<script src="js/jquery.min.js"></script>
 
@@ -456,28 +472,41 @@
   <script src="js/app.plugin.js"></script>
 
   <script src="js/app.data.js"></script>
-
+<script src="js/sweet-alert.min.js"></script>
 </body>
+<script>
+function updateUse(){
+var id = new Array();
+ id = document.getElementsByName('id');
+console.log(id);
+
+document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'
+}
+</script>
 <script >
 $(document).ready(function (){
 		$.ajax({  
 	     type : "GET",  
-	     url : "user/selCustomer",//路径  
+	     url : "device/selDevice",//路径  
 	     dataType: "json",
 	     success : function(data) {//返回数据根据结果进行相应的处理    ;
 	     console.log(data);
 	     var customer = "";
 	  	 if(data.result == 200){
 		 	for(var i=0;i<data.data.length;i++){
-		 	var isvip="";
-		 		if(data.data[i].isVip == 0){
-		 			isvip="<i class='icon-remove icon-large text-danger text'></i>";
+		 	var style = "";
+		 		if(data.data[i].deviceStatus=="正常"){
+		 		style="btn btn-success btn-mini"
+		 		}else if(data.data[i].deviceStatus=="维修中"){
+		 		style="btn btn-warning btn-mini"
 		 		}else{
-		 		    isvip="<i class='icon-ok icon-large text-success text'></i>";
+		 		style="btn btn-danger btn-mini"
 		 		}
-		 		customer +="<tr><td>"+(i+1)+"</td><td>"+data.data[i].name+" </b></td><td>"+data.data[i].phone+"</td><td>"+data.data[i].time+"</td><td>"+isvip+"</td></tr>";
+		 		customer +="<tr><td>"+(i+1)+"</td><td>"+data.data[i].deviceName+"</td><td>"+data.data[i].deviceNo+"</td><td>￥"+data.data[i].devicePrice+"</td><td><input type='hidden' name='id' id='id' value='"+data.data[i].id+"'><input type='hidden' id='status' name='status' value='"+data.data[i].deviceStatus+"'><button class='"+style+"' onclick='search()' >"+data.data[i].deviceStatus+"</button></td></tr>";
+		 		
 		 	}
 		 	 $("#customer").html('').append(customer);
+		 	 console.log(customer);
 		 }
 	     }
 	     });  
@@ -487,29 +516,52 @@ $(document).ready(function (){
 </script>
 <script>
 function search(){
+ var id = document.getElementById('id').value;
+ var status = document.getElementById('status').value;
 	$.ajax({
 		type : "POST",  
-	    url : "user/searchCustomer",//路径  
-	    data : $('#search').serialize(),
+	    url : "device/updateDevice",//路径  
+	    data:{"id":id , "status":status},
 	    dataType: "json",
 	    success : function(data) {
 	    console.log(data);
 	     var customer = "";
 	  	 if(data.result == 200){
-		 	for(var i=0;i<data.data.length;i++){
-		 	var isvip="";
-		 		if(data.data[i].isVip == 0){
-		 			isvip="<i class='icon-remove icon-large text-danger text'></i>";
-		 		}else{
-		 		    isvip="<i class='icon-ok icon-large text-success text'></i>";
-		 		}
-		 		customer +="<tr><td><input type='checkbox' name='post[]' value='"+data.data[i].id+"'></td><td>"+data.data[i].name+" </b></td><td>"+data.data[i].phone+"</td><td>"+data.data[i].time+"</td><td>"+isvip+"</td></tr>";
-		 	}
-		 	 $("#customer").html('').append(customer);
+		 	  window.location.reload(); 
 		 }
 		 }
 	}
 	)		
 }
+</script>
+<script>
+	 function addClothes(){
+	  var formData = new FormData($( "#clothes" )[0]);  
+	  console.log(formData);
+		$.ajax({
+		    type : "POST",  
+            url : "device/addDevice",//路径  
+            data : formData,
+            async: false,  
+            cache: false,  
+            contentType: false,  
+            processData: false,  
+            success : function(data){
+            console.log(data);
+             if(data.result == 200){
+              swal("上传成功！", "","success")
+              }else if(data.result == 201){
+              sweetAlert("上传失败", "","error");
+              }else if(data.result == 202){
+              sweetAlert("添加失败", "手机号验证失败","warning");
+              }else if(data.result == 203){
+              sweetAlert("添加失败", "银行卡号验证失败","warning");
+              }else if(data.result == 204){
+              sweetAlert("添加失败", "不允许为空","error");
+              }
+           
+            }
+		})
+		}
 </script>
 </html>

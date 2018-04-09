@@ -322,7 +322,7 @@
     select 
     <include refid="Base_Column_List" />
     from worker
-    where worker_name like concat("%",#{name,jdbcType=CHAR},"%") and del_flag ==0
+    where worker_name like concat("%",#{name,jdbcType=CHAR},"%") and del_flag =0
     order by worker_name 
   </select>
     <update id="delWorker" parameterType="java.lang.String">
@@ -331,4 +331,11 @@
               #{id}
       </foreach>
   </update>
+   <select id="selPhoto" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from worker
+    where worker_post ="摄影师" and del_flag =0
+    order by worker_name 
+  </select>
 </mapper>

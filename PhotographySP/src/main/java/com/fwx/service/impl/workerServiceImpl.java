@@ -104,4 +104,18 @@ public class workerServiceImpl implements IworkerService {
 		}
 		return null;
 	}
+	@Override
+	public List<Worker> selPhoto() {
+		List<Worker> list = workerDao.selPhoto();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		if(list.size()>0){
+			for(int i=0;i<list.size();i++){
+				String time = sdf.format(list.get(i).getJoinTime());
+				list.get(i).setTime(time);
+			}
+			return list;
+		}else{
+			return null;
+		}
+	}
 }

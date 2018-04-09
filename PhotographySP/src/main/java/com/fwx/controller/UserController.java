@@ -56,6 +56,17 @@ public class UserController {
 		}
 		return ret;
 	}
+	@RequestMapping(value="/selPhoto",method=RequestMethod.GET)
+	@ResponseBody
+	public ReturnInfo<List<Worker>> selPhoto(){
+		ReturnInfo<List<Worker>> ret = new ReturnInfo<List<Worker>>();
+		List<Worker> list = workerService.selPhoto();
+		if(list != null){
+			ret.setResult(200);
+			ret.setData(list);
+		}
+		return ret;
+	}
 	@RequestMapping(value = "addWorker", method = RequestMethod.POST)
 	@ResponseBody
 	public ReturnInfo<String> addWorker(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request) throws Exception, IOException{

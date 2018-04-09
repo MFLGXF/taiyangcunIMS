@@ -36,4 +36,6 @@ public interface WorkerMapper {
     int delWorker(String[] id);
     
     List<Worker> searchWorker(String name);
+    
+    List<Worker> selPhoto();
 }

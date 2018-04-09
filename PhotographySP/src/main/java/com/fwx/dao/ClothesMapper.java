@@ -1,9 +1,12 @@
 package com.fwx.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.fwx.domain.Clothes;
 import com.fwx.domain.ClothesExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import com.fwx.vo.ClothesVO;
 
 public interface ClothesMapper {
     int countByExample(ClothesExample example);
@@ -27,4 +30,6 @@ public interface ClothesMapper {
     int updateByPrimaryKeySelective(Clothes record);
 
     int updateByPrimaryKey(Clothes record);
+    int addClothes(List<ClothesVO> list);
+    List<Clothes> selClothes();
 }

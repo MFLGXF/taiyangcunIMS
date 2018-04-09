@@ -12,8 +12,16 @@ public class Clothes {
     private Integer price;
 
     private String usename;
+    private int count;
+    public int getCount() {
+		return count;
+	}
 
-    public String getId() {
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getId() {
         return id;
     }
 

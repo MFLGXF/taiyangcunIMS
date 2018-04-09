@@ -34,15 +34,16 @@
 
   <!-- header -->
 
-  <header id="header" class="navbar">    
+  
+	<header id="header" class="navbar">
 
     <ul class="nav navbar-nav navbar-avatar pull-right">
 
       <li class="dropdown">
 
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-          <span class="hidden-sm-only">Mika Sokeil</span>
+          <span class="hidden-sm-only">admin</span>
 
           <span class="thumb-small avatar inline"><img src="images/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
 
@@ -52,7 +53,7 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="#">Settings</a></li>
+         <!--  <li><a href="#">Settings</a></li> -->
 
           <li><a href="#">Profile</a></li>
 
@@ -70,9 +71,9 @@
 
     </ul>
 
-    <a class="navbar-brand" href="#">first</a>
+    <a class="navbar-brand" href="#"><img src="images/xiaobiao.jpg" height="25" width="100"/></a>
 
-    <button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:show" data-target="#nav">
+    <button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:slide-nav slide-nav-left" data-target="body">
 
       <i class="icon-reorder icon-xlarge text-default"></i>
 
@@ -80,79 +81,23 @@
 
     <ul class="nav navbar-nav hidden-sm">
 
-      <li>
 
-        <div class="m-t m-b-small" id="panel-notifications">
-
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-comment-alt icon-xlarge text-default"></i><b class="badge badge-notes bg-danger count-n">2</b></a>
-
-          <section class="dropdown-menu m-l-small m-t-mini">
-
-            <section class="panel panel-large arrow arrow-top">
-
-              <header class="panel-heading bg-white"><span class="h5"><strong>You have <span class="count-n">2</span> notifications</strong></span></header>
-
-              <div class="list-group list-group-flush m-t-n">
-
-                <a href="#" class="media list-group-item">
-
-                  <span class="pull-left thumb-small"><img src="images/avatar.jpg" alt="John said" class="img-circle"></span>
-
-                  <span class="media-body block m-b-none">
-
-                    Moved to Bootstrap 3.0<br>
-
-                    <small class="text-muted">23 June 13</small>
-
-                  </span>
-
-                </a>
-
-                <a href="#" class="media list-group-item">
-
-                  <span class="media-body block m-b-none">
-
-                    first v.1 (Bootstrap 2.3 based) released<br>
-
-                    <small class="text-muted">19 June 13</small>
-
-                  </span>
-
-                </a>
-
-              </div>
-
-              <footer class="panel-footer text-small">
-
-                <a href="#" class="pull-right"><i class="icon-cog"></i></a>
-
-                <a href="#">See all the notifications</a>
-
-              </footer>
-
-            </section>
-
-          </section>
-
-        </div>
-
-      </li>
 
       <li><div class="m-t-small"><a class="btn btn-small btn-info" data-toggle="modal" href="#modal"><i class="icon-plus"></i> POST</a></div></li>
 
       <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
 
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-xlarge visible-sm visible-sm-inline"></i>Settings <b class="caret hidden-sm-only"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-xlarge visible-sm visible-sm-inline"></i>设置 <b class="caret hidden-sm-only"></b></a>
 
         <ul class="dropdown-menu">
 
           <li>
 
-            <a href="#" data-toggle="class:navbar-fixed" data-target='body'>Navbar 
+            <a href="#" data-toggle="class:navbar-fixed" data-target='body'>工具栏
 
-              <span class="text-active">auto</span>
+              <span class="text-active">自定义</span>
 
-              <span class="text">fixed</span>
+              <span class="text">固定</span>
 
             </a>
 
@@ -160,11 +105,11 @@
 
           <li class="visible-lg">
 
-            <a href="#" data-toggle="class:nav-vertical" data-target="#nav">Nav 
+            <a href="#" data-toggle="class:nav-vertical" data-target="#nav">工具栏
 
-              <span class="text-active">vertical</span>
+              <span class="text-active">垂直</span>
 
-              <span class="text">horizontal</span>
+              <span class="text">水平</span>
 
             </a>
 
@@ -172,15 +117,15 @@
 
           <li class="divider hidden-sm"></li>
 
-          <li class="dropdown-header">Colors</li>
+
 
           <li>
 
-            <a href="#" data-toggle="class:bg bg-black" data-target='.navbar'>Navbar 
+            <a href="#" data-toggle="class:bg bg-black" data-target='.navbar'>工具横栏
 
-              <span class="text-active">white</span>
+              <span class="text-active">白色</span>
 
-              <span class="text">inverse</span>
+              <span class="text">暗色</span>
 
             </a>
 
@@ -188,11 +133,11 @@
 
           <li>
 
-            <a href="#" data-toggle="class:bg-light" data-target='#nav'>Nav 
+            <a href="#" data-toggle="class:bg-light" data-target='#nav'>工具竖栏
 
-              <span class="text-active">inverse</span>
+              <span class="text-active">暗色</span>
 
-              <span class="text">light</span>
+              <span class="text">白色</span>
 
             </a>
 
@@ -212,7 +157,7 @@
 
     </form>
 
-  </header>
+	</header>
 
   <!-- / header -->
 
@@ -222,67 +167,110 @@
 
     <ul class="nav" data-spy="affix" data-offset-top="50">
 
-      <li><a href="index.html"><i class="icon-dashboard icon-xlarge"></i>Dashboard</a></li>
+      <li class="active"><a href="home.html"><i class="icon-dashboard icon-xlarge"></i>主页</a></li>
+
+   <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-instagram icon-xlarge"></i>摄影管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="photo1.html">添加照片</a></li>
+
+          <li><a href="photo.html">浏览照片</a></li>
+
+        </ul>
+
+      </li>
 
       <li class="dropdown-submenu">
 
-        <a href="#"><i class="icon-th icon-xlarge"></i>Elements</a>
+        <a href="#"><i class="icon-list icon-xlarge"></i>基础资料管理</a>
 
         <ul class="dropdown-menu">
+ 		  <li><a href="indexuser.html">添加基础资料</a></li>
+          <li><a href="selcustomer.html">客户信息列表</a></li>
 
-          <li><a href="buttons.html">Buttons</a></li>
-
-          <li><a href="icons.html"><b class="badge pull-right">302</b>Icons</a></li>            
-
-          <li><a href="grid.html">Grid</a></li>
-
-          <li><a href="widgets.html"><b class="badge bg-primary pull-right">8</b>Widgets</a></li>
-
-          <li><a href="components.html"><b class="badge pull-right">18</b>Components</a></li>
+          <li><a href="selworker.html">员工信息列表</a></li>
 
         </ul>
 
       </li>
-
-      <li class="dropdown-submenu active">
-
-        <a href="#"><i class="icon-list icon-xlarge"></i>Lists</a>
-
-        <ul class="dropdown-menu">
-
-          <li><a href="list.html">List groups</a></li>
-
-          <li><a href="table.html">Table</a></li>
-
-        </ul>
-
-      </li>
-
-      <li><a href="form.html"><i class="icon-edit icon-xlarge"></i>Form</a></li>
-
-      <li><a href="chart.html"><i class="icon-signal icon-xlarge"></i>Chart</a></li>
 
       <li class="dropdown-submenu">
 
-        <a href="#"><i class="icon-link icon-xlarge"></i>Others</a>
+        <a href="#"><i class="icon-edit icon-xlarge"></i>会员管理</a>
 
         <ul class="dropdown-menu">
 
-          <li><a href="signin.html">Signin page</a></li>
+          <li><a href="list.html">卡档案管理</a></li>
 
-          <li><a href="signup.html">Signup page</a></li>
-
-          <li><a href="404.html">404 page</a></li>
+          <li><a href="table.html">优惠方案</a></li>
 
         </ul>
 
       </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-facetime-video icon-xlarge"></i>设备管理</a>
+
+        <ul class="dropdown-menu">
+ 		  <li><a href="indexdevice.html">下载模板</a></li>
+          <li><a href="seldevice.html">拍照设备管理</a></li>
+
+          <li><a href="selclothes.html">服装管理</a></li>
+
+        </ul>
+
+      </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-signal icon-xlarge"></i>产品及套系管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="list.html">产品类别设置</a></li>
+
+          <li><a href="table.html">产品设置</a></li>
+
+          <li><a href="list.html">套系设置</a></li>
+
+          <li><a href="table.html">套系产品设置</a></li>
+
+          <li><a href="list.html">产品销售统计</a></li>
+
+
+        </ul>
+
+      </li>
+
+      <li class="dropdown-submenu">
+
+        <a href="#"><i class="icon-signal icon-xlarge"></i>财务信息管理</a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="list.html">业绩管理</a></li>
+
+          <li><a href="table.html">费用管理</a></li>
+
+
+
+        </ul>
+
+      </li>
+
 
     </ul>
 
   </nav>
 
   <!-- / nav -->
+
+
+
 
   <section id="content">
 

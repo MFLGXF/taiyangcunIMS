@@ -9,6 +9,7 @@ public class ClothesVO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String id;
 	@Excel(name="性别", isImportField = "true_st")
     private String sex;
 	@Excel(name="类型", isImportField = "true_st")
@@ -18,6 +19,14 @@ public class ClothesVO implements Serializable {
 	@Excel(name="价格", isImportField = "true_st")
     private Integer price;
 	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getSex() {
 		return sex;

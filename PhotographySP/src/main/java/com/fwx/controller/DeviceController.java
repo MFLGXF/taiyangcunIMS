@@ -17,18 +17,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fwx.common.FileUtils;
 import com.fwx.common.ReturnInfo;
-import com.fwx.domain.Clothes;
-import com.fwx.service.IclothesService;
+import com.fwx.domain.Device;
+import com.fwx.service.IdeviceService;
 import com.fwx.vo.ClothesVO;
-
-@RequestMapping("/clothes")
+import com.fwx.vo.DeviceVO;
+@RequestMapping("/device")
 @RestController
-public class ClothesController {
+public class DeviceController {
 	@Autowired
-	private IclothesService clothesService;
-	@RequestMapping(value="/addClothes",method=RequestMethod.POST)
-	public ReturnInfo<Clothes> addClothes(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request){
-		ReturnInfo<Clothes> ret = new ReturnInfo<Clothes>();
+	private IdeviceService deviceService;
+	@RequestMapping(value="addDevice",method=RequestMethod.POST)
+	public ReturnInfo<Device> addDevice(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request){
+		ReturnInfo<Device> ret = new ReturnInfo<Device>();
 		if(file.isEmpty() == true){
 			ret.setResult(203);
 			return ret;
@@ -46,14 +46,14 @@ public class ClothesController {
 	    params.setTitleRows(1);
 	    params.setHeadRows(1);
 	    
-	    List<ClothesVO> list = ExcelImportUtil.importExcel(
+	    List<DeviceVO> list = ExcelImportUtil.importExcel(
 	       new File(filePath+fileName),
-	       ClothesVO.class, params);
+	       DeviceVO.class, params);
 	    if(list.size() == 0){
 	    	ret.setResult(202);
 	    	return ret;
 	    }
-	    boolean flag = clothesService.addClothes(list);
+	    boolean flag = deviceService.addDevice(list);
 	    if(flag == true){    	
 	    	boolean delFlag = FileUtils.delete(filePath+fileName);
 	    	if(delFlag == true){
@@ -64,12 +64,39 @@ public class ClothesController {
 	    }
 		return ret;
 	}
-	@RequestMapping(value="selClothes",method=RequestMethod.GET)
-	public ReturnInfo<List<Clothes>> selClothes(){
-		ReturnInfo<List<Clothes>> ret = new ReturnInfo<List<Clothes>>();
-		List<Clothes> list = clothesService.selClothes();
-		if(list!=null){
+	@RequestMapping(value="selDevice",method=RequestMethod.GET)
+	public ReturnInfo<List<Device>> selDevice(){
+		ReturnInfo<List<Device>> ret = new ReturnInfo<List<Device>>();
+		List<Device> list = deviceService.selDevice();
+		if(list != null){
 			ret.setData(list);
+			ret.setResult(200);
+		}
+		return ret;
+	}
+	@RequestMapping(value="updateDevice",method=RequestMethod.POST)
+	public ReturnInfo<String> updateDevice(String id,String status){
+		ReturnInfo<String> ret = new ReturnInfo<String>();
+		Device device = new Device();
+		if("正常".equals(status)){
+			device.setDeviceStatus("维修中");
+		}else if("维修中".equals(status)){
+			device.setDeviceStatus("已报废");
+		}else if("已报废".equals(status)){
+			device.setDeviceStatus("正常");
+		}
+		device.setId(id);
+		boolean flag = deviceService.updateDeviceStatus(device);
+		if(flag == true){
+			ret.setResult(200);
+		}
+		return ret;
+	}
+	@RequestMapping(value="delDevice",method=RequestMethod.POST)
+	public ReturnInfo<String> delDevice(String[] id){
+		ReturnInfo<String> ret = new ReturnInfo<String>();
+		boolean flag = deviceService.delDevice(id);
+		if(flag == true){
 			ret.setResult(200);
 		}
 		return ret;
