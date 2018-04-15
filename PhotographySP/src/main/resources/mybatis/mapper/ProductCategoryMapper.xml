@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwx.dao.ProductCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.fwx.domain.ProductCategory">
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="pc_name" property="pcName" jdbcType="CHAR" />
+    <result column="discription" property="discription" jdbcType="CHAR" />
+  	<result column="delete_flag" property="delete_flag" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,
+	pc_name,
+	delete_flag,
+	discription
+  </sql>
+
+
+
+
+  <select id="selectCount" resultType="Integer" parameterType="Map">
+
+  	select count(id)
+  	from
+  		product_category
+  	where
+  		1=1
+
+  		<if test="pcName != null and pcName != ''">
+  			and
+  				pc_name = #{pcName}
+  		</if>
+
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="Map">
+
+  	select
+  		<include refid="Base_Column_List"/>
+  	from
+  		product_category
+  	where
+  		1=1
+
+  		<if test="pcName != null and pcName != ''">
+  			and
+  				pc_name = #{pcName}
+  		</if>
+  		<if test="start != -1 and end != -1">
+			limit #{start},#{end}
+		</if>
+
+  </select>
+
+  <insert id="insert" parameterType="com.fwx.domain.ProductCategory">
+  	insert into
+  		product_category(id,
+				pc_name,
+				discription,
+				delete_flag
+  				)
+  	values(#{id},
+  			#{pcName},
+  			#{discription},
+  			#{delete_flag}
+  			)
+
+  </insert>
+
+<update id="update" parameterType="com.fwx.domain.MemberDiscount">
+	update member
+		<set>
+			<if test="discountId != null">
+				discount_id=#{discountId},
+			</if>
+			<if test="memberLevel != null">
+				member_level=#{memberLevel},
+			</if>
+			<if test="phone != null">
+				phone=#{phone},
+			</if>
+			<if test="cardMoney != null">
+				card_money=#{cardMoney},
+			</if>
+		</set>
+
+		where
+			id = #{id}
+</update>
+
+
+<select id="selectByName" parameterType="String" resultMap="BaseResultMap">
+
+	select <include refid="Base_Column_List"/>
+	from product_category
+	where pc_name=#{pcName}
+
+</select>
+
+<!-- 根据ID查询相关数据 -->
+<select id="selectProductCategoryById" parameterType="String" resultMap="BaseResultMap">
+	select <include refid="Base_Column_List"/>
+	from product_category
+	where id=#{id}
+</select>
+
+<delete id="delete" parameterType="String">
+	delete from product_category where id=#{id}
+</delete>
+
+
+</mapper>

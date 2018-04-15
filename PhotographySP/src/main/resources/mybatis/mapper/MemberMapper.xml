@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwx.dao.MemberMapper" >
+  <resultMap id="BaseResultMap" type="com.fwx.domain.Member" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="discount_id" property="discountId" jdbcType="CHAR" />
+  	<result column="card_number" property="cardNumber" jdbcType="CHAR" />
+  	<result column="username" property="username" jdbcType="CHAR" />
+  	<result column="sex" property="sex" jdbcType="INTEGER" />
+  	<result column="age" property="age" jdbcType="INTEGER" />
+  	<result column="member_level" property="memberLevel" jdbcType="CHAR" />
+  	<result column="phone" property="phone" jdbcType="CHAR" />
+  	<result column="card_money" property="card_money" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,
+	discount_id,
+	card_number,
+	username,
+	sex,
+	age,
+	member_level,
+	phone,
+	card_money
+  </sql>
+
+
+  <select id="selectMemberByName" resultMap="BaseResultMap" parameterType="com.fwx.domain.MemberDiscount" >
+   SELECT
+    *
+   FROM
+   	`member`
+   where
+   	username= #{username,jdbcType=CHAR}
+  </select>
+
+  <select id="selectCount" resultType="Integer" parameterType="Map">
+
+  	select count(id)
+  	from member
+  	where 1=1
+  		<if test="username != null and username != ''">
+  			and
+  			 username = #{username}
+  		</if>
+
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="Map">
+
+  	select
+  		<include refid="Base_Column_List"/>
+  	from
+  		member
+  	where
+  		1=1
+
+  		<if test="username != null and username != ''">
+  			and
+  				username = #{username}
+  		</if>
+  	limit #{start},#{end}
+
+  </select>
+
+  <insert id="insert" parameterType="com.fwx.domain.MemberDiscount">
+  	insert into
+  		member(id,
+				discount_id,
+				card_number,
+				username,
+				sex,
+				age,
+				member_level,
+				phone,
+				card_money
+  				)
+  	values(#{id},
+  			#{discountId},
+  			#{cardNumber},
+  			#{username},
+  			#{sex},
+  			#{age},
+  			#{memberLevel},
+  			#{phone},
+  			#{cardMoney})
+
+  </insert>
+
+<update id="update" parameterType="com.fwx.domain.MemberDiscount">
+	update member
+		<set>
+			<if test="discountId != null">
+				discount_id=#{discountId},
+			</if>
+			<if test="memberLevel != null">
+				member_level=#{memberLevel},
+			</if>
+			<if test="phone != null">
+				phone=#{phone},
+			</if>
+			<if test="cardMoney != null">
+				card_money=#{cardMoney},
+			</if>
+		</set>
+
+		where
+			id = #{id}
+</update>
+
+<delete id="delete" parameterType="String">
+	delete from member where id=#{id}
+</delete>
+
+<select id="selectMemberByDiscountId" parameterType="String" resultType="Integer">
+	select count(id)
+	from member
+	where discount_id=#{id}
+</select>
+
+</mapper>

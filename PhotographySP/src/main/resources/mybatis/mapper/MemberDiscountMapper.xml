@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwx.dao.MemberDiscountMapper" >
+  <resultMap id="BaseResultMap" type="com.fwx.domain.MemberDiscount" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="card_type_name" property="cardTypeName" jdbcType="CHAR" />
+  	<result column="discount" property="discount" jdbcType="CHAR" />
+  	<result column="discription" property="discription" jdbcType="CHAR" />
+  	<result column="level" property="level" jdbcType="CHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,
+	card_type_name,
+	discount,
+	discription,
+	level
+  </sql>
+
+
+  <select id="selectDiscountByType" resultMap="BaseResultMap" parameterType="com.fwx.domain.MemberDiscount" >
+   SELECT
+    *
+   FROM
+   	`member_discount`
+   where
+   	card_type_name= #{cardTypeName,jdbcType=CHAR}
+  </select>
+
+  <select id="selectCount" resultType="Integer" parameterType="Map">
+
+  	select count(id)
+  	from member_discount
+  	where 1=1
+  		<if test="cardTypeName != ''">
+  			and
+  				card_type_name = #{cardTypeName}
+  		</if>
+
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="Map">
+
+  	select
+  		<include refid="Base_Column_List" />
+  	from
+  		member_discount
+  	where 1=1
+  		<if test="cardTypeName != ''">
+  			and
+  				card_type_name = #{cardTypeName}
+  		</if>
+		<if test="start != -1 and end != -1">
+			limit #{start},#{end}
+		</if>
+
+
+  </select>
+
+  <insert id="insert" parameterType="com.fwx.domain.MemberDiscount">
+  	insert into
+  		member_discount(id,
+  						card_type_name,
+  						discount,
+  						discription,
+  						level)
+  	values(#{id},
+  			#{cardTypeName},
+  			#{discount},
+  			#{discription},
+  			#{level})
+
+  </insert>
+
+<update id="update" parameterType="com.fwx.domain.MemberDiscount">
+	update member_discount
+		<set>
+			<if test="cardTypeName != null">
+				card_type_name=#{cardTypeName},
+			</if>
+			<if test="discount != null">
+				discount=#{discount},
+			</if>
+			<if test="discription != null">
+				discription=#{discription},
+			</if>
+			<if test="level != null">
+				level=#{level},
+			</if>
+		</set>
+
+		where
+			id = #{id}
+</update>
+
+<delete id="delete" parameterType="String">
+	delete from member_discount where id=#{id}
+</delete>
+
+</mapper>

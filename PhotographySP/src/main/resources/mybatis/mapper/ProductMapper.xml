@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwx.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.fwx.domain.Product" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="p_name" property="pName" jdbcType="CHAR" />
+  	<result column="is_rent" property="isRent" jdbcType="INTEGER" />
+  	<result column="p_price" property="pPrice" jdbcType="INTEGER" />
+  	<result column="p_category" property="pCategory" jdbcType="CHAR" />
+  	<result column="delete_flag" property="delete_flag" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,
+	p_name,
+	is_rent,
+	p_price,
+	p_category,
+	delete_flag
+  </sql>
+
+
+<select id="selectByName" parameterType="com.fwx.domain.Product" resultMap="BaseResultMap">
+
+	select <include refid="Base_Column_List"/>
+	from product
+	where p_category=#{pCategory}
+		and p_name=#{pName}
+
+</select>
+
+
+  <select id="selectCount" resultType="Integer" parameterType="Map">
+
+  	select count(id)
+  	from product
+  	where 1=1
+  		<if test="pName != null and pName != ''">
+  			and
+  			 p_name = #{pName}
+  		</if>
+
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="Map">
+
+  	select
+  		<include refid="Base_Column_List"/>
+  	from
+  		product
+  	where
+  		1=1
+
+  		<if test="pName != null and pName != ''">
+  			and
+  				p_name = #{pName}
+  		</if>
+  	<if test="start != -1 and end != -1">
+  		limit #{start},#{end}
+  	</if>
+
+
+  </select>
+
+  <insert id="insert" parameterType="com.fwx.domain.Product">
+  	insert into
+  		product(id,
+				p_name,
+				is_rent,
+				p_price,
+				p_category,
+				delete_flag
+  				)
+  	values(#{id},
+  			#{pName},
+  			#{isRent},
+  			#{pPrice},
+  			#{pCategory},
+  			#{delete_flag}
+  			)
+
+  </insert>
+
+<update id="update" parameterType="com.fwx.domain.Product">
+	update product
+		<set>
+			<if test="pName != null">
+				p_name=#{pName},
+			</if>
+			<if test="isRent != null">
+				is_rent=#{isRent},
+			</if>
+			<if test="pPrice != null">
+				p_price=#{pPrice},
+			</if>
+			<if test="pCategory != null">
+				p_category=#{pCategory},
+			</if>
+		</set>
+
+		where
+			id = #{id}
+</update>
+
+<delete id="delete" parameterType="String">
+	delete from product where id=#{id}
+</delete>
+
+<delete id="deleteByPcName" parameterType="String">
+	delete
+	from product
+	where p_category=#{pcName}
+</delete>
+
+
+</mapper>

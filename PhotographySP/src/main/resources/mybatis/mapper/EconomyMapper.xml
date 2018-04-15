@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwx.dao.EconomyMapper" >
+  <resultMap id="BaseResultMap" type="com.fwx.domain.Economy" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="e_name" property="eName" jdbcType="CHAR" />
+  	<result column="e_photographyer" property="ePhotographyer" jdbcType="INTEGER" />
+  	<result column="e_modelling" property="eModelling" jdbcType="INTEGER" />
+  	<result column="e_location" property="eLocation" jdbcType="CHAR" />
+  	<result column="e_discription" property="eDiscription" jdbcType="CHAR" />
+  	<result column="product_ids" property="productIds" jdbcType="CHAR" />
+  	<result column="delete_flag" property="delete_flag" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,
+	e_name,
+	e_photographyer,
+	e_modelling,
+	e_location,
+	e_discription,
+	product_ids,
+	delete_flag
+  </sql>
+
+
+<select id="selectByName" parameterType="com.fwx.domain.Economy" resultMap="BaseResultMap">
+
+	select <include refid="Base_Column_List"/>
+	from economy
+	where e_name=#{eName}
+
+</select>
+
+
+  <select id="selectCount" resultType="Integer" parameterType="Map">
+
+  	select count(id)
+  	from economy
+  	where 1=1
+  		<if test="eName != null and eName != ''">
+  			and
+  			 e_name = #{eName}
+  		</if>
+
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="Map">
+
+  	select
+  		<include refid="Base_Column_List"/>
+  	from
+  		economy
+  	where
+  		1=1
+
+  		<if test="eName != null and eName != ''">
+  			and
+  				e_name = #{eName}
+  		</if>
+  	<if test="start != -1 and end != -1">
+  		limit #{start},#{end}
+  	</if>
+
+
+  </select>
+
+  <insert id="insert" parameterType="com.fwx.domain.Economy">
+  	insert into
+  		economy(id,
+				e_name,
+				e_photographyer,
+				e_modelling,
+				e_location,
+				e_discription,
+				product_ids,
+				delete_flag
+  				)
+  	values(#{id},
+  			#{eName},
+  			#{ePhotographyer},
+  			#{eModelling},
+  			#{eLocation},
+  			#{eDiscription},
+  			#{productIds},
+  			#{delete_flag}
+  			)
+
+  </insert>
+
+<update id="update" parameterType="com.fwx.domain.Economy">
+	update economy
+		<set>
+			<if test="productIds != null">
+				product_ids=#{productIds},
+			</if>
+		</set>
+		where
+			id = #{id}
+</update>
+
+<delete id="delete" parameterType="String">
+	delete from economy where id=#{id}
+</delete>
+
+
+
+</mapper>
