@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwx.dao.PerformanceMapper" >
+<resultMap id="BaseResultMap" type="com.fwx.vo.PerformanceVO" >
+    <id column="id" property="staId" jdbcType="CHAR" />
+    <result column="worker_id" property="workerId" jdbcType="CHAR" />
+  	<result column="worker_name" property="workerName" jdbcType="CHAR" />
+  	<result column="p_rating_num" property="pRatingNum" jdbcType="INTEGER" />
+  	<result column="p_content" property="pContent" jdbcType="CHAR" />
+  	<result column="p_time" property="pTime" jdbcType="DATE" />
+
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,
+	worker_id,
+	worker_name,
+	p_rating_num,
+	p_content,
+	p_time
+  </sql>
+
+
+
+<select id="selectByName" parameterType="com.fwx.vo.PerformanceVO" resultMap="BaseResultMap">
+
+	select <include refid="Base_Column_List"/>
+	from performance
+	where worker_name=#{workerName}
+
+</select>
+
+
+  <select id="selectCount" resultType="Integer" parameterType="Map">
+
+  	select count(id)
+  	from performance
+  	where 1=1
+  		<if test="workerName != null and workerName != ''">
+  			and
+  			 worker_name = #{workerName}
+  		</if>
+
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="Map">
+
+  	select
+  		<include refid="Base_Column_List"/>
+  	from
+  		performance
+  	where
+  		1=1
+  		<if test="workerName != null and workerName != ''">
+  			and
+  			 	worker_name = #{workerName}
+  		</if>
+  	<if test="start != -1 and end != -1">
+  		limit #{start},#{end}
+  	</if>
+
+
+  </select>
+
+  <insert id="insert" parameterType="com.fwx.vo.PerformanceVO">
+  	insert into
+  		performance(id,
+				worker_id,
+				worker_name,
+				p_rating_num,
+				p_content,
+				p_time
+			  	)
+  	values(#{staId},
+  			#{workerId},
+  			#{workerName},
+  			#{pRatingNum},
+  			#{pContent},
+  			#{pTime}
+  			)
+
+  </insert>
+
+<update id="update" parameterType="com.fwx.domain.Economy">
+	update economy
+		<set>
+			<if test="productIds != null">
+				product_ids=#{productIds},
+			</if>
+		</set>
+		where
+			id = #{id}
+</update>
+
+<delete id="delete" parameterType="String">
+	delete from economy where id=#{id}
+</delete>
+
+
+
+</mapper>
