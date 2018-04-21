@@ -198,9 +198,9 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="list.html">卡档案管理</a></li>
+          <li><a href="member2.html">卡档案管理</a></li>
 
-          <li><a href="table.html">优惠方案</a></li>
+          <li><a href="memberDiscount.html">优惠方案</a></li>
 
         </ul>
 
@@ -226,16 +226,11 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="list.html">产品类别设置</a></li>
+          <li><a href="productCategory.html">产品类别设置</a></li>
 
-          <li><a href="table.html">产品设置</a></li>
+          <li><a href="product.html">产品设置</a></li>
 
-          <li><a href="list.html">套系设置</a></li>
-
-          <li><a href="table.html">套系产品设置</a></li>
-
-          <li><a href="list.html">产品销售统计</a></li>
-
+          <li><a href="economy.html">套系设置</a></li>
 
         </ul>
 
@@ -247,11 +242,9 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="list.html">业绩管理</a></li>
+          <li><a href="performance.html">业绩管理</a></li>
 
-          <li><a href="table.html">费用管理</a></li>
-
-
+          <li><a href="BalanceAndPayment.html">费用管理</a></li>
 
         </ul>
 
@@ -272,7 +265,7 @@
 
       <div class="clearfix">
 
-      
+
 
       </div>
 
@@ -282,12 +275,12 @@
 
           <section class="panel">
   <header class="panel-heading">客户信息 <i class="icon-info-sign text-muted" data-toggle="popover" data-html="true" data-placement="top" data-content="The datagrid use ajax to load the data. please put this file on a server to preview." title="" data-trigger="hover" data-original-title="Help"></i> </header>
-            <form action="#" method="post" class="form-horizontal" id="customer" >   
+            <form action="#" method="post" class="form-horizontal" id="customer" >
 
               <div class="form-group">
 
-              
-                
+
+
 
               </div>
 
@@ -326,18 +319,18 @@
 
                 <div id="myCombobox" class="input-group dropdown combobox m-b">
 
-         			<label ><input type="radio" name="isvip" checked="checked" value="0">否             
+         			<label ><input type="radio" name="isvip" checked="checked" value="0">否
          					<input type="radio" name="isvip" value="1">是
          			</label>
-					
+
                 </div>
 
                 </div>
 
               </div>
 
-           
-            
+
+
 
               <div class="form-group">
 
@@ -351,7 +344,7 @@
 
               <div class="form-group">
 
-                <div class="col-lg-9 col-offset-5">                      
+                <div class="col-lg-9 col-offset-5">
 
                   <button type="reset" class="btn btn-white">重 置</button>
 
@@ -365,7 +358,7 @@
 
           </section>
 
-      
+
 
         </div>
 
@@ -430,7 +423,7 @@
 
   <script src="js/slider/bootstrap-slider.js"></script>
 
-  <!-- file input -->  
+  <!-- file input -->
 
   <script src="js/file-input/bootstrap.file-input.js"></script>
 
@@ -448,13 +441,13 @@
 </body>
 <script>
 	 function addPhoto(){
-	
+
 	$.ajax({
-		type : "POST",  
-	    url : "user/addCustomer",//路径  
+		type : "POST",
+	    url : "user/addCustomer",//路径
 	    data : $('#customer').serialize(),
 	    dataType: "json",
-	    success : function(data) { 	
+	    success : function(data) {
 	    	console.log(data.result==200);
 	    	if(data.result==200){
 	    	    swal("添加成功","","success");
@@ -462,10 +455,10 @@
 	    	swal("添加失败","不允许为空","error");
 	    	}else if(data.result==201){
 	    	swal("添加失败！", "手机号验证失败","warning");
-	    	}          
+	    	}
 	    }
 	}
-	)		
+	)
 		}
 </script>
 

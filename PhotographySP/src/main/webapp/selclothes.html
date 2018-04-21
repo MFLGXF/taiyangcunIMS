@@ -10,7 +10,7 @@
 
   <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <link rel="stylesheet" href="css/bootstrap.css">
 
@@ -27,34 +27,34 @@
     <script src="js/ie/html5.js"></script>
 
   <![endif]-->
-     <style> 
-        .black_overlay{ 
-            display: none; 
-            position: absolute; 
-            top: 0%; 
-            left: 0%; 
-            width: 100%; 
-            height: 100%; 
-            background-color: black; 
-            z-index:1001; 
-            -moz-opacity: 0.8; 
-            opacity:.80; 
-            filter: alpha(opacity=88); 
-        } 
-        .white_content { 
-            display: none; 
-            position: absolute; 
-            top: 25%; 
-            left: 25%; 
-            width: 55%; 
-            height: 55%; 
-            padding: 20px; 
-            border: 10px solid orange; 
-            background-color: white; 
-            z-index:1002; 
-            overflow: auto; 
-        } 
-    </style> 
+     <style>
+        .black_overlay{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index:1001;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=88);
+        }
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 55%;
+            height: 55%;
+            padding: 20px;
+            border: 10px solid orange;
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
+    </style>
 
 </head>
 
@@ -62,7 +62,7 @@
 
   <!-- header -->
 
-  
+
 	<header id="header" class="navbar">
 
     <ul class="nav navbar-nav navbar-avatar pull-right">
@@ -193,7 +193,7 @@
 
   <nav id="nav" class="nav-primary visible-lg nav-vertical">
 
-    <ul class="nav" data-spy="affix" data-offset-top="50">
+        <ul class="nav" data-spy="affix" data-offset-top="50">
 
       <li class="active"><a href="home.html"><i class="icon-dashboard icon-xlarge"></i>主页</a></li>
 
@@ -231,9 +231,9 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="list.html">卡档案管理</a></li>
+          <li><a href="member2.html">卡档案管理</a></li>
 
-          <li><a href="table.html">优惠方案</a></li>
+          <li><a href="memberDiscount.html">优惠方案</a></li>
 
         </ul>
 
@@ -259,16 +259,11 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="list.html">产品类别设置</a></li>
+          <li><a href="productCategory.html">产品类别设置</a></li>
 
-          <li><a href="table.html">产品设置</a></li>
+          <li><a href="product.html">产品设置</a></li>
 
-          <li><a href="list.html">套系设置</a></li>
-
-          <li><a href="table.html">套系产品设置</a></li>
-
-          <li><a href="list.html">产品销售统计</a></li>
-
+          <li><a href="economy.html">套系设置</a></li>
 
         </ul>
 
@@ -280,11 +275,9 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="list.html">业绩管理</a></li>
+          <li><a href="performance.html">业绩管理</a></li>
 
-          <li><a href="table.html">费用管理</a></li>
-
-
+          <li><a href="BalanceAndPayment.html">费用管理</a></li>
 
         </ul>
 
@@ -292,7 +285,6 @@
 
 
     </ul>
-
   </nav>
 
   <!-- / nav -->
@@ -306,14 +298,14 @@
 
       <div class="clearfix">
 
-       
+
 
       </div>
 
       <div class="row">
 
-       
-       
+
+
 
         <div class="col-lg-12">
 
@@ -330,10 +322,10 @@
               <div class="col-lg-4 m-b-mini">
 					<form action="#" id="clothes">
              	    <div class="btn-group" >
-             	   
+
 					 <input type="file" class="btn btn-white btn-mini" name="file">
 					 <button class="btn btn-small btn-white" type="button" onclick="addClothes()">Up!</button>
-              
+
                 </div>
              	   </form>
               </div>
@@ -341,7 +333,7 @@
               <div class="col-lg-4 m-b-mini">
 
                 <div class="btn-group" >
-	 
+
                 </div>
 
               </div>
@@ -349,12 +341,12 @@
               <div class="col-lg-4">
 
                 <div class="input-group">
-					
-                 
- 					
 
-             	   
-				
+
+
+
+
+
                 </div>
 
               </div>
@@ -379,14 +371,14 @@
 
                     <th >服装价格</th>
 					<th >在库数量</th>
-					
+
                   </tr>
 
                 </thead>
 
                 <tbody id="customer">
 
-                
+
 
                 </tbody>
 
@@ -394,13 +386,13 @@
 </form>
             </div>
 
-          
+
 
           </section>
 
         </div>
 
-      
+
       </div>
 
     </section>
@@ -432,11 +424,11 @@
   <!-- / footer -->
    <div id="light" class="white_content">
    <select id="photo" class="input-small inline form-control">
-   
-   </select> 
-   
-<a  class="btn btn-inverse" onclick = "updateUse() ">提交</a></div> 
-        <div id="fade" class="black_overlay"></div> 
+
+   </select>
+
+<a  class="btn btn-inverse" onclick = "updateUse() ">提交</a></div>
+        <div id="fade" class="black_overlay"></div>
 
 	<script src="js/jquery.min.js"></script>
 
@@ -484,9 +476,9 @@ document.getElementById('light').style.display='none';document.getElementById('f
 </script>
 <script >
 $(document).ready(function (){
-		$.ajax({  
-	     type : "GET",  
-	     url : "clothes/selClothes",//路径  
+		$.ajax({
+	     type : "GET",
+	     url : "clothes/selClothes",//路径
 	     dataType: "json",
 	     success : function(data) {//返回数据根据结果进行相应的处理    ;
 	     console.log(data);
@@ -498,16 +490,16 @@ $(document).ready(function (){
 		 	 $("#customer").html('').append(customer);
 		 }
 	     }
-	     });  
+	     });
 	     })
-	     
-	     
+
+
 </script>
 <script >
 $(document).ready(function (){
-		$.ajax({  
-	     type : "GET",  
-	     url : "user/selPhoto",//路径  
+		$.ajax({
+	     type : "GET",
+	     url : "user/selPhoto",//路径
 	     dataType: "json",
 	     success : function(data) {//返回数据根据结果进行相应的处理    ;
 	     console.log(data);
@@ -519,16 +511,16 @@ $(document).ready(function (){
 		 	 $("#photo").html('').append(photo);
 		 }
 	     }
-	     });  
+	     });
 	     })
-	     
-	     
+
+
 </script>
 <script>
 function search(){
 	$.ajax({
-		type : "POST",  
-	    url : "clothes/borrowClothes",//路径  
+		type : "POST",
+	    url : "clothes/borrowClothes",//路径
 	    data : $('#sendClothes').serialize(),
 	    dataType: "json",
 	    success : function(data) {
@@ -548,21 +540,21 @@ function search(){
 		 }
 		 }
 	}
-	)		
+	)
 }
 </script>
 <script>
 	 function addClothes(){
-	  var formData = new FormData($( "#clothes" )[0]);  
+	  var formData = new FormData($( "#clothes" )[0]);
 	  console.log(formData);
 		$.ajax({
-		    type : "POST",  
-            url : "clothes/addClothes",//路径  
+		    type : "POST",
+            url : "clothes/addClothes",//路径
             data : formData,
-            async: false,  
-            cache: false,  
-            contentType: false,  
-            processData: false,  
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
             success : function(data){
             console.log(data);
              if(data.result == 200){
@@ -576,7 +568,7 @@ function search(){
               }else if(data.result == 204){
               sweetAlert("添加失败", "不允许为空","error");
               }
-           
+
             }
 		})
 		}

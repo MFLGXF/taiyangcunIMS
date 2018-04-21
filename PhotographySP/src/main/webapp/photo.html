@@ -10,7 +10,7 @@
 
   <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <link rel="stylesheet" href="css/bootstrap.css">
 
@@ -164,7 +164,7 @@
 
   <nav id="nav" class="nav-primary visible-lg nav-vertical">
 
-    <ul class="nav" data-spy="affix" data-offset-top="50">
+        <ul class="nav" data-spy="affix" data-offset-top="50">
 
       <li class="active"><a href="home.html"><i class="icon-dashboard icon-xlarge"></i>主页</a></li>
 
@@ -202,9 +202,9 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="list.html">卡档案管理</a></li>
+          <li><a href="member2.html">卡档案管理</a></li>
 
-          <li><a href="table.html">优惠方案</a></li>
+          <li><a href="memberDiscount.html">优惠方案</a></li>
 
         </ul>
 
@@ -230,16 +230,11 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="list.html">产品类别设置</a></li>
+          <li><a href="productCategory.html">产品类别设置</a></li>
 
-          <li><a href="table.html">产品设置</a></li>
+          <li><a href="product.html">产品设置</a></li>
 
-          <li><a href="list.html">套系设置</a></li>
-
-          <li><a href="table.html">套系产品设置</a></li>
-
-          <li><a href="list.html">产品销售统计</a></li>
-
+          <li><a href="economy.html">套系设置</a></li>
 
         </ul>
 
@@ -251,11 +246,9 @@
 
         <ul class="dropdown-menu">
 
-          <li><a href="list.html">业绩管理</a></li>
+          <li><a href="performance.html">业绩管理</a></li>
 
-          <li><a href="table.html">费用管理</a></li>
-
-
+          <li><a href="BalanceAndPayment.html">费用管理</a></li>
 
         </ul>
 
@@ -263,7 +256,6 @@
 
 
     </ul>
-
   </nav>
 
   <!-- / nav -->
@@ -277,7 +269,7 @@
 
       <div class="clearfix">
 
-      
+
 
       </div>
 
@@ -293,25 +285,25 @@
 		<form id="photoGrid" method="post" action="#">
               <table id="MyStretchGrid" border="1" bordercolor="#E0E4E8" cellspacing="1" cellpadding="1"  width="100%">
 				<tr>
-				    <td colspan="2" height="50">  
+				    <td colspan="2" height="50">
 				    <select class="input-small inline form-control" style="width:130px" id="photoType">
  					<option value="全部">全 部</option>
 	                 <option value="风景">风 景</option>
 
                     <option value="街拍">街 拍</option>
-                    
+
                     <option value="写真">写 真</option>
-                     
+
                     <option value="婚庆">婚 庆</option>
-                    
+
                     <option value="亲子">亲 子</option>
-                    
+
                     <option value="证件">证 件</option>
                     <option value="其他">其 他</option>
-	
+
 	                </select>
 
-	                <button type="button" class="btn btn-small btn-white" onclick="page()">查找</button>  
+	                <button type="button" class="btn btn-small btn-white" onclick="page()">查找</button>
 	                 </td>
 	                 <td colspan="2">
 	                  <div class="input-group">
@@ -324,7 +316,7 @@
 
                       </span>
 
-                    </div>      
+                    </div>
 	                 </td>
 	                 <td align="right">
 	                  <button class="btn btn-danger" type="button" onclick="del()">删除</button>
@@ -332,30 +324,30 @@
 				  </tr>
 				  <tbody>
 				  <tr id="photo1">
-				  
+
 				  </tr>
 				   <tr id="photo2">
-				   
+
 				  </tr>
 				  </tbody>
 				   <tr>
-				    <td colspan="5" height="50"  align="right"> 
+				    <td colspan="5" height="50"  align="right">
 				     <ul class="pagination pagination-small" id="totalPage">
 
-		              
-		
+
+
 		              <li class="active"><a href="#">1</a></li>
-		
-		            
-		
+
+
+
 		              <li><a href="#">3</a></li>
-		
+
 		              <li><a href="#">4</a></li>
-		
+
 		              <li><a href="#">5</a></li>
-		
+
 		              <li><a href="#"><i class="icon-chevron-right"></i></a></li>
-		
+
 		            </ul>
         		    </td>
 				  </tr>
@@ -365,7 +357,7 @@
 
           </section>
 
-         
+
 
   <!-- footer -->
 
@@ -426,7 +418,7 @@
   <script src="js/app.data.js"></script>
  <script src="js/sweet-alert.min.js"></script>
 </body>
-	
+
 	<script>
 	var pageNumber ;
 	function page(pageNumber){
@@ -437,13 +429,13 @@
 	 var photoType = document.getElementById('photoType').value;
 	var username = document.getElementById('username').value;
 	console.log(username);
-	 $.ajax({  
-	     type : "POST",  
-	     url : "photo/selPhoto",//路径  
+	 $.ajax({
+	     type : "POST",
+	     url : "photo/selPhoto",//路径
 	     dataType: "json",
 	     data:{"pageNumber":pageNumber , "pageSize":10,"photoType":photoType,"username":username},
 	     success : function(data) {//返回数据根据结果进行相应的处理    ;
-	    
+
 	  	 if(data.result == 200){
 	  	 data = data.data;
 	  	 var photo1 = "";
@@ -452,16 +444,16 @@
 	  		 if(data.list.length<5){
 	  	 for(var i=0;i<data.list.length;i++){
 	  			photo1 += "<td align='center'><input type='hidden' value='"+data.list[i].id+"'/><img src='upload"+data.list[i].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[i].id+"' /></td>";
-	  			
+
 	  		}
 	  	 }else{
 	  	  for(var i=0;i<5;i++){
 	  			photo1 += "<td align='center'><input type='hidden' value='"+data.list[i].id+"'/><img src='upload"+data.list[i].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[i].id+"' /></td>";
-	  			
+
 	  		}
-	  	 
+
 	  	 }
-	  		
+
 	  		if( data.list.length > 5){
 	  		for(var j=5;j<data.list.length;j++){
 	  		photo2 += "<td align='center'><input type='hidden' value='"+data.list[j].id+"'/><img src='upload"+data.list[j].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[j].id+"' /></td>";
@@ -474,25 +466,25 @@
 	  		console.log(data.totalPage);
 	  		left = "<li><a href='#'><i class='icon-chevron-left'></i></a></li>";
 	  		right = "<li><a href='#'><i class='icon-chevron-right'></i></a></li>";
-	  		 $("#photo1").html('').append(photo1);   
+	  		 $("#photo1").html('').append(photo1);
 	  		 $("#photo2").html('').append(photo2);
 	  		 $("#totalPage").html('').append(left).append(totalPage).append(right);
-	     } 
 	     }
-	     });  
+	     }
+	     });
 	}
-	
+
 	$(document).ready(function (){
 		if(pageNumber == null){
 			pageNumber =1 ;
 		}
-		$.ajax({  
-	     type : "POST",  
-	     url : "photo/selPhoto",//路径  
+		$.ajax({
+	     type : "POST",
+	     url : "photo/selPhoto",//路径
 	     dataType: "json",
 	     data:{"pageNumber":pageNumber , "pageSize":10},
 	     success : function(data) {//返回数据根据结果进行相应的处理    ;
-	    
+
 	  	 if(data.result == 200){
 	  	 data = data.data;
 	  	 var photo1 = "";
@@ -501,23 +493,23 @@
 	  	 if(data.list.length<5){
 	  	 for(var i=0;i<data.list.length;i++){
 	  			photo1 += "<td align='center'><input type='hidden' value='"+data.list[i].id+"'/><img src='upload"+data.list[i].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[i].id+"' /></td>";
-	  			
+
 	  		}
 	  	 }else{
 	  	  for(var i=0;i<5;i++){
 	  			photo1 += "<td align='center'><input type='hidden' value='"+data.list[i].id+"'/><img src='upload"+data.list[i].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[i].id+"' /></td>";
-	  			
+
 	  		}
-	  	 
+
 	  	 }
-	  		
-	  		
+
+
 	  		if( data.list.length > 5){
 	  		for(var j=5;j<10;j++){
 	  		photo2 += "<td align='center'><input type='hidden' value='"+data.list[j].id+"'/><img src='upload"+data.list[j].photoName+"' height='150px' width='150px'><input type='checkbox' name='id' value='"+data.list[i].id+"' /></td>";
 	  		}
 	  		}
-	  		
+
 	  		for(var q=0;q<data.totalPage;q++){
 	  		var x = q+1 ;
 	  		totalPage += "<li><a href='#' onclick='page("+x+")'>"+x+"</a></li>";
@@ -525,18 +517,18 @@
 	  		console.log(data.totalPage);
 	  		left = "<li><a href='#'><i class='icon-chevron-left'></i></a></li>";
 	  		right = "<li><a href='#'><i class='icon-chevron-right'></i></a></li>";
-	  		 $("#photo1").html('').append(photo1);   
+	  		 $("#photo1").html('').append(photo1);
 	  		 $("#photo2").html('').append(photo2);
 	  		 $("#totalPage").html('').append(left).append(totalPage).append(right);
-	     } 
 	     }
-	     });  
+	     }
+	     });
 	     })
-	
+
 	</script>
 	<script>
 	 function del(){
-	swal({ 
+	swal({
 		  title: '确定要删除吗?',
 		  text: "删除后将无法恢复，请谨慎操作！",
 		  type: 'warning',
@@ -548,12 +540,12 @@
 			console.log(isConfirm);
 			 if(isConfirm.value == true){
 				$.ajax({
-				type : "POST",  
-	            url : "photo/delPhoto",//路径  
+				type : "POST",
+	            url : "photo/delPhoto",//路径
 	            dataType: "json",
 	            data : $('#photoGrid').serialize(),
 	            success : function(data){
-	             
+
 	             if(data.result == 200){
 	              sweetAlert("删除成功", "","success");
 	              }else if(data.result == 201){
@@ -564,7 +556,7 @@
 			}
 		}
 		);
-		
+
 	 }
 	</script>
 </html>

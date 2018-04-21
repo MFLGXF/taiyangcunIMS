@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwx.dao.BalanceAndPaymentMapper" >
+<resultMap id="BaseResultMap" type="com.fwx.domain.BalanceAndPayment" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="bp_name" property="bpName" jdbcType="CHAR" />
+  	<result column="bp_type" property="bpType" jdbcType="CHAR" />
+  	<result column="bp_time" property="bpTime" jdbcType="DATE" />
+  	<result column="bp_count" property="bpCount" jdbcType="INTEGER" />
+  	<result column="delete_flag" property="delete_flag" jdbcType="DATE" />
+
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,
+	bp_name,
+	bp_type,
+	bp_time,
+	bp_count,
+	delete_flag
+  </sql>
+
+
+
+<select id="selectByName" parameterType="com.fwx.domain.BalanceAndPayment" resultMap="BaseResultMap">
+
+	select <include refid="Base_Column_List"/>
+	from balance_and_payment
+	where bp_name=#{bpName}
+
+</select>
+
+
+  <select id="selectCount" resultType="Integer" parameterType="Map">
+
+  	select count(id)
+  	from balance_and_payment
+  	where 1=1
+  		<if test="bpName != null and bpName != ''">
+  			and
+  			 bp_name = #{bpName}
+  		</if>
+
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="Map">
+
+  	select
+  		<include refid="Base_Column_List"/>
+  	from
+  		balance_and_payment
+  	where
+  		1=1
+  		<if test="bpName != null and bpName != ''">
+  			and
+  			 	bp_name = #{bpName}
+  		</if>
+  	<if test="start != -1 and end != -1">
+  		limit #{start},#{end}
+  	</if>
+
+
+  </select>
+
+  <insert id="insert" parameterType="com.fwx.domain.BalanceAndPayment">
+  	insert into
+  		balance_and_payment(id,
+					bp_name,
+					bp_type,
+					bp_time,
+					bp_count,
+					delete_flag
+			  	)
+  	values(#{id},
+  			#{bpName},
+  			#{bpType},
+  			#{bpTime},
+  			#{bpCount},
+  			#{delete_flag}
+  			)
+
+  </insert>
+
+<update id="update" parameterType="com.fwx.domain.Economy">
+	update economy
+		<set>
+			<if test="productIds != null">
+				product_ids=#{productIds},
+			</if>
+		</set>
+		where
+			id = #{id}
+</update>
+
+
+
+</mapper>
