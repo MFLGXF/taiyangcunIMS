@@ -58,7 +58,7 @@ public class BalanceAndPaymentServiceImpl implements IbalanceAndPaymentService {
 
 		/*首先查询当前有多少条数据*/
 		Map<String,Object> queryMap = new HashMap<>();
-		queryMap.put("workerName", workerName);
+		queryMap.put("bpName", workerName);
 
 		Integer count = balanceAndPaymentMapper.selectCount(queryMap);
 

@@ -59,10 +59,10 @@ public class EconomyController {
 
 	@RequestMapping("/datagrid")
 	@ResponseBody
-	public ReturnInfo<PageInfo<Economy>> dataGrid(){
+	public ReturnInfo<PageInfo<Economy>> dataGrid(String eName){
 
 		ReturnInfo<PageInfo<Economy>> result = new ReturnInfo<>();
-		PageInfo<Economy> memberData = economyService.selectAll();
+		PageInfo<Economy> memberData = economyService.selectAll(eName);
 
 		log.info("获取折扣方案列表数据："+memberData.toString());
 

@@ -29,6 +29,7 @@ public class MemberController {
 	@ResponseBody
 	public ReturnInfo<Member> add(Member member) throws Exception{
 		ReturnInfo<Member> ret = new ReturnInfo<>();
+		System.out.println("data："+member.getDiscountId());
 		Boolean result = memberService.insert(member);
 		if(result == true){
 			ret.setResult(200);
@@ -55,7 +56,6 @@ public class MemberController {
 
 		return ret;
 	}
-
 
 
 	@RequestMapping("/datagrid")

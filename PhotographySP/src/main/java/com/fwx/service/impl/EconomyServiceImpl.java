@@ -48,7 +48,7 @@ public class EconomyServiceImpl implements IeconomyService {
 	}
 
 	@Override
-	public PageInfo<Economy> selectAll() {
+	public PageInfo<Economy> selectAll(String eName) {
 
 		PageInfo<Economy> page = new PageInfo<>();
 
@@ -56,7 +56,7 @@ public class EconomyServiceImpl implements IeconomyService {
 
 		/*首先查询当前有多少条数据*/
 		Map<String,Object> queryMap = new HashMap<>();
-		queryMap.put("pName", null);
+		queryMap.put("eName", eName);
 
 		Integer count = economyMapper.selectCount(queryMap);
 

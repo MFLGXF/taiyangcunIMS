@@ -29,6 +29,14 @@ public class MemberServiceImpl implements ImemberService {
 		/*查询当前会员卡是否存在*/
 		member.setAge(CardUtils.getCarInfo(member.getCardNumber()).get("age"));
 		member.setSex(CardUtils.getCarInfo(member.getCardNumber()).get("sex"));
+		String[] datas = member.getDiscountId().split("&");
+		for(String key: datas){
+			System.out.println(key);
+		}
+		member.setDiscountId(datas[0]);
+		member.setMemberLevel(datas[1]);
+
+		System.out.println("获取所有的数据："+member.toString());
 
 		List<Member> disList = memberMapper.selectMemberByName(member);
 
@@ -85,6 +93,10 @@ public class MemberServiceImpl implements ImemberService {
 		queryMap.put("end", end);
 
 		List<Member> result = memberMapper.selectList(queryMap);
+
+		for(Member data:result){
+			System.out.println(data.getMemberLevel());
+		}
 
 		System.out.println("获取到后端歘出来的数据条数："+result.toString());
 

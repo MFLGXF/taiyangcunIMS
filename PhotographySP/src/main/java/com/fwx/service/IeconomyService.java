@@ -14,7 +14,7 @@ public interface IeconomyService {
 	/*
 	 * 获取所有数据
 	 */
-	public PageInfo<Economy> selectAll();
+	public PageInfo<Economy> selectAll(String eName);
 
 	/*
 	 * 根据id删除信息

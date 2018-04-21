@@ -44,10 +44,10 @@ public class BalanceAndPaymentController {
 
 	@RequestMapping("/datagrid")
 	@ResponseBody
-	public ReturnInfo<PageInfo<BalanceAndPayment>> dataGrid(Integer pageNumber, Integer pageSize, String workerName){
+	public ReturnInfo<PageInfo<BalanceAndPayment>> dataGrid(Integer pageNumber, Integer pageSize, String bpName){
 
 		ReturnInfo<PageInfo<BalanceAndPayment>> result = new ReturnInfo<>();
-		PageInfo<BalanceAndPayment> memberData = balanceAndPaymentService.selectAll(pageNumber, pageSize, workerName);
+		PageInfo<BalanceAndPayment> memberData = balanceAndPaymentService.selectAll(pageNumber, pageSize, bpName);
 
 		log.info("获取折扣方案列表数据："+memberData.toString());
 
