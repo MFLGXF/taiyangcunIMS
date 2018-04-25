@@ -61,6 +61,18 @@
 
 
   </select>
+  
+  
+  
+  <select id="selectListByArr" resultMap="BaseResultMap" parameterType="list">
+  	select * from product where id in
+  	<if test="list != null">
+  		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+  			#{item}
+  		</foreach>
+  	</if>
+  
+  </select>
 
   <insert id="insert" parameterType="com.fwx.domain.Product">
   	insert into

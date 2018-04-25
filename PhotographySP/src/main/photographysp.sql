@@ -1,22 +1,22 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50713
+Source Server         : localhost
+Source Server Version : 50711
 Source Host           : localhost:3306
 Source Database       : photographysp
 
 Target Server Type    : MYSQL
-Target Server Version : 50713
+Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2018-04-21 23:31:52
+Date: 2018-04-25 08:04:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `balance_and_payment`
+-- Table structure for balance_and_payment
 -- ----------------------------
 DROP TABLE IF EXISTS `balance_and_payment`;
 CREATE TABLE `balance_and_payment` (
@@ -36,7 +36,7 @@ INSERT INTO `balance_and_payment` VALUES ('197e1a8058374017a9f897dc418fa938', '�
 INSERT INTO `balance_and_payment` VALUES ('e46df0fdadd94e6c8cc5a8b29fb9fd96', '对方过后', '支出', '2018-04-20 00:00:00', '800', null);
 
 -- ----------------------------
--- Table structure for `clothes`
+-- Table structure for clothes
 -- ----------------------------
 DROP TABLE IF EXISTS `clothes`;
 CREATE TABLE `clothes` (
@@ -66,7 +66,7 @@ INSERT INTO `clothes` VALUES ('e9cbd2937875456a8047f9d5202fdfd2', '女', '婚纱
 INSERT INTO `clothes` VALUES ('fb99e117de264dd889dda3ed81bbb2d5', '女', '婚纱001', 'S', '1700', null);
 
 -- ----------------------------
--- Table structure for `customer`
+-- Table structure for customer
 -- ----------------------------
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
@@ -86,7 +86,7 @@ INSERT INTO `customer` VALUES ('377df5f59e824f0baac9e55678186dcc', '马福龙', 
 INSERT INTO `customer` VALUES ('9a228053f3494c0e863a2f2ac6f38676', '陈锐', '13555439642', '0', '0', '2018-04-08');
 
 -- ----------------------------
--- Table structure for `device`
+-- Table structure for device
 -- ----------------------------
 DROP TABLE IF EXISTS `device`;
 CREATE TABLE `device` (
@@ -104,7 +104,7 @@ CREATE TABLE `device` (
 INSERT INTO `device` VALUES ('09bbcf90af8b48f6a4ded9b54e1da38c', '单反相机', 'DF-001', '维修中', '5200');
 
 -- ----------------------------
--- Table structure for `economy`
+-- Table structure for economy
 -- ----------------------------
 DROP TABLE IF EXISTS `economy`;
 CREATE TABLE `economy` (
@@ -112,6 +112,7 @@ CREATE TABLE `economy` (
   `e_name` varchar(200) NOT NULL,
   `e_photographyer` int(11) DEFAULT NULL COMMENT '摄影师数量',
   `e_modelling` int(11) DEFAULT NULL COMMENT '是否需要化妆or造型',
+  `e_price` int(11) DEFAULT NULL COMMENT '套系价格',
   `e_location` varchar(200) DEFAULT NULL COMMENT '内景或者外景',
   `e_discription` text COMMENT '套系描述',
   `product_ids` text COMMENT '关联的产品的id串',
@@ -122,12 +123,11 @@ CREATE TABLE `economy` (
 -- ----------------------------
 -- Records of economy
 -- ----------------------------
-INSERT INTO `economy` VALUES ('a1429156f3f14005a6aabbe9cfbeb2bf', '天使的肩膀', '1', '1', '外景', '在巴黎进行拍摄', '相框2,相框3,相框5,相框9,相框11', '0');
-INSERT INTO `economy` VALUES ('d414b72e842e4a96bf117c7d44e0309c', '马福海', '1', '1', '外景', '马大头', null, '0');
-INSERT INTO `economy` VALUES ('f9452fe926ed4b9abdc79ff56511087a', '你是谁', '2', '1', '普通布景', '我是你爹', null, '0');
+INSERT INTO `economy` VALUES ('67de4dc5949146db8e82a2dbb9cf49de', '测试', '1', '0', '660', '内景', '测试0001', '相框11,相框7,相框6,相框8,', '0');
+INSERT INTO `economy` VALUES ('d89c670fe21d47c29c882124c006ce4b', '冯文秀', '1', '1', '20000', '内景', '高价', null, '0');
 
 -- ----------------------------
--- Table structure for `member`
+-- Table structure for member
 -- ----------------------------
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
@@ -149,7 +149,7 @@ CREATE TABLE `member` (
 INSERT INTO `member` VALUES ('136ffa0685ad4ec0955e07d1fe64ba7a', '53d828b9cd414cae8a27f463a1949194', '630121199301265316', '张三', '1', '26', '银卡', '15222525617', null);
 
 -- ----------------------------
--- Table structure for `member_discount`
+-- Table structure for member_discount
 -- ----------------------------
 DROP TABLE IF EXISTS `member_discount`;
 CREATE TABLE `member_discount` (
@@ -167,7 +167,7 @@ CREATE TABLE `member_discount` (
 INSERT INTO `member_discount` VALUES ('53d828b9cd414cae8a27f463a1949194', '银卡', '9', '价格按照九折计算', '1');
 
 -- ----------------------------
--- Table structure for `performance`
+-- Table structure for performance
 -- ----------------------------
 DROP TABLE IF EXISTS `performance`;
 CREATE TABLE `performance` (
@@ -186,7 +186,7 @@ CREATE TABLE `performance` (
 INSERT INTO `performance` VALUES ('444966688fb1420ca19083c46de8d3d3', '2', '冯文秀', '99', '售出物品', '2018-04-24 00:00:00');
 
 -- ----------------------------
--- Table structure for `photo`
+-- Table structure for photo
 -- ----------------------------
 DROP TABLE IF EXISTS `photo`;
 CREATE TABLE `photo` (
@@ -224,7 +224,7 @@ INSERT INTO `photo` VALUES ('f1f4aeceed9445319aeaf0282e6c3f6b', '写真-20180421
 INSERT INTO `photo` VALUES ('fabb81e85d174be6b66c159ef4e642c5', '写真-20180404164537678004b.jpg', '2018-04-04', '写真', '0', 'G:\\ChenruiWork\\PhotographySP\\src\\main\\webapp\\upload\\写真-20180404164537678004b.jpg', '陈锐', '冯文秀');
 
 -- ----------------------------
--- Table structure for `product`
+-- Table structure for product
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
@@ -252,7 +252,7 @@ INSERT INTO `product` VALUES ('e6a48d0b47754c1a9eb94958046ed6ee', '相框10', '0
 INSERT INTO `product` VALUES ('fd1b601fad774180b72c26f73dc9fe24', '相框4', '0', '90', '光碟', null, '0');
 
 -- ----------------------------
--- Table structure for `product_category`
+-- Table structure for product_category
 -- ----------------------------
 DROP TABLE IF EXISTS `product_category`;
 CREATE TABLE `product_category` (
@@ -270,7 +270,7 @@ INSERT INTO `product_category` VALUES ('53c5d1a0f84e4db79da6f5755ed6e830', '光�
 INSERT INTO `product_category` VALUES ('8b7e82af102e4fecb170b349caf3e181', '相册', '相册相关的分类', '0');
 
 -- ----------------------------
--- Table structure for `user`
+-- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -290,7 +290,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` VALUES ('1', 'e10adc3949ba59abbe56e057f20f883e', 'fengwenxiu', '1912858362@qq.com', '15222525617', null, '0');
 
 -- ----------------------------
--- Table structure for `worker`
+-- Table structure for worker
 -- ----------------------------
 DROP TABLE IF EXISTS `worker`;
 CREATE TABLE `worker` (

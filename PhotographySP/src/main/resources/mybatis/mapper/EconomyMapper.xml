@@ -6,6 +6,7 @@
     <result column="e_name" property="eName" jdbcType="CHAR" />
   	<result column="e_photographyer" property="ePhotographyer" jdbcType="INTEGER" />
   	<result column="e_modelling" property="eModelling" jdbcType="INTEGER" />
+  	<result column="e_price" property="ePrice" jdbcType="INTEGER" />
   	<result column="e_location" property="eLocation" jdbcType="CHAR" />
   	<result column="e_discription" property="eDiscription" jdbcType="CHAR" />
   	<result column="product_ids" property="productIds" jdbcType="CHAR" />
@@ -17,6 +18,7 @@
 	e_name,
 	e_photographyer,
 	e_modelling,
+	e_price,
 	e_location,
 	e_discription,
 	product_ids,
@@ -29,6 +31,14 @@
 	select <include refid="Base_Column_List"/>
 	from economy
 	where e_name=#{eName}
+
+</select>
+
+<select id="selectById" parameterType="String" resultMap="BaseResultMap">
+
+	select <include refid="Base_Column_List"/>
+	from economy
+	where id=#{id}
 
 </select>
 
@@ -71,6 +81,7 @@
 				e_name,
 				e_photographyer,
 				e_modelling,
+				e_price,
 				e_location,
 				e_discription,
 				product_ids,
@@ -80,6 +91,7 @@
   			#{eName},
   			#{ePhotographyer},
   			#{eModelling},
+  			#{ePrice},
   			#{eLocation},
   			#{eDiscription},
   			#{productIds},
@@ -93,6 +105,9 @@
 		<set>
 			<if test="productIds != null">
 				product_ids=#{productIds},
+			</if>
+			<if test="ePrice != null">
+				e_price=#{ePrice}
 			</if>
 		</set>
 		where

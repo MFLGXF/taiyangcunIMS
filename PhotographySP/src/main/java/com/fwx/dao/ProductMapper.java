@@ -37,6 +37,11 @@ public interface ProductMapper {
 	 * 根据pcName删除数据
 	 */
 	public Integer deleteByPcName(String pcName);
+	
+	/*
+	 * 根据list查询所有信息
+	 */
+	public List<Product> selectListByArr(List<String> ids);
 
 
 }

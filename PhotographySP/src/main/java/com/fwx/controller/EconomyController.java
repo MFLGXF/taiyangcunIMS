@@ -1,5 +1,8 @@
 package com.fwx.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fwx.common.PageInfo;
 import com.fwx.common.ReturnInfo;
 import com.fwx.domain.Economy;
-import com.fwx.domain.Product;
 import com.fwx.service.IeconomyService;
 
 import ch.qos.logback.classic.Logger;
@@ -43,6 +45,8 @@ public class EconomyController {
 	@ResponseBody
 	public ReturnInfo<Economy> update(String  ids,String eId){
 		ReturnInfo<Economy> ret = new ReturnInfo<>();
+		
+		
 
 		Boolean result = economyService.update(ids,eId);
 
@@ -62,6 +66,7 @@ public class EconomyController {
 	public ReturnInfo<PageInfo<Economy>> dataGrid(String eName){
 
 		ReturnInfo<PageInfo<Economy>> result = new ReturnInfo<>();
+		System.out.println("搜索需要的字段："+eName);
 		PageInfo<Economy> memberData = economyService.selectAll(eName);
 
 		log.info("获取折扣方案列表数据："+memberData.toString());

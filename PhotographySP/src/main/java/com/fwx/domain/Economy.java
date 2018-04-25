@@ -22,6 +22,11 @@ public class Economy {
 	 * 是否需要造型师
 	 */
 	private Integer eModelling;
+	
+	/*
+	 * 套系价格
+	 */
+	private Integer ePrice;
 
 	/*
 	 * 布景选择
@@ -106,8 +111,18 @@ public class Economy {
 	public void setDelete_flag(Integer delete_flag) {
 		this.delete_flag = delete_flag;
 	}
+	
+	
 
-	@Override
+	public Integer getePrice() {
+        return ePrice;
+    }
+
+    public void setePrice(Integer ePrice) {
+        this.ePrice = ePrice;
+    }
+
+    @Override
 	public String toString() {
 		return "Economy [id=" + id + ", eName=" + eName + ", ePhotographyer=" + ePhotographyer + ", eModelling="
 				+ eModelling + ", eLocation=" + eLocation + ", eDiscription=" + eDiscription + ", productIds="

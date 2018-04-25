@@ -12,6 +12,11 @@ public interface EconomyMapper {
 	 * 根据类型查询相应的类型
 	 */
 	public List<Economy> selectByName(Economy member);
+	
+	/*
+     * 根据类型查询相应的类型
+     */
+    public Economy selectById(String id);
 
 	/*
 	 * 添加优惠折扣信息

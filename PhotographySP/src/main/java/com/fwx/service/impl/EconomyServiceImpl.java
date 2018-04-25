@@ -1,6 +1,6 @@
 package com.fwx.service.impl;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.fwx.common.PageInfo;
 import com.fwx.common.UUIDUtils;
 import com.fwx.dao.EconomyMapper;
+import com.fwx.dao.ProductMapper;
 import com.fwx.domain.Economy;
 import com.fwx.domain.Product;
 import com.fwx.service.IeconomyService;
@@ -26,6 +27,9 @@ public class EconomyServiceImpl implements IeconomyService {
 
 	@Autowired
 	private EconomyMapper economyMapper;
+	
+	@Autowired
+    private ProductMapper productMapper;
 
 
 	@Override
@@ -92,9 +96,28 @@ public class EconomyServiceImpl implements IeconomyService {
 	@Override
 	public Boolean update(String ids,String eId) {
 
-		Economy economy = new Economy();
-		economy.setId(eId);
-		economy.setProductIds(ids);
+	    
+	    Economy economy = economyMapper.selectById(eId);
+	  //分割id查找出所有产品，将价格加进去
+        String[] pIds = ids.split(",");
+        
+        System.out.println("id数组："+ids);
+        
+        List<String> list = Arrays.asList(pIds);
+        
+        List<Product> pList = productMapper.selectListByArr(list);
+        
+        int ePrice = economy.getePrice();
+        String ProductIds = "";
+        for(Product info : pList){
+            System.out.println("获取到数据："+info.toString());
+            ProductIds = ProductIds +info.getpName()+",";
+            ePrice+=info.getpPrice();
+        }
+        System.out.println("pName="+ProductIds);
+        economy.setProductIds(ProductIds);
+        economy.setePrice(ePrice);
+        
 		Integer result = economyMapper.update(economy);
 		if(result > 0){
 			return true;
