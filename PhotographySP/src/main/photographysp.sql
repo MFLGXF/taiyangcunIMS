@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2018-04-25 08:04:38
+Date: 2018-04-30 13:48:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,6 +33,7 @@ CREATE TABLE `balance_and_payment` (
 -- Records of balance_and_payment
 -- ----------------------------
 INSERT INTO `balance_and_payment` VALUES ('197e1a8058374017a9f897dc418fa938', '桌椅', '支出', '2018-04-21 00:00:00', '100', null);
+INSERT INTO `balance_and_payment` VALUES ('d899282aae9c4f6f89c9f768c3500d28', 'jsadkhskdsh', '支出', '2018-04-28 00:00:00', '90', null);
 INSERT INTO `balance_and_payment` VALUES ('e46df0fdadd94e6c8cc5a8b29fb9fd96', '对方过后', '支出', '2018-04-20 00:00:00', '800', null);
 
 -- ----------------------------
@@ -167,6 +168,26 @@ CREATE TABLE `member_discount` (
 INSERT INTO `member_discount` VALUES ('53d828b9cd414cae8a27f463a1949194', '银卡', '9', '价格按照九折计算', '1');
 
 -- ----------------------------
+-- Table structure for orderdata
+-- ----------------------------
+DROP TABLE IF EXISTS `orderdata`;
+CREATE TABLE `orderdata` (
+  `id` varchar(32) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `phone` varchar(200) NOT NULL,
+  `ordertime` datetime NOT NULL,
+  `price` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- ----------------------------
+-- Records of orderdata
+-- ----------------------------
+INSERT INTO `orderdata` VALUES ('1ceb848d7b6d4c1587d9371b2fb331a7', '价格测试', '18796543234', '2018-04-18 00:00:00', '660');
+INSERT INTO `orderdata` VALUES ('99befa7e030c4dd2bc6859a1975702be', 'sdfds', '18796543234', '2018-04-18 00:00:00', '20000');
+INSERT INTO `orderdata` VALUES ('d57e1fe43fd84c1db8db3fff7b1f662a', '再次测试', '18796543234', '2018-04-18 00:00:00', '20000');
+
+-- ----------------------------
 -- Table structure for performance
 -- ----------------------------
 DROP TABLE IF EXISTS `performance`;
@@ -184,6 +205,7 @@ CREATE TABLE `performance` (
 -- Records of performance
 -- ----------------------------
 INSERT INTO `performance` VALUES ('444966688fb1420ca19083c46de8d3d3', '2', '冯文秀', '99', '售出物品', '2018-04-24 00:00:00');
+INSERT INTO `performance` VALUES ('91cdedabf4a94a7c948e739c6e1d089e', '6', '谷大狗', '89', 'hjkhj', '2018-04-19 00:00:00');
 
 -- ----------------------------
 -- Table structure for photo

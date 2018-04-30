@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwx.dao.OrderMapper">
+	<resultMap id="BaseResultMap" type="com.fwx.domain.Order">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="username" property="username" jdbcType="CHAR" />
+		<result column="phone" property="phone" jdbcType="CHAR" />
+		<result column="ordertime" property="orderTime" jdbcType="DATE" />
+		<result column="price" property="price" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		username,
+		phone,
+		ordertime,
+		price
+	</sql>
+
+
+	<select id="selectOrderByName" resultMap="BaseResultMap"
+		parameterType="com.fwx.domain.Order">
+		SELECT
+		*
+		FROM
+		`orderdata`
+		where
+		username= #{username,jdbcType=CHAR}
+	</select>
+
+	<select id="selectCount" resultType="Integer" parameterType="Map">
+
+		select count(id)
+		from orderdata
+		where 1=1
+		<if test="username != null and username != ''">
+			and
+			username = #{username}
+		</if>
+
+	</select>
+
+	<select id="selectList" resultMap="BaseResultMap" parameterType="Map">
+
+		select
+		<include refid="Base_Column_List" />
+		from
+		orderdata
+		where
+		1=1
+
+		<if test="username != null and username != ''">
+			and
+			username = #{username}
+		</if>
+		limit #{start},#{end}
+
+	</select>
+
+	<insert id="insert" parameterType="com.fwx.domain.Order">
+		insert into
+		orderdata(id,
+		username,
+		phone,
+		ordertime,
+		price
+		)
+		values(#{id},
+		#{username},
+		#{phone},
+		#{orderTime},
+		#{price})
+
+	</insert>
+
+	<update id="update" parameterType="com.fwx.domain.Order">
+		update orderdata
+		<set>
+			<if test="username != null">
+				username=#{username},
+			</if>
+			<if test="phone != null">
+				username=#{username},
+			</if>
+			<if test="orderTime != null">
+				ordertime=#{orderTime},
+			</if>
+			<if test="price != null">
+				price=#{price}
+			</if>
+		</set>
+
+		where
+		id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		delete from orderdata where id=#{id}
+	</delete>
+
+	
+</mapper>

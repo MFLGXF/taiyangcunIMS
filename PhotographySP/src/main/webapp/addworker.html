@@ -4,23 +4,25 @@
 
 <head>
 
-  <meta charset="utf-8">
+<meta charset="utf-8">
 
-  <title>主页</title>
+<title>主页</title>
 
-  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+<meta name="description"
+	content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap.css">
 
-  <link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
 
-	<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
-  <link rel="stylesheet" href="css/plugin.css">
+<link rel="stylesheet" href="css/plugin.css">
 
-  <link rel="stylesheet" href="css/landing.css">
+<link rel="stylesheet" href="css/landing.css">
 
 
 
@@ -28,483 +30,455 @@
 
 <body>
 
-  <!-- header -->
+	<!-- header -->
 
 	<header id="header" class="navbar">
 
-    <ul class="nav navbar-nav navbar-avatar pull-right">
+		<ul class="nav navbar-nav navbar-avatar pull-right">
 
-      <li class="dropdown">
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown"> <span class="hidden-sm-only">FWX</span>
 
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span class="thumb-small avatar inline"><img
+						src="images/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
 
-          <span class="hidden-sm-only">FWX</span>
+					<b class="caret hidden-sm-only"></b>
 
-          <span class="thumb-small avatar inline"><img src="images/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
+			</a>
 
-          <b class="caret hidden-sm-only"></b>
+				<ul class="dropdown-menu">
 
-        </a>
+					<!--  <li><a href="#">Settings</a></li> -->
 
-        <ul class="dropdown-menu">
+					<li><a href="#">Profile</a></li>
 
-         <!--  <li><a href="#">Settings</a></li> -->
+					<li><a href="#"><span class="badge bg-danger pull-right">3</span>Notifications</a></li>
 
-          <li><a href="#">Profile</a></li>
+					<li class="divider"></li>
 
-          <li><a href="#"><span class="badge bg-danger pull-right">3</span>Notifications</a></li>
+					<li><a href="docs.html">Help</a></li>
 
-          <li class="divider"></li>
+					<li><a href="signin.html">Logout</a></li>
 
-          <li><a href="docs.html">Help</a></li>
+				</ul></li>
 
-          <li><a href="signin.html">Logout</a></li>
+		</ul>
 
-        </ul>
+		<a class="navbar-brand" href="#"><img src="images/xiaobiao.jpg"
+			height="25" width="100" /></a>
 
-      </li>
+		<button type="button"
+			class="btn btn-link pull-left nav-toggle hidden-lg"
+			data-toggle="class:slide-nav slide-nav-left" data-target="body">
 
-    </ul>
+			<i class="icon-reorder icon-xlarge text-default"></i>
 
-    <a class="navbar-brand" href="#"><img src="images/xiaobiao.jpg" height="25" width="100"/></a>
+		</button>
 
-    <button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:slide-nav slide-nav-left" data-target="body">
-
-      <i class="icon-reorder icon-xlarge text-default"></i>
-
-    </button>
-
-    <ul class="nav navbar-nav hidden-sm">
-
-
-
-      <li><div class="m-t-small"><a class="btn btn-small btn-info" data-toggle="modal" href="#modal"><i class="icon-plus"></i> POST</a></div></li>
-
-      <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
-
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-xlarge visible-sm visible-sm-inline"></i>设置 <b class="caret hidden-sm-only"></b></a>
-
-        <ul class="dropdown-menu">
-
-          <li>
-
-            <a href="#" data-toggle="class:navbar-fixed" data-target='body'>工具栏
-
-              <span class="text-active">自定义</span>
-
-              <span class="text">固定</span>
-
-            </a>
-
-          </li>
-
-          <li class="visible-lg">
-
-            <a href="#" data-toggle="class:nav-vertical" data-target="#nav">工具栏
-
-              <span class="text-active">垂直</span>
-
-              <span class="text">水平</span>
-
-            </a>
-
-          </li>
-
-          <li class="divider hidden-sm"></li>
+		<ul class="nav navbar-nav hidden-sm">
 
 
 
-          <li>
+			<li><div class="m-t-small">
+					<a class="btn btn-small btn-info" data-toggle="modal" href="#modal"><i
+						class="icon-plus"></i> POST</a>
+				</div></li>
 
-            <a href="#" data-toggle="class:bg bg-black" data-target='.navbar'>工具横栏
+			<li class="dropdown shift" data-toggle="shift:appendTo"
+				data-target=".nav-primary .nav"><a href="#"
+				class="dropdown-toggle" data-toggle="dropdown"><i
+					class="icon-cog icon-xlarge visible-sm visible-sm-inline"></i>设置 <b
+					class="caret hidden-sm-only"></b></a>
 
-              <span class="text-active">白色</span>
+				<ul class="dropdown-menu">
 
-              <span class="text">暗色</span>
+					<li><a href="#" data-toggle="class:navbar-fixed"
+						data-target='body'>工具栏 <span class="text-active">自定义</span> <span
+							class="text">固定</span>
 
-            </a>
+					</a></li>
 
-          </li>
+					<li class="visible-lg"><a href="#"
+						data-toggle="class:nav-vertical" data-target="#nav">工具栏 <span
+							class="text-active">垂直</span> <span class="text">水平</span>
 
-          <li>
+					</a></li>
 
-            <a href="#" data-toggle="class:bg-light" data-target='#nav'>工具竖栏
+					<li class="divider hidden-sm"></li>
 
-              <span class="text-active">暗色</span>
 
-              <span class="text">白色</span>
 
-            </a>
+					<li><a href="#" data-toggle="class:bg bg-black"
+						data-target='.navbar'>工具横栏 <span class="text-active">白色</span>
 
-          </li>
+							<span class="text">暗色</span>
 
-        </ul>
+					</a></li>
 
-      </li>
+					<li><a href="#" data-toggle="class:bg-light"
+						data-target='#nav'>工具竖栏 <span class="text-active">暗色</span> <span
+							class="text">白色</span>
 
-    </ul>
+					</a></li>
 
-    <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
+				</ul></li>
 
-      <i class="icon-search text-muted"></i>
+		</ul>
 
-      <input type="text" class="input-small form-control" placeholder="Search">
+		<form class="navbar-form pull-left shift" action=""
+			data-toggle="shift:appendTo" data-target=".nav-primary">
 
-    </form>
+			<i class="icon-search text-muted"></i> <input type="text"
+				class="input-small form-control" placeholder="Search">
+
+		</form>
 
 	</header>
 
 
-    <!-- nav -->
+	<!-- nav -->
 
-  <nav id="nav" class="nav-primary visible-lg nav-vertical">
+	<nav id="nav" class="nav-primary visible-lg nav-vertical">
 
-        <ul class="nav" data-spy="affix" data-offset-top="50">
+		<ul class="nav" data-spy="affix" data-offset-top="50">
 
-      <li class="active"><a href="home.html"><i class="icon-dashboard icon-xlarge"></i>主页</a></li>
+			<li class="active"><a href="home.html"><i
+					class="icon-dashboard icon-xlarge"></i>主页</a></li>
 
-   <li class="dropdown-submenu">
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-instagram icon-xlarge"></i>摄影管理</a>
 
-        <a href="#"><i class="icon-instagram icon-xlarge"></i>摄影管理</a>
+				<ul class="dropdown-menu">
+					<li><a href="order.html">预约订单</a></li>
 
-        <ul class="dropdown-menu">
+					<li><a href="photo1.html">添加照片</a></li>
 
-          <li><a href="photo1.html">添加照片</a></li>
+					<li><a href="photo.html">浏览照片</a></li>
 
-          <li><a href="photo.html">浏览照片</a></li>
+				</ul></li>
 
-        </ul>
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-list icon-xlarge"></i>基础资料管理</a>
 
-      </li>
+				<ul class="dropdown-menu">
+					<li><a href="indexuser.html">添加基础资料</a></li>
+					<li><a href="selcustomer.html">客户信息列表</a></li>
 
-      <li class="dropdown-submenu">
+					<li><a href="selworker.html">员工信息列表</a></li>
 
-        <a href="#"><i class="icon-list icon-xlarge"></i>基础资料管理</a>
+				</ul></li>
 
-        <ul class="dropdown-menu">
- 		  <li><a href="indexuser.html">添加基础资料</a></li>
-          <li><a href="selcustomer.html">客户信息列表</a></li>
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-edit icon-xlarge"></i>会员管理</a>
 
-          <li><a href="selworker.html">员工信息列表</a></li>
+				<ul class="dropdown-menu">
 
-        </ul>
+					<li><a href="member2.html">卡档案管理</a></li>
 
-      </li>
+					<li><a href="memberDiscount.html">优惠方案</a></li>
 
-      <li class="dropdown-submenu">
+				</ul></li>
 
-        <a href="#"><i class="icon-edit icon-xlarge"></i>会员管理</a>
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-facetime-video icon-xlarge"></i>设备管理</a>
 
-        <ul class="dropdown-menu">
+				<ul class="dropdown-menu">
+					<li><a href="indexdevice.html">下载模板</a></li>
+					<li><a href="seldevice.html">拍照设备管理</a></li>
 
-          <li><a href="member2.html">卡档案管理</a></li>
+					<li><a href="selclothes.html">服装管理</a></li>
 
-          <li><a href="memberDiscount.html">优惠方案</a></li>
+				</ul></li>
 
-        </ul>
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-signal icon-xlarge"></i>产品及套系管理</a>
 
-      </li>
+				<ul class="dropdown-menu">
 
-      <li class="dropdown-submenu">
+					<li><a href="productCategory.html">产品类别设置</a></li>
 
-        <a href="#"><i class="icon-facetime-video icon-xlarge"></i>设备管理</a>
+					<li><a href="product.html">产品设置</a></li>
 
-        <ul class="dropdown-menu">
- 		  <li><a href="indexdevice.html">下载模板</a></li>
-          <li><a href="seldevice.html">拍照设备管理</a></li>
+					<li><a href="economy.html">套系设置</a></li>
 
-          <li><a href="selclothes.html">服装管理</a></li>
+				</ul></li>
 
-        </ul>
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-signal icon-xlarge"></i>财务信息管理</a>
 
-      </li>
+				<ul class="dropdown-menu">
 
-      <li class="dropdown-submenu">
+					<li><a href="performance.html">业绩管理</a></li>
 
-        <a href="#"><i class="icon-signal icon-xlarge"></i>产品及套系管理</a>
+					<li><a href="BalanceAndPayment.html">费用管理</a></li>
 
-        <ul class="dropdown-menu">
+				</ul></li>
 
-          <li><a href="productCategory.html">产品类别设置</a></li>
 
-          <li><a href="product.html">产品设置</a></li>
+		</ul>
+	</nav>
 
-          <li><a href="economy.html">套系设置</a></li>
+	<!-- / nav -->
 
-        </ul>
 
-      </li>
 
-      <li class="dropdown-submenu">
+	<section id="content">
 
-        <a href="#"><i class="icon-signal icon-xlarge"></i>财务信息管理</a>
+		<section class="main padder">
 
-        <ul class="dropdown-menu">
+			<div class="clearfix"></div>
 
-          <li><a href="performance.html">业绩管理</a></li>
+			<div class="row">
 
-          <li><a href="BalanceAndPayment.html">费用管理</a></li>
+				<div class="col-lg-10" style="padding-left: 250px;">
 
-        </ul>
+					<section class="panel">
+						<header class="panel-heading">
+							客户信息 <i class="icon-info-sign text-muted" data-toggle="popover"
+								data-html="true" data-placement="top"
+								data-content="The datagrid use ajax to load the data. please put this file on a server to preview."
+								title="" data-trigger="hover" data-original-title="Help"></i>
+						</header>
+						<form action="#" method="post" class="form-horizontal" id="worker">
 
-      </li>
+							<div class="form-group"></div>
 
+							<div class="form-group">
 
-    </ul>
-  </nav>
+								<label class="col-lg-3 control-label"><font color="red">*</font>
+									员工姓名：</label>
 
-  <!-- / nav -->
+								<div class="col-lg-8">
 
+									<input type="text" name="workerName"
+										class="bg-focus form-control">
 
+								</div>
 
-  <section id="content">
+							</div>
 
-    <section class="main padder">
+							<div class="form-group">
 
-      <div class="clearfix">
+								<label class="col-lg-3 control-label"><font color="red">*</font>
+									职务：</label>
 
+								<div class="col-lg-8">
 
+									<input type="text" name="workerPost"
+										class="bg-focus form-control">
 
-      </div>
 
-      <div class="row">
 
-        <div class="col-lg-10" style="padding-left:250px;">
+								</div>
 
-          <section class="panel">
-  <header class="panel-heading">客户信息 <i class="icon-info-sign text-muted" data-toggle="popover" data-html="true" data-placement="top" data-content="The datagrid use ajax to load the data. please put this file on a server to preview." title="" data-trigger="hover" data-original-title="Help"></i> </header>
-            <form action="#" method="post" class="form-horizontal" id="worker" >
+							</div>
+							<div class="form-group">
 
-              <div class="form-group">
+								<label class="col-lg-3 control-label"><font color="red">*</font>
+									身份证号：</label>
 
+								<div class="col-lg-8">
 
+									<input type="text" name="workerIdCard"
+										class="bg-focus form-control">
 
 
-              </div>
 
-              <div class="form-group">
+								</div>
 
-                <label class="col-lg-3 control-label"><font color="red">*</font> 员工姓名：</label>
+							</div>
+							<div class="form-group">
 
-                <div class="col-lg-8">
+								<label class="col-lg-3 control-label"><font color="red">*</font>
+									联系电话：</label>
 
-                  <input type="text" name="workerName"  class="bg-focus form-control" >
+								<div class="col-lg-8">
 
-                </div>
+									<input type="text" name="workerPhone"
+										class="bg-focus form-control">
 
-              </div>
 
-              <div class="form-group">
 
-                <label class="col-lg-3 control-label"><font color="red">*</font> 职务：</label>
+								</div>
 
-                <div class="col-lg-8">
+							</div>
+							<div class="form-group">
 
-                  <input type="text" name="workerPost"  class="bg-focus form-control">
+								<label class="col-lg-3 control-label"><font color="red">*</font>
+									银行卡号：</label>
 
+								<div class="col-lg-8">
 
+									<input type="text" name="workerBankCard"
+										class="bg-focus form-control">
 
-                </div>
 
-              </div>
-               <div class="form-group">
 
-                <label class="col-lg-3 control-label"><font color="red">*</font> 身份证号：</label>
+								</div>
 
-                <div class="col-lg-8">
+							</div>
 
-                  <input type="text" name="workerIdCard"  class="bg-focus form-control">
+							<div class="form-group">
 
+								<label class="col-lg-3 control-label"><font color="red">*</font>
+									工资金额：</label>
 
+								<div class="col-lg-8">
 
-                </div>
+									<input type="text" name="wages" class="bg-focus form-control">
 
-              </div>
-               <div class="form-group">
+									<div class="line line-dashed m-t-large"></div>
 
-                <label class="col-lg-3 control-label"><font color="red">*</font> 联系电话：</label>
+								</div>
 
-                <div class="col-lg-8">
+							</div>
 
-                  <input type="text" name="workerPhone"  class="bg-focus form-control">
+							<div class="form-group">
 
+								<label class="col-lg-3 control-label"><font color="red">*</font>
+									员工照片：</label>
 
+								<div class="col-lg-8">
 
-                </div>
 
-              </div>
-               <div class="form-group">
+									<div id="myCombobox" class="input-group dropdown combobox m-b">
 
-                <label class="col-lg-3 control-label"><font color="red">*</font> 银行卡号：</label>
+										<input type="file" name="file">
 
-                <div class="col-lg-8">
+									</div>
 
-                  <input type="text" name="workerBankCard"  class="bg-focus form-control">
+								</div>
 
+							</div>
 
 
-                </div>
 
-              </div>
+							<div class="form-group">
 
-               <div class="form-group">
+								<div class="col-lg-9 col-offset-5">
 
-                <label class="col-lg-3 control-label"><font color="red">*</font> 工资金额：</label>
+									<button type="reset" class="btn btn-white">重 置</button>
 
-                <div class="col-lg-8">
+									<button type="button" class="btn btn-primary"
+										onclick="addWorker()">添 加</button>
 
-                  <input type="text" name="wages"  class="bg-focus form-control">
+								</div>
 
-                  <div class="line line-dashed m-t-large"></div>
+							</div>
 
-                </div>
+						</form>
 
-              </div>
+					</section>
 
-              <div class="form-group">
 
-                <label class="col-lg-3 control-label"><font color="red">*</font> 员工照片：</label>
 
-                <div class="col-lg-8">
+				</div>
 
 
-                <div id="myCombobox" class="input-group dropdown combobox m-b">
+			</div>
 
-         			<input type="file" name="file">
+		</section>
 
-                </div>
+	</section>
 
-                </div>
+	<!-- footer -->
 
-              </div>
+	<footer id="footer">
 
+		<div class="text-center padder clearfix">
 
+			<p>
 
-              <div class="form-group">
+				<small>&copy; 随身拍 2018 | 东北林业大学 | 冯文秀</small><br>
+				<br> <a href="#" class="btn btn-mini btn-circle btn-twitter"><i
+					class="icon-twitter"></i></a> <a href="#"
+					class="btn btn-mini btn-circle btn-facebook"><i
+					class="icon-facebook"></i></a> <a href="#"
+					class="btn btn-mini btn-circle btn-gplus"><i
+					class="icon-google-plus"></i></a>
 
-                <div class="col-lg-9 col-offset-5">
+			</p>
 
-                  <button type="reset" class="btn btn-white">重 置</button>
+		</div>
 
-                  <button type="button" class="btn btn-primary" onclick="addWorker()">添 加</button>
+	</footer>
 
-                </div>
-
-              </div>
-
-            </form>
-
-          </section>
-
-
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-  </section>
-
-  <!-- footer -->
-
-  <footer id="footer">
-
-    <div class="text-center padder clearfix">
-
-      <p>
-
-        <small>&copy; 随身拍 2018 | 东北林业大学  | 冯文秀</small><br><br>
-
-        <a href="#" class="btn btn-mini btn-circle btn-twitter"><i class="icon-twitter"></i></a>
-
-        <a href="#" class="btn btn-mini btn-circle btn-facebook"><i class="icon-facebook"></i></a>
-
-        <a href="#" class="btn btn-mini btn-circle btn-gplus"><i class="icon-google-plus"></i></a>
-
-      </p>
-
-    </div>
-
-  </footer>
-
-  <!-- / footer -->
+	<!-- / footer -->
 
 	<script src="js/jquery.min.js"></script>
 
-  <!-- Bootstrap -->
+	<!-- Bootstrap -->
 
-  <script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.js"></script>
 
-  <!-- app -->
+	<!-- app -->
 
-  <script src="js/app.js"></script>
+	<script src="js/app.js"></script>
 
-  <script src="js/app.plugin.js"></script>
+	<script src="js/app.plugin.js"></script>
 
-  <script src="js/app.data.js"></script>
-  <script src="js/jquery-1.9.min.js"></script>
-<script src="js/webuploader.js"></script>
-<script src="js/jquery.sortable.js"></script>
-<script src="js/upload.js"></script>
+	<script src="js/app.data.js"></script>
+	<script src="js/jquery-1.9.min.js"></script>
+	<script src="js/webuploader.js"></script>
+	<script src="js/jquery.sortable.js"></script>
+	<script src="js/upload.js"></script>
 
-  <!-- fuelux -->
+	<!-- fuelux -->
 
-  <script src="js/fuelux/fuelux.js"></script>
+	<script src="js/fuelux/fuelux.js"></script>
 
-  <!-- datepicker -->
+	<!-- datepicker -->
 
-  <script src="js/datepicker/bootstrap-datepicker.js"></script>
+	<script src="js/datepicker/bootstrap-datepicker.js"></script>
 
-  <!-- slider -->
+	<!-- slider -->
 
-  <script src="js/slider/bootstrap-slider.js"></script>
+	<script src="js/slider/bootstrap-slider.js"></script>
 
-  <!-- file input -->
+	<!-- file input -->
 
-  <script src="js/file-input/bootstrap.file-input.js"></script>
+	<script src="js/file-input/bootstrap.file-input.js"></script>
 
-  <!-- combodate -->
+	<!-- combodate -->
 
-  <script src="js/combodate/moment.min.js"></script>
+	<script src="js/combodate/moment.min.js"></script>
 
-  <script src="js/combodate/combodate.js"></script>
+	<script src="js/combodate/combodate.js"></script>
 
-  <!-- parsley -->
+	<!-- parsley -->
 
-  <script src="js/parsley/parsley.min.js"></script>
-  <script src="/demos/googlegg.js"></script>
-  <script src="js/sweet-alert.min.js"></script>
+	<script src="js/parsley/parsley.min.js"></script>
+	<script src="/demos/googlegg.js"></script>
+	<script src="js/sweet-alert.min.js"></script>
 </body>
 <script>
-	 function addWorker(){
-	  var formData = new FormData($( "#worker" )[0]);
+	function addWorker() {
+		var formData = new FormData($("#worker")[0]);
 		$.ajax({
-		    type : "POST",
-            url : "user/addWorker",//路径
-            data : formData,
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success : function(data){
-            console.log(data);
-             if(data.result == 200){
-              swal("添加成功！", "","success")
-              }else if(data.result == 201){
-              sweetAlert("添加失败", "身份证验证失败","warning");
-              }else if(data.result == 202){
-              sweetAlert("添加失败", "手机号验证失败","warning");
-              }else if(data.result == 203){
-              sweetAlert("添加失败", "银行卡号验证失败","warning");
-              }else if(data.result == 204){
-              sweetAlert("添加失败", "不允许为空","error");
-              }
+			type : "POST",
+			url : "user/addWorker",//路径
+			data : formData,
+			async : false,
+			cache : false,
+			contentType : false,
+			processData : false,
+			success : function(data) {
+				console.log(data);
+				if (data.result == 200) {
+					swal("添加成功！", "", "success")
+				} else if (data.result == 201) {
+					sweetAlert("添加失败", "身份证验证失败", "warning");
+				} else if (data.result == 202) {
+					sweetAlert("添加失败", "手机号验证失败", "warning");
+				} else if (data.result == 203) {
+					sweetAlert("添加失败", "银行卡号验证失败", "warning");
+				} else if (data.result == 204) {
+					sweetAlert("添加失败", "不允许为空", "error");
+				}
 
-            }
+			}
 		})
-		}
+	}
 </script>
 
 </html>

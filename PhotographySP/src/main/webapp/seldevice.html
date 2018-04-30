@@ -4,556 +4,527 @@
 
 <head>
 
-  <meta charset="utf-8">
+<meta charset="utf-8">
 
-  <title>Mobile first web app theme | first</title>
+<title>Mobile first web app theme | first</title>
 
-  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+<meta name="description"
+	content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap.css">
 
-  <link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="css/plugin.css">
+<link rel="stylesheet" href="css/plugin.css">
 
-  <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
-  <!--[if lt IE 9]>
+<!--[if lt IE 9]>
 
     <script src="js/ie/respond.min.js"></script>
 
     <script src="js/ie/html5.js"></script>
 
   <![endif]-->
-     <style>
-        .black_overlay{
-            display: none;
-            position: absolute;
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            z-index:1001;
-            -moz-opacity: 0.8;
-            opacity:.80;
-            filter: alpha(opacity=88);
-        }
-        .white_content {
-            display: none;
-            position: absolute;
-            top: 25%;
-            left: 25%;
-            width: 55%;
-            height: 55%;
-            padding: 20px;
-            border: 10px solid orange;
-            background-color: white;
-            z-index:1002;
-            overflow: auto;
-        }
-    </style>
+<style>
+.black_overlay {
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index: 1001;
+	-moz-opacity: 0.8;
+	opacity: .80;
+	filter: alpha(opacity = 88);
+}
+
+.white_content {
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	width: 55%;
+	height: 55%;
+	padding: 20px;
+	border: 10px solid orange;
+	background-color: white;
+	z-index: 1002;
+	overflow: auto;
+}
+</style>
 
 </head>
 
 <body>
 
-  <!-- header -->
+	<!-- header -->
 
 
 	<header id="header" class="navbar">
 
-    <ul class="nav navbar-nav navbar-avatar pull-right">
+		<ul class="nav navbar-nav navbar-avatar pull-right">
 
-      <li class="dropdown">
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown"> <span class="hidden-sm-only">admin</span>
 
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span class="thumb-small avatar inline"><img
+						src="images/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
 
-          <span class="hidden-sm-only">admin</span>
+					<b class="caret hidden-sm-only"></b>
 
-          <span class="thumb-small avatar inline"><img src="images/avatar.jpg" alt="Mika Sokeil" class="img-circle"></span>
+			</a>
 
-          <b class="caret hidden-sm-only"></b>
+				<ul class="dropdown-menu">
 
-        </a>
+					<!--  <li><a href="#">Settings</a></li> -->
 
-        <ul class="dropdown-menu">
+					<li><a href="#">Profile</a></li>
 
-         <!--  <li><a href="#">Settings</a></li> -->
+					<li><a href="#"><span class="badge bg-danger pull-right">3</span>Notifications</a></li>
 
-          <li><a href="#">Profile</a></li>
+					<li class="divider"></li>
 
-          <li><a href="#"><span class="badge bg-danger pull-right">3</span>Notifications</a></li>
+					<li><a href="docs.html">Help</a></li>
 
-          <li class="divider"></li>
+					<li><a href="signin.html">Logout</a></li>
 
-          <li><a href="docs.html">Help</a></li>
+				</ul></li>
 
-          <li><a href="signin.html">Logout</a></li>
+		</ul>
 
-        </ul>
+		<a class="navbar-brand" href="#"><img src="images/xiaobiao.jpg"
+			height="25" width="100" /></a>
 
-      </li>
+		<button type="button"
+			class="btn btn-link pull-left nav-toggle hidden-lg"
+			data-toggle="class:slide-nav slide-nav-left" data-target="body">
 
-    </ul>
+			<i class="icon-reorder icon-xlarge text-default"></i>
 
-    <a class="navbar-brand" href="#"><img src="images/xiaobiao.jpg" height="25" width="100"/></a>
+		</button>
 
-    <button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:slide-nav slide-nav-left" data-target="body">
-
-      <i class="icon-reorder icon-xlarge text-default"></i>
-
-    </button>
-
-    <ul class="nav navbar-nav hidden-sm">
-
-
-
-      <li><div class="m-t-small"><a class="btn btn-small btn-info" data-toggle="modal" href="#modal"><i class="icon-plus"></i> POST</a></div></li>
-
-      <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
-
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-xlarge visible-sm visible-sm-inline"></i>设置 <b class="caret hidden-sm-only"></b></a>
-
-        <ul class="dropdown-menu">
-
-          <li>
-
-            <a href="#" data-toggle="class:navbar-fixed" data-target='body'>工具栏
-
-              <span class="text-active">自定义</span>
-
-              <span class="text">固定</span>
-
-            </a>
-
-          </li>
-
-          <li class="visible-lg">
-
-            <a href="#" data-toggle="class:nav-vertical" data-target="#nav">工具栏
-
-              <span class="text-active">垂直</span>
-
-              <span class="text">水平</span>
-
-            </a>
-
-          </li>
-
-          <li class="divider hidden-sm"></li>
+		<ul class="nav navbar-nav hidden-sm">
 
 
 
-          <li>
+			<li><div class="m-t-small">
+					<a class="btn btn-small btn-info" data-toggle="modal" href="#modal"><i
+						class="icon-plus"></i> POST</a>
+				</div></li>
 
-            <a href="#" data-toggle="class:bg bg-black" data-target='.navbar'>工具横栏
+			<li class="dropdown shift" data-toggle="shift:appendTo"
+				data-target=".nav-primary .nav"><a href="#"
+				class="dropdown-toggle" data-toggle="dropdown"><i
+					class="icon-cog icon-xlarge visible-sm visible-sm-inline"></i>设置 <b
+					class="caret hidden-sm-only"></b></a>
 
-              <span class="text-active">白色</span>
+				<ul class="dropdown-menu">
 
-              <span class="text">暗色</span>
+					<li><a href="#" data-toggle="class:navbar-fixed"
+						data-target='body'>工具栏 <span class="text-active">自定义</span> <span
+							class="text">固定</span>
 
-            </a>
+					</a></li>
 
-          </li>
+					<li class="visible-lg"><a href="#"
+						data-toggle="class:nav-vertical" data-target="#nav">工具栏 <span
+							class="text-active">垂直</span> <span class="text">水平</span>
 
-          <li>
+					</a></li>
 
-            <a href="#" data-toggle="class:bg-light" data-target='#nav'>工具竖栏
+					<li class="divider hidden-sm"></li>
 
-              <span class="text-active">暗色</span>
 
-              <span class="text">白色</span>
 
-            </a>
+					<li><a href="#" data-toggle="class:bg bg-black"
+						data-target='.navbar'>工具横栏 <span class="text-active">白色</span>
 
-          </li>
+							<span class="text">暗色</span>
 
-        </ul>
+					</a></li>
 
-      </li>
+					<li><a href="#" data-toggle="class:bg-light"
+						data-target='#nav'>工具竖栏 <span class="text-active">暗色</span> <span
+							class="text">白色</span>
 
-    </ul>
+					</a></li>
 
-    <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
+				</ul></li>
 
-      <i class="icon-search text-muted"></i>
+		</ul>
 
-      <input type="text" class="input-small form-control" placeholder="Search">
+		<form class="navbar-form pull-left shift" action=""
+			data-toggle="shift:appendTo" data-target=".nav-primary">
 
-    </form>
+			<i class="icon-search text-muted"></i> <input type="text"
+				class="input-small form-control" placeholder="Search">
+
+		</form>
 
 	</header>
 
 
-  <!-- / header -->
+	<!-- / header -->
 
-  <!-- nav -->
+	<!-- nav -->
 
-  <nav id="nav" class="nav-primary visible-lg nav-vertical">
+	<nav id="nav" class="nav-primary visible-lg nav-vertical">
 
-        <ul class="nav" data-spy="affix" data-offset-top="50">
+		<ul class="nav" data-spy="affix" data-offset-top="50">
 
-      <li class="active"><a href="home.html"><i class="icon-dashboard icon-xlarge"></i>主页</a></li>
+			<li class="active"><a href="home.html"><i
+					class="icon-dashboard icon-xlarge"></i>主页</a></li>
 
-   <li class="dropdown-submenu">
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-instagram icon-xlarge"></i>摄影管理</a>
 
-        <a href="#"><i class="icon-instagram icon-xlarge"></i>摄影管理</a>
+				<ul class="dropdown-menu">
+					<li><a href="order.html">预约订单</a></li>
+					<li><a href="photo1.html">添加照片</a></li>
 
-        <ul class="dropdown-menu">
+					<li><a href="photo.html">浏览照片</a></li>
 
-          <li><a href="photo1.html">添加照片</a></li>
+				</ul></li>
 
-          <li><a href="photo.html">浏览照片</a></li>
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-list icon-xlarge"></i>基础资料管理</a>
 
-        </ul>
+				<ul class="dropdown-menu">
+					<li><a href="indexuser.html">添加基础资料</a></li>
+					<li><a href="selcustomer.html">客户信息列表</a></li>
 
-      </li>
+					<li><a href="selworker.html">员工信息列表</a></li>
 
-      <li class="dropdown-submenu">
+				</ul></li>
 
-        <a href="#"><i class="icon-list icon-xlarge"></i>基础资料管理</a>
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-edit icon-xlarge"></i>会员管理</a>
 
-        <ul class="dropdown-menu">
- 		  <li><a href="indexuser.html">添加基础资料</a></li>
-          <li><a href="selcustomer.html">客户信息列表</a></li>
+				<ul class="dropdown-menu">
 
-          <li><a href="selworker.html">员工信息列表</a></li>
+					<li><a href="member2.html">卡档案管理</a></li>
 
-        </ul>
+					<li><a href="memberDiscount.html">优惠方案</a></li>
 
-      </li>
+				</ul></li>
 
-      <li class="dropdown-submenu">
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-facetime-video icon-xlarge"></i>设备管理</a>
 
-        <a href="#"><i class="icon-edit icon-xlarge"></i>会员管理</a>
+				<ul class="dropdown-menu">
+					<li><a href="indexdevice.html">下载模板</a></li>
+					<li><a href="seldevice.html">拍照设备管理</a></li>
 
-        <ul class="dropdown-menu">
+					<li><a href="selclothes.html">服装管理</a></li>
 
-          <li><a href="member2.html">卡档案管理</a></li>
+				</ul></li>
 
-          <li><a href="memberDiscount.html">优惠方案</a></li>
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-signal icon-xlarge"></i>产品及套系管理</a>
 
-        </ul>
+				<ul class="dropdown-menu">
 
-      </li>
+					<li><a href="productCategory.html">产品类别设置</a></li>
 
-      <li class="dropdown-submenu">
+					<li><a href="product.html">产品设置</a></li>
 
-        <a href="#"><i class="icon-facetime-video icon-xlarge"></i>设备管理</a>
+					<li><a href="economy.html">套系设置</a></li>
 
-        <ul class="dropdown-menu">
- 		  <li><a href="indexdevice.html">下载模板</a></li>
-          <li><a href="seldevice.html">拍照设备管理</a></li>
+				</ul></li>
 
-          <li><a href="selclothes.html">服装管理</a></li>
+			<li class="dropdown-submenu"><a href="#"><i
+					class="icon-signal icon-xlarge"></i>财务信息管理</a>
 
-        </ul>
+				<ul class="dropdown-menu">
 
-      </li>
+					<li><a href="performance.html">业绩管理</a></li>
 
-      <li class="dropdown-submenu">
+					<li><a href="BalanceAndPayment.html">费用管理</a></li>
 
-        <a href="#"><i class="icon-signal icon-xlarge"></i>产品及套系管理</a>
+				</ul></li>
 
-        <ul class="dropdown-menu">
 
-          <li><a href="productCategory.html">产品类别设置</a></li>
+		</ul>
+	</nav>
 
-          <li><a href="product.html">产品设置</a></li>
+	<!-- / nav -->
 
-          <li><a href="economy.html">套系设置</a></li>
 
-        </ul>
 
-      </li>
 
-      <li class="dropdown-submenu">
+	<section id="content">
 
-        <a href="#"><i class="icon-signal icon-xlarge"></i>财务信息管理</a>
+		<section class="main padder">
 
-        <ul class="dropdown-menu">
+			<div class="clearfix"></div>
 
-          <li><a href="performance.html">业绩管理</a></li>
+			<div class="row">
 
-          <li><a href="BalanceAndPayment.html">费用管理</a></li>
 
-        </ul>
 
-      </li>
 
+				<div class="col-lg-12">
 
-    </ul>
-  </nav>
+					<section class="panel">
 
-  <!-- / nav -->
+						<header class="panel-heading">
 
+							<i class="icon-arrow-right"><a href="indexdevice.html"><font
+									color="red">请先下载模板并填写模板上传</font></a></i>
 
+						</header>
 
+						<div class="row text-small">
 
-  <section id="content">
+							<div class="col-lg-4 m-b-mini">
+								<form action="#" id="clothes">
+									<div class="btn-group">
 
-    <section class="main padder">
+										<input type="file" class="btn btn-white btn-mini" name="file">
+										<button class="btn btn-small btn-white" type="button"
+											onclick="addClothes()">Up!</button>
 
-      <div class="clearfix">
+									</div>
+								</form>
+							</div>
 
+							<div class="col-lg-4 m-b-mini">
 
+								<div class="btn-group"></div>
 
-      </div>
+							</div>
 
-      <div class="row">
+							<div class="col-lg-4">
 
+								<div class="input-group"></div>
 
+							</div>
 
+						</div>
 
-        <div class="col-lg-12">
+						<div class="pull-out m-t-small">
 
-          <section class="panel">
+							<table class="table table-striped b-t text-small">
+								<form action="#" id="device" method="post">
+									<thead>
 
-            <header class="panel-heading">
+										<tr>
 
-              <i class="icon-arrow-right"><a href="indexdevice.html"><font color="red">请先下载模板并填写模板上传</font></a></i>
+											<th>序号</th>
 
-            </header>
+											<th class="th-sortable" data-toggle="class">设备名称</th>
 
-            <div class="row text-small">
+											<th>设备编号</th>
 
-              <div class="col-lg-4 m-b-mini">
-					<form action="#" id="clothes">
-             	    <div class="btn-group" >
+											<th>设备价格</th>
 
-					 <input type="file" class="btn btn-white btn-mini" name="file">
-					 <button class="btn btn-small btn-white" type="button" onclick="addClothes()">Up!</button>
+											<th>当前状态</th>
 
-                </div>
-             	   </form>
-              </div>
 
-              <div class="col-lg-4 m-b-mini">
+										</tr>
 
-                <div class="btn-group" >
+									</thead>
 
-                </div>
+									<tbody id="customer">
 
-              </div>
 
-              <div class="col-lg-4">
 
-                <div class="input-group">
+									</tbody>
+								</form>
+							</table>
 
+						</div>
 
 
 
+					</section>
 
+				</div>
 
-                </div>
 
-              </div>
+			</div>
 
-            </div>
+		</section>
 
-            <div class="pull-out m-t-small">
+	</section>
 
-              <table class="table table-striped b-t text-small">
-				<form action="#" id="device" method="post">
-                <thead>
+	<!-- footer -->
 
-                  <tr>
+	<footer id="footer">
 
-                    <th >序号</th>
+		<div class="text-center padder clearfix">
 
-                    <th class="th-sortable" data-toggle="class">设备名称 </th>
+			<p>
 
-                    <th>设备编号</th>
+				<small>&copy; first 2013, Mobile first web app framework
+					base on Bootstrap</small><br>
+				<br> <a href="#" class="btn btn-mini btn-circle btn-twitter"><i
+					class="icon-twitter"></i></a> <a href="#"
+					class="btn btn-mini btn-circle btn-facebook"><i
+					class="icon-facebook"></i></a> <a href="#"
+					class="btn btn-mini btn-circle btn-gplus"><i
+					class="icon-google-plus"></i></a>
 
-                    <th>设备价格</th>
+			</p>
 
-                    <th >当前状态</th>
+		</div>
 
+	</footer>
 
-                  </tr>
+	<!-- / footer -->
+	<div id="light" class="white_content">
+		<select id="photo" class="input-small inline form-control">
 
-                </thead>
-
-                <tbody id="customer">
-
-
-
-                </tbody>
-				</form>
-              </table>
-
-            </div>
-
-
-
-          </section>
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-  </section>
-
-  <!-- footer -->
-
-  <footer id="footer">
-
-    <div class="text-center padder clearfix">
-
-      <p>
-
-        <small>&copy; first 2013, Mobile first web app framework base on Bootstrap</small><br><br>
-
-        <a href="#" class="btn btn-mini btn-circle btn-twitter"><i class="icon-twitter"></i></a>
-
-        <a href="#" class="btn btn-mini btn-circle btn-facebook"><i class="icon-facebook"></i></a>
-
-        <a href="#" class="btn btn-mini btn-circle btn-gplus"><i class="icon-google-plus"></i></a>
-
-      </p>
-
-    </div>
-
-  </footer>
-
-  <!-- / footer -->
-   <div id="light" class="white_content">
-   <select id="photo" class="input-small inline form-control">
-
-   </select>
-
-<a  class="btn btn-inverse" onclick = "updateUse() ">提交</a></div>
-        <div id="fade" class="black_overlay"></div>
+		</select> <a class="btn btn-inverse" onclick="updateUse() ">提交</a>
+	</div>
+	<div id="fade" class="black_overlay"></div>
 
 	<script src="js/jquery.min.js"></script>
 
-  <!-- Bootstrap -->
+	<!-- Bootstrap -->
 
-  <script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.js"></script>
 
-  <!-- fuelux -->
+	<!-- fuelux -->
 
-  <script src="js/fuelux/fuelux.js"></script>
+	<script src="js/fuelux/fuelux.js"></script>
 
-  <script src="js/underscore-min.js"></script>
+	<script src="js/underscore-min.js"></script>
 
-  <!-- datatables -->
+	<!-- datatables -->
 
-  <script src="js/datatables/jquery.dataTables.min.js"></script>
+	<script src="js/datatables/jquery.dataTables.min.js"></script>
 
-  <!-- Sparkline Chart -->
+	<!-- Sparkline Chart -->
 
-  <script src="js/charts/sparkline/jquery.sparkline.min.js"></script>
+	<script src="js/charts/sparkline/jquery.sparkline.min.js"></script>
 
-  <!-- Easy Pie Chart -->
+	<!-- Easy Pie Chart -->
 
-  <script src="js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+	<script src="js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
 
 
 
-  <!-- app -->
+	<!-- app -->
 
-  <script src="js/app.js"></script>
+	<script src="js/app.js"></script>
 
-  <script src="js/app.plugin.js"></script>
+	<script src="js/app.plugin.js"></script>
 
-  <script src="js/app.data.js"></script>
-<script src="js/sweet-alert.min.js"></script>
+	<script src="js/app.data.js"></script>
+	<script src="js/sweet-alert.min.js"></script>
 </body>
 <script>
-function updateUse(){
-var id = new Array();
- id = document.getElementsByName('id');
-console.log(id);
+	function updateUse() {
+		var id = new Array();
+		id = document.getElementsByName('id');
+		console.log(id);
 
-document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'
-}
-</script>
-<script >
-$(document).ready(function (){
-		$.ajax({
-	     type : "GET",
-	     url : "device/selDevice",//路径
-	     dataType: "json",
-	     success : function(data) {//返回数据根据结果进行相应的处理    ;
-	     console.log(data);
-	     var customer = "";
-	  	 if(data.result == 200){
-		 	for(var i=0;i<data.data.length;i++){
-		 	var style = "";
-		 		if(data.data[i].deviceStatus=="正常"){
-		 		style="btn btn-success btn-mini"
-		 		}else if(data.data[i].deviceStatus=="维修中"){
-		 		style="btn btn-warning btn-mini"
-		 		}else{
-		 		style="btn btn-danger btn-mini"
-		 		}
-		 		customer +="<tr><td>"+(i+1)+"</td><td>"+data.data[i].deviceName+"</td><td>"+data.data[i].deviceNo+"</td><td>￥"+data.data[i].devicePrice+"</td><td><input type='hidden' name='id' id='id' value='"+data.data[i].id+"'><input type='hidden' id='status' name='status' value='"+data.data[i].deviceStatus+"'><button class='"+style+"' onclick='search()' >"+data.data[i].deviceStatus+"</button></td></tr>";
-
-		 	}
-		 	 $("#customer").html('').append(customer);
-		 	 console.log(customer);
-		 }
-	     }
-	     });
-	     })
-
-
-</script>
-<script>
-function search(){
- var id = document.getElementById('id').value;
- var status = document.getElementById('status').value;
-	$.ajax({
-		type : "POST",
-	    url : "device/updateDevice",//路径
-	    data:{"id":id , "status":status},
-	    dataType: "json",
-	    success : function(data) {
-	    console.log(data);
-	     var customer = "";
-	  	 if(data.result == 200){
-		 	  window.location.reload();
-		 }
-		 }
+		document.getElementById('light').style.display = 'none';
+		document.getElementById('fade').style.display = 'none'
 	}
-	)
-}
 </script>
 <script>
-	 function addClothes(){
-	  var formData = new FormData($( "#clothes" )[0]);
-	  console.log(formData);
-		$.ajax({
-		    type : "POST",
-            url : "device/addDevice",//路径
-            data : formData,
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success : function(data){
-            console.log(data);
-             if(data.result == 200){
-              swal("上传成功！", "","success")
-              }else if(data.result == 201){
-              sweetAlert("上传失败", "","error");
-              }else if(data.result == 202){
-              sweetAlert("添加失败", "手机号验证失败","warning");
-              }else if(data.result == 203){
-              sweetAlert("添加失败", "银行卡号验证失败","warning");
-              }else if(data.result == 204){
-              sweetAlert("添加失败", "不允许为空","error");
-              }
+	$(document)
+			.ready(
+					function() {
+						$
+								.ajax({
+									type : "GET",
+									url : "device/selDevice",//路径
+									dataType : "json",
+									success : function(data) {//返回数据根据结果进行相应的处理    ;
+										console.log(data);
+										var customer = "";
+										if (data.result == 200) {
+											for (var i = 0; i < data.data.length; i++) {
+												var style = "";
+												if (data.data[i].deviceStatus == "正常") {
+													style = "btn btn-success btn-mini"
+												} else if (data.data[i].deviceStatus == "维修中") {
+													style = "btn btn-warning btn-mini"
+												} else {
+													style = "btn btn-danger btn-mini"
+												}
+												customer += "<tr><td>"
+														+ (i + 1)
+														+ "</td><td>"
+														+ data.data[i].deviceName
+														+ "</td><td>"
+														+ data.data[i].deviceNo
+														+ "</td><td>￥"
+														+ data.data[i].devicePrice
+														+ "</td><td><input type='hidden' name='id' id='id' value='"+data.data[i].id+"'><input type='hidden' id='status' name='status' value='"+data.data[i].deviceStatus+"'><button class='"
+														+ style
+														+ "' onclick='search()' >"
+														+ data.data[i].deviceStatus
+														+ "</button></td></tr>";
 
-            }
+											}
+											$("#customer").html('').append(
+													customer);
+											console.log(customer);
+										}
+									}
+								});
+					})
+</script>
+<script>
+	function search() {
+		var id = document.getElementById('id').value;
+		var status = document.getElementById('status').value;
+		$.ajax({
+			type : "POST",
+			url : "device/updateDevice",//路径
+			data : {
+				"id" : id,
+				"status" : status
+			},
+			dataType : "json",
+			success : function(data) {
+				console.log(data);
+				var customer = "";
+				if (data.result == 200) {
+					window.location.reload();
+				}
+			}
 		})
-		}
+	}
+</script>
+<script>
+	function addClothes() {
+		var formData = new FormData($("#clothes")[0]);
+		console.log(formData);
+		$.ajax({
+			type : "POST",
+			url : "device/addDevice",//路径
+			data : formData,
+			async : false,
+			cache : false,
+			contentType : false,
+			processData : false,
+			success : function(data) {
+				console.log(data);
+				if (data.result == 200) {
+					swal("上传成功！", "", "success")
+				} else if (data.result == 201) {
+					sweetAlert("上传失败", "", "error");
+				} else if (data.result == 202) {
+					sweetAlert("添加失败", "手机号验证失败", "warning");
+				} else if (data.result == 203) {
+					sweetAlert("添加失败", "银行卡号验证失败", "warning");
+				} else if (data.result == 204) {
+					sweetAlert("添加失败", "不允许为空", "error");
+				}
+
+			}
+		})
+	}
 </script>
 </html>
