@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cr.dao.BusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.cr.domain.Business" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="bus_loginname" property="busLoginname" jdbcType="CHAR" />
+    <result column="bus_password" property="busPassword" jdbcType="CHAR" />
+    <result column="bus_name" property="busName" jdbcType="CHAR" />
+    <result column="bus_img" property="busImg" jdbcType="VARCHAR" />
+    <result column="bus_license" property="busLicense" jdbcType="CHAR" />
+    <result column="bus_address" property="busAddress" jdbcType="CHAR" />
+    <result column="is_check" property="isCheck" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, bus_loginname, bus_password, bus_name, bus_img, bus_license, bus_address, is_check
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cr.domain.BusinessExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from business
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from business
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cr.domain.BusinessExample" >
+    delete from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cr.domain.Business" >
+    insert into business (id, bus_loginname, bus_password, 
+      bus_name, bus_img, bus_license, 
+      bus_address, is_check)
+    values (#{id,jdbcType=CHAR}, #{busLoginname,jdbcType=CHAR}, #{busPassword,jdbcType=CHAR}, 
+      #{busName,jdbcType=CHAR}, #{busImg,jdbcType=VARCHAR}, #{busLicense,jdbcType=CHAR}, 
+      #{busAddress,jdbcType=CHAR}, #{isCheck,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cr.domain.Business" >
+    insert into business
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="busLoginname != null" >
+        bus_loginname,
+      </if>
+      <if test="busPassword != null" >
+        bus_password,
+      </if>
+      <if test="busName != null" >
+        bus_name,
+      </if>
+      <if test="busImg != null" >
+        bus_img,
+      </if>
+      <if test="busLicense != null" >
+        bus_license,
+      </if>
+      <if test="busAddress != null" >
+        bus_address,
+      </if>
+      <if test="isCheck != null" >
+        is_check,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="busLoginname != null" >
+        #{busLoginname,jdbcType=CHAR},
+      </if>
+      <if test="busPassword != null" >
+        #{busPassword,jdbcType=CHAR},
+      </if>
+      <if test="busName != null" >
+        #{busName,jdbcType=CHAR},
+      </if>
+      <if test="busImg != null" >
+        #{busImg,jdbcType=VARCHAR},
+      </if>
+      <if test="busLicense != null" >
+        #{busLicense,jdbcType=CHAR},
+      </if>
+      <if test="busAddress != null" >
+        #{busAddress,jdbcType=CHAR},
+      </if>
+      <if test="isCheck != null" >
+        #{isCheck,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cr.domain.BusinessExample" resultType="java.lang.Integer" >
+    select count(*) from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update business
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.busLoginname != null" >
+        bus_loginname = #{record.busLoginname,jdbcType=CHAR},
+      </if>
+      <if test="record.busPassword != null" >
+        bus_password = #{record.busPassword,jdbcType=CHAR},
+      </if>
+      <if test="record.busName != null" >
+        bus_name = #{record.busName,jdbcType=CHAR},
+      </if>
+      <if test="record.busImg != null" >
+        bus_img = #{record.busImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busLicense != null" >
+        bus_license = #{record.busLicense,jdbcType=CHAR},
+      </if>
+      <if test="record.busAddress != null" >
+        bus_address = #{record.busAddress,jdbcType=CHAR},
+      </if>
+      <if test="record.isCheck != null" >
+        is_check = #{record.isCheck,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update business
+    set id = #{record.id,jdbcType=CHAR},
+      bus_loginname = #{record.busLoginname,jdbcType=CHAR},
+      bus_password = #{record.busPassword,jdbcType=CHAR},
+      bus_name = #{record.busName,jdbcType=CHAR},
+      bus_img = #{record.busImg,jdbcType=VARCHAR},
+      bus_license = #{record.busLicense,jdbcType=CHAR},
+      bus_address = #{record.busAddress,jdbcType=CHAR},
+      is_check = #{record.isCheck,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cr.domain.Business" >
+    update business
+    <set >
+      <if test="busLoginname != null" >
+        bus_loginname = #{busLoginname,jdbcType=CHAR},
+      </if>
+      <if test="busPassword != null" >
+        bus_password = #{busPassword,jdbcType=CHAR},
+      </if>
+      <if test="busName != null" >
+        bus_name = #{busName,jdbcType=CHAR},
+      </if>
+      <if test="busImg != null" >
+        bus_img = #{busImg,jdbcType=VARCHAR},
+      </if>
+      <if test="busLicense != null" >
+        bus_license = #{busLicense,jdbcType=CHAR},
+      </if>
+      <if test="busAddress != null" >
+        bus_address = #{busAddress,jdbcType=CHAR},
+      </if>
+      <if test="isCheck != null" >
+        is_check = #{isCheck,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cr.domain.Business" >
+    update business
+    set bus_loginname = #{busLoginname,jdbcType=CHAR},
+      bus_password = #{busPassword,jdbcType=CHAR},
+      bus_name = #{busName,jdbcType=CHAR},
+      bus_img = #{busImg,jdbcType=VARCHAR},
+      bus_license = #{busLicense,jdbcType=CHAR},
+      bus_address = #{busAddress,jdbcType=CHAR},
+      is_check = #{isCheck,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="login" resultMap="BaseResultMap" parameterType="com.cr.domain.Business" >
+   select * from business where bus_loginname = #{busLoginname,jdbcType=CHAR} and bus_password = #{busPassword,jdbcType=CHAR}
+  </select>
+  
+   <select id="selBuniessByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from business
+    where bus_name = #{busName,jdbcType=CHAR}
+  </select>
+  
+   <select id="selBuniessByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from business
+    where bus_loginname = #{busLoginname,jdbcType=CHAR}
+  </select>
+</mapper>
