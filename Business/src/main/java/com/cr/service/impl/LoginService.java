@@ -1,10 +1,12 @@
 package com.cr.service.impl;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.cr.domain.Business;
 import com.cr.domain.User;
 
 public interface LoginService {
-	public boolean login(String username,String password,String type);
+	public boolean login(HttpServletRequest request,String username,String password,String type);
 	public boolean userRegister(User user);
 	public boolean businessRegister(Business business);
 	public boolean selUser(String username);

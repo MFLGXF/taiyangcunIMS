@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cr.common.FileUtils;
 import com.cr.common.ReturnInfo;
 import com.cr.common.UUIDUtils;
+import com.cr.domain.Admin;
 import com.cr.domain.Business;
 import com.cr.domain.User;
 import com.cr.service.impl.LoginService;
@@ -27,11 +28,17 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	@RequestMapping(value="/toLogin",method=RequestMethod.POST)
-	public ReturnInfo<String> toLogin(String username,String password,String type){
+	public ReturnInfo<String> toLogin(HttpServletRequest request,String username,String password,String type){
 		ReturnInfo<String> ret = new ReturnInfo<String>();
-		boolean flag = loginService.login(username, password, type);
-		if(flag == true){
-			ret.setResult(200);
+		boolean flag = loginService.login(request, username, password, type);
+		if(flag == true){	
+			if("User".equals(type)){
+				ret.setResult(0);
+			}else if("Business".equals(type)){
+				ret.setResult(1);
+			}else if("Admin".equals(type)){
+				ret.setResult(2);
+			}
 		}else{
 			ret.setResult(201);
 		}

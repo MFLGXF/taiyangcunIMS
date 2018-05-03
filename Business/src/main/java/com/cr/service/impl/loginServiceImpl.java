@@ -1,5 +1,7 @@
 package com.cr.service.impl;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +21,13 @@ public class loginServiceImpl implements LoginService {
 	@Autowired
 	private BusinessMapper businessDao;
 	@Override
-	public boolean login(String username, String password, String type) {
+	public boolean login(HttpServletRequest request,String username, String password, String type) {
 		if("User".equals(type)){
 			User user = new User();
 			user.setUsername(username);
 			user.setPassword(password);
 			User user1 = userDao.login(user);
+			request.getSession().setAttribute("username", username);
 			if(user1 != null){
 				return true;
 			}
@@ -33,6 +36,7 @@ public class loginServiceImpl implements LoginService {
 			bus.setBusLoginname(username);
 			bus.setBusPassword(password);
 			Business bus1 = businessDao.login(bus);
+			request.getSession().setAttribute("username", username);
 			if(bus1 != null){
 				return true;
 			}
@@ -41,6 +45,7 @@ public class loginServiceImpl implements LoginService {
 			admin.setUsername(username);
 			admin.setPassword(password);
 			Admin admin1 = adminDao.login(admin);
+			request.getSession().setAttribute("username", username);
 			if(admin1 != null){
 				return true;
 			}
