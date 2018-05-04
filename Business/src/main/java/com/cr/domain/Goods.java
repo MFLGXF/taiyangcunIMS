@@ -1,5 +1,7 @@
 package com.cr.domain;
 
+import java.util.Date;
+
 public class Goods {
     private String id;
 
@@ -14,6 +16,10 @@ public class Goods {
     private String goodsProducer;
 
     private String delFlag;
+
+    private String goodsPrice;
+
+    private Date createTime;
 
     public String getId() {
         return id;
@@ -69,5 +75,21 @@ public class Goods {
 
     public void setDelFlag(String delFlag) {
         this.delFlag = delFlag == null ? null : delFlag.trim();
+    }
+
+    public String getGoodsPrice() {
+        return goodsPrice;
+    }
+
+    public void setGoodsPrice(String goodsPrice) {
+        this.goodsPrice = goodsPrice == null ? null : goodsPrice.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

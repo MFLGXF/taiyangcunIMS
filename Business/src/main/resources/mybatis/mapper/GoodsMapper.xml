@@ -9,6 +9,8 @@
     <result column="goods_place" property="goodsPlace" jdbcType="CHAR" />
     <result column="goods_producer" property="goodsProducer" jdbcType="CHAR" />
     <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="goods_price" property="goodsPrice" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, goods_name, goods_type, goods_img, goods_place, goods_producer, del_flag
+    id, goods_name, goods_type, goods_img, goods_place, goods_producer, del_flag, goods_price, 
+    create_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cr.domain.GoodsExample" >
     select
@@ -104,10 +107,12 @@
   <insert id="insert" parameterType="com.cr.domain.Goods" >
     insert into goods (id, goods_name, goods_type, 
       goods_img, goods_place, goods_producer, 
-      del_flag)
+      del_flag, goods_price, create_time
+      )
     values (#{id,jdbcType=CHAR}, #{goodsName,jdbcType=CHAR}, #{goodsType,jdbcType=CHAR}, 
       #{goodsImg,jdbcType=VARCHAR}, #{goodsPlace,jdbcType=CHAR}, #{goodsProducer,jdbcType=CHAR}, 
-      #{delFlag,jdbcType=CHAR})
+      #{delFlag,jdbcType=CHAR}, #{goodsPrice,jdbcType=CHAR}, #{createTime,jdbcType=DATE}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cr.domain.Goods" >
     insert into goods
@@ -133,6 +138,12 @@
       <if test="delFlag != null" >
         del_flag,
       </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -155,6 +166,12 @@
       </if>
       <if test="delFlag != null" >
         #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -188,6 +205,12 @@
       <if test="record.delFlag != null" >
         del_flag = #{record.delFlag,jdbcType=CHAR},
       </if>
+      <if test="record.goodsPrice != null" >
+        goods_price = #{record.goodsPrice,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +224,9 @@
       goods_img = #{record.goodsImg,jdbcType=VARCHAR},
       goods_place = #{record.goodsPlace,jdbcType=CHAR},
       goods_producer = #{record.goodsProducer,jdbcType=CHAR},
-      del_flag = #{record.delFlag,jdbcType=CHAR}
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      goods_price = #{record.goodsPrice,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=DATE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +252,12 @@
       <if test="delFlag != null" >
         del_flag = #{delFlag,jdbcType=CHAR},
       </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -237,7 +268,25 @@
       goods_img = #{goodsImg,jdbcType=VARCHAR},
       goods_place = #{goodsPlace,jdbcType=CHAR},
       goods_producer = #{goodsProducer,jdbcType=CHAR},
-      del_flag = #{delFlag,jdbcType=CHAR}
+      del_flag = #{delFlag,jdbcType=CHAR},
+      goods_price = #{goodsPrice,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=DATE}
     where id = #{id,jdbcType=CHAR}
   </update>
+   <select id="selGoodsLimit" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where del_flag !=1
+    order by create_time desc
+    limit 4
+  </select>
+   <select id="selGoods" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where del_flag !=1
+    order by create_time desc
+    limit 8
+  </select>
 </mapper>

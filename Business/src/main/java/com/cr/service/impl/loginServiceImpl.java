@@ -36,7 +36,8 @@ public class loginServiceImpl implements LoginService {
 			bus.setBusLoginname(username);
 			bus.setBusPassword(password);
 			Business bus1 = businessDao.login(bus);
-			request.getSession().setAttribute("username", username);
+			request.getSession().setAttribute("businessname", username);
+			System.out.println(request.getSession().getAttribute("businessname").toString());
 			if(bus1 != null){
 				return true;
 			}
@@ -45,7 +46,7 @@ public class loginServiceImpl implements LoginService {
 			admin.setUsername(username);
 			admin.setPassword(password);
 			Admin admin1 = adminDao.login(admin);
-			request.getSession().setAttribute("username", username);
+			request.getSession().setAttribute("adminname", username);
 			if(admin1 != null){
 				return true;
 			}
