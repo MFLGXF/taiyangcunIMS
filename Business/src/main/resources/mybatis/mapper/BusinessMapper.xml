@@ -256,7 +256,7 @@
     where id = #{id,jdbcType=CHAR}
   </update>
   <select id="login" resultMap="BaseResultMap" parameterType="com.cr.domain.Business" >
-   select * from business where bus_loginname = #{busLoginname,jdbcType=CHAR} and bus_password = #{busPassword,jdbcType=CHAR}
+   select * from business where bus_loginname = #{busLoginname,jdbcType=CHAR} and bus_password = #{busPassword,jdbcType=CHAR} and is_check = 1 
   </select>
   
    <select id="selBuniessByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -271,5 +271,12 @@
     <include refid="Base_Column_List" />
     from business
     where bus_loginname = #{busLoginname,jdbcType=CHAR}
+  </select>
+  
+   <select id="selBusChecked" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from business
+    where is_check = 1
   </select>
 </mapper>

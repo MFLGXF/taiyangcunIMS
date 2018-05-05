@@ -52,7 +52,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html"><span>管理员后台</span></a>
+				<a class="brand" href="index.html"><span>企业后台</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -211,7 +211,7 @@
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
-										    	admin
+										    	Dennis Ji
 										     </span>
 											<span class="time">
 										    	6 min
@@ -227,7 +227,7 @@
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
-										    	admin
+										    	Dennis Ji
 										     </span>
 											<span class="time">
 										    	56 min
@@ -243,7 +243,7 @@
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
-										    	admin
+										    	Dennis Ji
 										     </span>
 											<span class="time">
 										    	3 hours
@@ -295,7 +295,7 @@
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> admin
+								<i class="halflings-icon white user"></i> Dennis Ji
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -347,69 +347,97 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">Home</a> 
-					<i class="icon-angle-right"></i>
+					<a href="index.html">Home</a>
+					<i class="icon-angle-right"></i> 
 				</li>
-				<li><a href="#">首页</a></li>
+				<li>
+					<i class="icon-edit"></i>
+					<a href="#">Forms</a>
+				</li>
 			</ul>
 			
-			<div class="row-fluid">
-				
-				<div class="box black span4" onTablet="span6" onDesktop="span4">
-					<div class="box-header">
-						<h2><i class="halflings-icon white list"></i><span class="break"></span>商品列表</h2>
+			
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>发布产品</h2>
 						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
 						</div>
 					</div>
 					<div class="box-content">
-						<ul class="dashboard-list metro" id="good">
+						<form class="form-horizontal" id="addproduce">
+							<fieldset>
+							  <div class="control-group">
+								<label class="control-label" for="selectError">产品类型</label>
+								<div class="controls">
+								  <select id="goodsType" data-rel="chosen" name="goodsType">
+									<option value="食品类型">食品类型</option>
+									<option value="工艺品">工艺品</option>
+									<option>Option 3</option>
+									<option>Option 4</option>
+									<option>Option 5</option>
+								  </select>
+								</div>
+							  </div>
+							 
+							  <div class="control-group success">
+								<label class="control-label" for="inputSuccess">产品名称</label>
+								<div class="controls">
+								  <input type="text" id="inputSuccess" name="goodsName">
+								  <span class="help-inline">enter goods name</span>
+								</div>
+							  </div>
+							 
+							  <div class="control-group warning">
+								<label class="control-label" for="inputWarning">产品产地</label>
+								<div class="controls">
+								  <input type="text" id="inputWarning" name="goodsAddress">
+								  <span class="help-inline">enter goods place</span>
+								</div>
+							  </div>
+							  <div class="control-group error">
+								<label class="control-label" for="inputError">产品价格</label>
+								<div class="controls">
+								  <input type="text" id="inputError" name="goodsPrice">
+								  <span class="help-inline">enter goods price</span>
+								</div>
+							  </div>
+							  
+							   <div class="control-group error">
+								<label class="control-label" for="selectError"><font color="pink">所属公司</font></label>
+								<div class="controls">
+								  <select id="company" data-rel="chosen" name="business">
+									
+								  </select>
+								</div>
+							  </div>
+							  <div class="control-group">
+								  <label class="control-label" for="inputError"><font color="blue">产品图片</font></label>
+								  <div class="controls">
+									 <input type="file" name="file"/>
+								  </div>								
+							  </div>
+							  
 							
-						  
-						</ul>
+							  <div class="form-actions">
+								<button type="button" class="btn btn-primary" onclick="addproduce()">Save changes</button>
+								<button type="reset" class="btn">Cancel</button>
+							  </div>
+							</fieldset>
+						  </form>
+					
 					</div>
 				</div><!--/span-->
-				
-				<div class="box black span4" onTablet="span6" onDesktop="span4">
-					<div class="box-header">
-						<h2><i class="halflings-icon white user"></i><span class="break"></span>最近上传</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<ul class="dashboard-list metro" id="goods"> 
-							
-						</ul>
-					</div>
-				</div><!--/span-->
-				
-				<div class="box black span4 noMargin" onTablet="span12" onDesktop="span4">
-					<div class="box-header">
-						<h2><i class="halflings-icon white calendar"></i><span class="break"></span>日程表</h2>
-					</div>
-					<div class="box-content">
-						<div id="main_calendar_phone"></div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
 			
-			</div>
+			</div><!--/row-->
 			
 			
+
 			
-			
-			
-			
-			
-			
-				
-			
-				
-			
-       
+    
 
 	</div><!--/.fluid-container-->
 	
@@ -498,65 +526,51 @@
 		<script src="js/retina.js"></script>
 
 		<script src="js/custom.js"></script>
+		<script src="js/sweet-alert.min.js"></script>
 	<!-- end: JavaScript-->
 	
 </body>
-
-	<script>
+<script>
+	 function addproduce(){
+	  var formData = new FormData($( "#addproduce" )[0]);  
+		$.ajax({
+		    type : "POST",  
+            url : "business/addproduce",//路径  
+            data : formData,
+            async: false,  
+            cache: false,  
+            contentType: false,  
+            processData: false,  
+            success : function(data){
+             if(data.result == 200){
+             	 sweetAlert("上传商品成功", "","success");
+             }else if(data.result == 202){
+             	 sweetAlert("请上传商品照片", "","warning");
+             }else if(data.result == 201){
+             	 sweetAlert("请填写商品信息", "","warning");
+             }else if(data.result == 500){
+                 sweetAlert("服务器错误", "","error");
+             }           
+            }
+		})
+		}
+</script>
+<script>
 	$(document).ready(function(){
 		$.ajax({  
 	     type : "GET",  
-	     url : "business/selGoodsLimit",//路径  
+	     url : "admin/toSelBusinessChecked",//路径  
 	     dataType: "json",
 	     success : function(data) {//返回数据根据结果进行相应的处理     
 	     var data = data.data;
-	  	 var goods = "";
+	  	 var business = "";
 	  	 console.log(data);
 	  	 for(var i=0;i<data.length;i++){
-	  	  if(i==0){
-	  	   color="green";
-	  	  }else if(i==1){
-	  	   color="yellow";
-	  	  }else if(i==2){
-	  	   color="red";
-	  	  }else if(i==3){
-	  	   color="blue";
-	  	  }
 	  	
-	  	  goods += "<li class='"+color+"'><a href='#'><img class='avatar' alt='"+data[i].goodsName+"' src='goods/"+data[i].goodsImg+"'></a><strong>商品名称:</strong> "+data[i].goodsName+"<br><strong>商品类型:</strong>"+data[i].goodsType+"<br><strong>商品产地:</strong>"+data[i].goodsPlace+"<br></li>"
+	  	  business += "<option value='"+data[i].busName+"'>"+data[i].busName+"</option>"
 	  	 }
-	  	 console.log(goods);
-	  	 $("#goods").html('').append(goods);
-	     } 
-	     });  
-	     })
-	
-	</script>
-	<script>
-	$(document).ready(function(){
-		$.ajax({  
-	     type : "GET",  
-	     url : "business/selGoods",//路径  
-	     dataType: "json",
-	     success : function(data) {//返回数据根据结果进行相应的处理     
-	     var data = data.data;
-	  	 var good = "";
-	  	 console.log(data);
-	  	 for(var i=0;i<data.length;i++){
-	  	  if(i==0 | i==4){
-	  	   color="icon-arrow-up green";
-	  	  }else if(i==1 | i==5){
-	  	   color="icon-arrow-down red";
-	  	  }else if(i==2 | i==6){
-	  	   color="icon-minus blue";
-	  	  }else if(i==3 | i==7){
-	  	   color="icon-comment yellow";
-	  	  }
-	  	
-	  	  good += "<li><a href='#'><i class='"+color+"'></i><strong>商品名称：   </strong>"+data[i].goodsName+"</a></li>"
-	  	 }
-	  	 console.log(goods);
-	  	 $("#good").html('').append(good);
+	  	 console.log(business);
+	  	 $("#company").html('').append(business);
 	     } 
 	     });  
 	     })

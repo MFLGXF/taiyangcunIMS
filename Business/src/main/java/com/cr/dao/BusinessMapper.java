@@ -39,4 +39,6 @@ public interface BusinessMapper {
     Business selBuniessByName(String name);
     
     Business selBuniessByUsername(String username);
+    
+    List<Business> selBusChecked();
 }

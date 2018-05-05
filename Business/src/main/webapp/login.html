@@ -199,6 +199,8 @@
               sweetAlert("登录失败", "用户名或密码错误","error");
               }else if(data.result == 202){
               sweetAlert("用户名或密码不能为空", "","warning");
+              }else if(data.result == 400){
+              sweetAlert("当前账号未审核", "请联系管理员审核","error");
               }
             }
 		})

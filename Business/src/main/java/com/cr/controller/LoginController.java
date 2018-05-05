@@ -40,7 +40,12 @@ public class LoginController {
 				ret.setResult(2);
 			}
 		}else{
+			if("Business".equals(type)){
+				ret.setResult(400);
+				return ret;
+			}
 			ret.setResult(201);
+			
 		}
 		return ret;
 	}
