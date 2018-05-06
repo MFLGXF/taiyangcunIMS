@@ -32,9 +32,25 @@ public class goodsServiceImpl implements GoodsService {
 	}
 	@Override
 	public List<Goods> selGoods() {
+		List<Goods> list = goodsDao.selGoods();
+		if(list.size()>0){
+			return list;
+		}
+		return null;
+	}
+	@Override
+	public List<Goods> selAllGoods() {
 		List<Goods> list = goodsDao.selectByExample(new GoodsExample());
 		if(list.size()>0){
 			return list;
+		}
+		return null;
+	}
+	@Override
+	public Goods selGoodsById(String id) {
+		Goods goods = goodsDao.selectByPrimaryKey(id);
+		if(goods != null){
+			return goods;
 		}
 		return null;
 	}

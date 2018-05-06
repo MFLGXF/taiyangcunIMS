@@ -1,6 +1,7 @@
 package com.cr.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cr.common.FileUtils;
 import com.cr.common.ReturnInfo;
+import com.cr.common.UUIDUtils;
 import com.cr.domain.Business;
 import com.cr.domain.Goods;
 import com.cr.service.impl.BusinessService;
@@ -24,7 +27,8 @@ import io.undertow.attribute.RequestMethodAttribute;
 public class AdminController {
 	@Resource
 	private BusinessService businessService;
-	
+	@Resource
+	private GoodsService goodsService;
 	@RequestMapping(value = "/toAddGoods", method = RequestMethod.POST)
 	public ReturnInfo<Goods> toAddGoods(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request){
 		ReturnInfo<Goods> ret = new ReturnInfo<Goods>();
@@ -50,4 +54,82 @@ public class AdminController {
 		}
 		return ret;
 	}
+	
+	@RequestMapping(value = "/selBusinessById",method=RequestMethod.GET)
+	public ReturnInfo<Business> selBusinessById(String id){
+		ReturnInfo<Business> ret = new ReturnInfo<Business>();
+		Business business = businessService.selBusinessById(id);
+		if(business != null){
+			ret.setData(business);
+		}
+		return ret;
+		
+	}
+	
+	@RequestMapping(value = "/delBusiness",method = RequestMethod.POST)
+	public ReturnInfo<Business> delBusiness(String id){
+		ReturnInfo<Business> ret = new ReturnInfo<Business>();
+		boolean flag = businessService.delBusiness(id);
+		if(flag == true){
+			ret.setResult(200);
+		}
+		return ret;
+	}
+	
+	@RequestMapping(value = "/updateBusiness",method = RequestMethod.POST)
+	public ReturnInfo<String> updateBusiness(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request){
+		ReturnInfo<String> ret = new ReturnInfo<String>();
+		String busName = request.getParameter("busName").toString();
+		String busLicense = request.getParameter("busLicense").toString();
+		String busAddress = request.getParameter("busAddress").toString();
+		String id = request.getParameter("id").toString();
+		String status = request.getParameter("status").toString();
+		Business business = new Business();
+	    
+		business.setBusName(busName);
+		business.setBusLicense(busLicense);
+		business.setBusAddress(busAddress);
+		business.setId(id);
+		business.setIsCheck(status);
+		if(file.isEmpty() == false){
+			String fileName =  UUID.randomUUID()+file.getOriginalFilename();
+			String filePath = request.getSession().getServletContext().getRealPath("upload/");
+			try {
+			    FileUtils.uploadFile(file.getBytes(), filePath, fileName);
+			} catch (Exception e) {
+			        
+			}
+			business.setBusImg(fileName);
+		
+		}
+		
+		
+		boolean flag = businessService.updateBusiness(business);
+		if(flag == true){
+			ret.setResult(200);
+		}
+		return ret;
+	}
+	@RequestMapping(value="/selGoods",method=RequestMethod.GET)
+	public ReturnInfo<List<Goods>> selGoods(){
+		ReturnInfo<List<Goods>> ret = new ReturnInfo<List<Goods>>();
+		List<Goods> list = goodsService.selAllGoods();
+		if(list != null){
+			ret.setData(list);
+			ret.setResult(200);
+		}
+		return ret;
+	}
+	
+	@RequestMapping(value = "/selGoodsById",method=RequestMethod.GET)
+	public ReturnInfo<Goods> selGoodsById(String id){
+		ReturnInfo<Goods> ret = new ReturnInfo<Goods>();
+		Goods goods = goodsService.selGoodsById(id);
+		if(goods != null){
+			ret.setData(goods);
+		}
+		return ret;
+		
+	}
+	
 }

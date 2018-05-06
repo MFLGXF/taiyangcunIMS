@@ -211,7 +211,7 @@
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
-										    	Dennis Ji
+										    	admin
 										     </span>
 											<span class="time">
 										    	6 min
@@ -227,7 +227,7 @@
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
-										    	Dennis Ji
+										    	admin
 										     </span>
 											<span class="time">
 										    	56 min
@@ -243,7 +243,7 @@
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
-										    	Dennis Ji
+										    	admin
 										     </span>
 											<span class="time">
 										    	3 hours
@@ -295,7 +295,7 @@
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> Dennis Ji
+								<i class="halflings-icon white user"></i> admin
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -347,20 +347,16 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">Home</a>
-					<i class="icon-angle-right"></i> 
+					<a href="index.html">Home</a> 
+					<i class="icon-angle-right"></i>
 				</li>
-				<li>
-					<i class="icon-edit"></i>
-					<a href="#">Forms</a>
-				</li>
+				<li><a href="#">Tables</a></li>
 			</ul>
-			
-			
-			<div class="row-fluid sortable">
+
+			<div class="row-fluid sortable">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>发布产品</h2>
+						<h2><i class="halflings-icon white user"></i><span class="break"></span>企业列表</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -368,76 +364,35 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal" id="addproduce">
-							<fieldset>
-							  <div class="control-group">
-								<label class="control-label" for="selectError">产品类型</label>
-								<div class="controls">
-								  <select id="goodsType" data-rel="chosen" name="goodsType">
-									<option value="食品类型">食品类型</option>
-									<option value="工艺品">工艺品</option>
-									<option>Option 3</option>
-									<option>Option 4</option>
-									<option>Option 5</option>
-								  </select>
-								</div>
-							  </div>
-							 
-							  <div class="control-group success">
-								<label class="control-label" for="inputSuccess">产品名称</label>
-								<div class="controls">
-								  <input type="text" id="inputSuccess" name="goodsName">
-								  <span class="help-inline">enter goods name</span>
-								</div>
-							  </div>
-							 
-							  <div class="control-group warning">
-								<label class="control-label" for="inputWarning">产品产地</label>
-								<div class="controls">
-								  <input type="text" id="inputWarning" name="goodsAddress">
-								  <span class="help-inline">enter goods place</span>
-								</div>
-							  </div>
-							  <div class="control-group error">
-								<label class="control-label" for="inputError">产品价格</label>
-								<div class="controls">
-								  <input type="text" id="inputError" name="goodsPrice">
-								  <span class="help-inline">enter goods price</span>
-								</div>
-							  </div>
-							  
-							   <div class="control-group error">
-								<label class="control-label" for="selectError"><font color="pink">所属公司</font></label>
-								<div class="controls">
-								  <select id="company" data-rel="chosen" name="business">
-									
-								  </select>
-								</div>
-							  </div>
-							  <div class="control-group">
-								  <label class="control-label" for="inputError"><font color="blue">产品图片</font></label>
-								  <div class="controls">
-									 <input type="file" name="file"/>
-								  </div>								
-							  </div>
-							  
+						<table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>LOGO</th>
+								  <th>公司名称</th>
+								  <th>许可编号</th>
+								  <th>公司地址</th>
+								  <th>当前状态</th>
+								  <th>操作</th>
+							  </tr>
+						  </thead>   
+						  <form id="info">
+						  <tbody id="business">
 							
-							  <div class="form-actions">
-								<button type="button" class="btn btn-primary" onclick="addproduce()">Save changes</button>
-								<button type="reset" class="btn">Cancel</button>
-							  </div>
-							</fieldset>
+							
+							
+							
+						  </tbody>
 						  </form>
-					
+					  </table>            
 					</div>
 				</div><!--/span-->
 			
 			</div><!--/row-->
-			
-			
 
 			
-    
+			
+			
+		
 
 	</div><!--/.fluid-container-->
 	
@@ -458,7 +413,14 @@
 			<a href="#" class="btn btn-primary">Save changes</a>
 		</div>
 	</div>
-	
+	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-content">
+			<ul class="list-inline item-details">
+				<li><a href="#">Admin templates</a></li>
+				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
+			</ul>
+		</div>
+	</div>
 	<div class="clearfix"></div>
 	
 	<footer>
@@ -531,52 +493,68 @@
 	
 </body>
 <script>
-	 function addproduce(){
-	  var formData = new FormData($( "#addproduce" )[0]);  
-		$.ajax({
-		    type : "POST",  
-            url : "business/addproduce",//路径  
-            data : formData,
-            async: false,  
-            cache: false,  
-            contentType: false,  
-            processData: false,  
-            success : function(data){
-             if(data.result == 200){
-             	 sweetAlert("上传商品成功", "","success");
-             }else if(data.result == 202){
-             	 sweetAlert("请上传商品照片", "","warning");
-             }else if(data.result == 201){
-             	 sweetAlert("请填写商品信息", "","warning");
-             }else if(data.result == 500){
-                 sweetAlert("服务器错误", "","error");
-             }           
-            }
-		})
-		}
-</script>
-<script>
 	$(document).ready(function(){
-	var id = getQueryVariable("id");
 		$.ajax({  
 	     type : "GET",  
-	     url : "admin/toSelBusinessChecked",//路径  
+	     url : "admin/toSelAllBusiness",//路径  
 	     dataType: "json",
-	     data:{id:id},
 	     success : function(data) {//返回数据根据结果进行相应的处理     
 	     var data = data.data;
 	  	 var business = "";
 	  	 console.log(data);
 	  	 for(var i=0;i<data.length;i++){
-	  	
-	  	  business += "<option value='"+data[i].busName+"'>"+data[i].busName+"</option>"
+	  	  if(data[i].isCheck == 0){
+	  	   status = "label-warning";
+	  	   statue = "待审核";
+	  	  }else if(data[i].isCheck == 1){
+	  	   status = "label-success";
+	  	  statue = "已审核";
+	  	  }else if(data[i].isCheck == 2){
+	  	   status = "label-danger";
+	  	  statue = "已拒绝";
+	  	  }
+	  	  business += "<tr><td class='center'><input type='hidden' name='id' id='id' value='"+data[i].id+"' /><img src='upload/"+data[i].busImg+"' height='40' width='40'></td><td class='center'>"+data[i].busName+"</td><td class='center'>"+data[i].busLicense+"</td><td class='center'>"+data[i].busAddress+"</td><td class='center'><span class='label "+status+"'>"+statue+"</span></td><td class='center'><a class='btn btn-success' href='businessInfo.html?id="+data[i].id+"'><i class='halflings-icon white zoom-in'></i></a><button class='btn btn-danger' onclick='delBusiness()'><i class='halflings-icon white trash'></i></button></td></tr>"
 	  	 }
-	  	 console.log(business);
 	  	
-	  	 $(".company").html('').append(business);
+	  	 $("#business").html('').append(business);
 	     } 
 	     });  
 	     })
 	
+	</script>
+	<script >
+	function delBusiness(){
+	var id = document.getElementById("id").value;
+	swal({ 
+		  title: '确定要删除吗?',
+		  text: "请谨慎操作!",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '删除',
+		  cancelButtonText : '取消'
+		}).then(function (isConfirm){
+			console.log(isConfirm);
+			 if(isConfirm.value == true){
+				$.ajax({
+				type : "POST",  
+	            url : "admin/delBusiness",//路径  
+	            dataType: "json",
+	            data : {id:id},
+	            success : function(data){
+	             
+	             if(data.result == 200){
+	              sweetAlert("删除成功", "","success");
+	              }else if(data.result == 201){
+	              sweetAlert("删除失败", "","error");
+	              }
+	            }
+			    })
+			}
+		}
+		);
+	
+	}
 	</script>
 </html>

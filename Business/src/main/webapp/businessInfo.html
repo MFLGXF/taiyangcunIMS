@@ -52,7 +52,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html"><span>管理员后台</span></a>
+				<a class="brand" href="index.html"><span>企业后台</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -326,7 +326,7 @@
 						<li><a href="admin.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 首页</span></a></li>	
 						<li><a href="adminform.html"><i class="icon-edit"></i><span class="hidden-tablet"> 发布产品</span></a></li>
 						<li><a href="admintable.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> 审核企业</span></a></li>
-						<li><a href="adminGoods.html"><i class="icon-font"></i><span class="hidden-tablet"> 产品列表</span></a></li>
+						<li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> 产品列表</span></a></li>
 						
 					</ul>
 				</div>
@@ -360,7 +360,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>发布产品</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>公司详情</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -368,62 +368,54 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal" id="addproduce">
+						<form class="form-horizontal" id="businessInfo">
 							<fieldset>
-							  <div class="control-group">
-								<label class="control-label" for="selectError">产品类型</label>
-								<div class="controls">
-								  <select id="goodsType" data-rel="chosen" name="goodsType">
-									<option value="食品类型">食品类型</option>
-									<option value="工艺品">工艺品</option>
-									<option>Option 3</option>
-									<option>Option 4</option>
-									<option>Option 5</option>
-								  </select>
-								</div>
-							  </div>
+							 
 							 
 							  <div class="control-group success">
-								<label class="control-label" for="inputSuccess">产品名称</label>
-								<div class="controls">
-								  <input type="text" id="inputSuccess" name="goodsName">
-								  <span class="help-inline">enter goods name</span>
+								<label class="control-label" for="inputSuccess">公司名称</label>
+								<div class="controls busName">
+								  
+								 
 								</div>
 							  </div>
 							 
 							  <div class="control-group warning">
-								<label class="control-label" for="inputWarning">产品产地</label>
-								<div class="controls">
-								  <input type="text" id="inputWarning" name="goodsAddress">
-								  <span class="help-inline">enter goods place</span>
+								<label class="control-label" for="inputWarning">许可证号</label>
+								<div class="controls busLicense">
+								  
+								  
 								</div>
 							  </div>
 							  <div class="control-group error">
-								<label class="control-label" for="inputError">产品价格</label>
-								<div class="controls">
+								<label class="control-label" for="inputError">公司地址</label>
+								<div class="controls busAddress">
 								  <input type="text" id="inputError" name="goodsPrice">
-								  <span class="help-inline">enter goods price</span>
+								 
 								</div>
 							  </div>
 							  
 							   <div class="control-group error">
-								<label class="control-label" for="selectError"><font color="pink">所属公司</font></label>
-								<div class="controls">
-								  <select id="company" data-rel="chosen" name="business">
-									
-								  </select>
+								<label class="control-label" for="selectError"><font color="pink">LOGO</font></label>
+								<div class="controls busImg">
+								 
 								</div>
 							  </div>
-							  <div class="control-group">
-								  <label class="control-label" for="inputError"><font color="blue">产品图片</font></label>
-								  <div class="controls">
-									 <input type="file" name="file"/>
-								  </div>								
+							 
+							   
+							   <div class="control-group ">
+								<label class="control-label" for="selectError">修改状态</label>
+								<div class="controls status">
+								 	<select name="status" id="status">
+								 		<option value="0">未审核</option>
+								 		<option value="1">通过</option>
+								 		<option value="2">拒绝</option>
+								 	</select>
+								</div>
 							  </div>
-							  
 							
 							  <div class="form-actions">
-								<button type="button" class="btn btn-primary" onclick="addproduce()">Save changes</button>
+								<button type="button" class="btn btn-primary" onclick="updateBusiness()">Save changes</button>
 								<button type="reset" class="btn">Cancel</button>
 							  </div>
 							</fieldset>
@@ -558,25 +550,65 @@
 <script>
 	$(document).ready(function(){
 	var id = getQueryVariable("id");
+	
 		$.ajax({  
 	     type : "GET",  
-	     url : "admin/toSelBusinessChecked",//路径  
+	     url : "admin/selBusinessById",//路径  
 	     dataType: "json",
-	     data:{id:id},
+	     data :{id:id},
 	     success : function(data) {//返回数据根据结果进行相应的处理     
-	     var data = data.data;
-	  	 var business = "";
-	  	 console.log(data);
-	  	 for(var i=0;i<data.length;i++){
-	  	
-	  	  business += "<option value='"+data[i].busName+"'>"+data[i].busName+"</option>"
-	  	 }
-	  	 console.log(business);
-	  	
-	  	 $(".company").html('').append(business);
+	    
+	  	 console.log(data.data);
+	  	 busName = "<input type='hidden' name='id' value='"+data.data.id+"'/><input type='text' id='inputSuccess' name='busName' value='"+data.data.busName+"'>";
+	  	 
+	  	 $(".busName").html('').append(busName);
+	  	 
+	  	 busLicense = "<input type='text' id='inputWarning' name='busLicense' value='"+data.data.busLicense+"'>";
+	   	 $(".busLicense").html('').append(busLicense);
+	   	
+	   	 busAddress = "<input type='text' id='inputWarning' name='busAddress' value='"+data.data.busAddress+"'>";
+	   	 $(".busAddress").html('').append(busAddress);
+	   	 
+	   	 busImg = "<img src='upload/"+data.data.busImg+"' height='50' width='50'/><input type='file' name='file'/>";
+	     $(".busImg").html('').append(busImg);
 	     } 
 	     });  
 	     })
 	
+	</script>
+	<script>
+	
+	function getQueryVariable(variable)
+		{
+		       var query = window.location.search.substring(1);
+		       var vars = query.split("&");
+		       for (var i=0;i<vars.length;i++) {
+		               var pair = vars[i].split("=");
+		               if(pair[0] == variable){return pair[1];}
+		       }
+		       return(false);
+		}
+
+	</script>
+	<script>
+	function updateBusiness(){
+	
+		 var formData = new FormData($( "#businessInfo" )[0]);  
+		$.ajax({
+		    type : "POST",  
+            url : "admin/updateBusiness",//路径  
+            data : formData,
+            async: false,  
+            cache: false,  
+            contentType: false,  
+            processData: false,  
+            success : function(data){
+             if(data.result == 200){
+             swal("修改成功！", "","success");
+          	 }
+            }
+		})
+	    
+	}
 	</script>
 </html>

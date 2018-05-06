@@ -31,4 +31,33 @@ public class businessServiceImpl implements BusinessService {
 		return null;
 	}
 
+	@Override
+	public Business selBusinessById(String id) {
+		Business business = businessDao.selectByPrimaryKey(id);
+		if(business != null){
+			return business;
+		}
+		return null;
+	}
+
+	@Override
+	public boolean delBusiness(String id) {
+		int flag = businessDao.deleteByPrimaryKey(id);
+		if(flag > 0){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean updateBusiness(Business business) {
+		int flag = businessDao.updateByPrimaryKeySelective(business);
+		if(flag > 0){
+			return true;
+		}
+		return false;
+	}
+
+	
+
 }
