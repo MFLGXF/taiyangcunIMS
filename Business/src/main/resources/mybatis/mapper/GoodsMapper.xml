@@ -289,4 +289,13 @@
     order by create_time desc
     limit 8
   </select>
+   <select id="selGoodsBusiness" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where del_flag !=1
+    and goods_producer = #{goodsProducer,jdbcType=CHAR}
+    order by create_time desc
+    
+  </select>
 </mapper>

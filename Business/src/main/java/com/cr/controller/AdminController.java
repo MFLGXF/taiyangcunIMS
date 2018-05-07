@@ -14,13 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cr.common.FileUtils;
 import com.cr.common.ReturnInfo;
-import com.cr.common.UUIDUtils;
 import com.cr.domain.Business;
 import com.cr.domain.Goods;
 import com.cr.service.impl.BusinessService;
 import com.cr.service.impl.GoodsService;
-
-import io.undertow.attribute.RequestMethodAttribute;
 
 @RestController
 @RequestMapping("/admin")
@@ -131,5 +128,46 @@ public class AdminController {
 		return ret;
 		
 	}
+	@RequestMapping(value = "/updateGoods",method = RequestMethod.POST)
+	public ReturnInfo<String> updateGoods(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request){
+		ReturnInfo<String> ret = new ReturnInfo<String>();
+		String goodsName = request.getParameter("goodsName").toString();
+		String goodsPlace = request.getParameter("goodsPlace").toString();
+		String goodsPrice = request.getParameter("goodsPrice").toString();
+		String id = request.getParameter("id").toString();
+		
+		Goods goods = new Goods();
+		goods.setGoodsName(goodsName);
+		goods.setGoodsPlace(goodsPlace);
+		goods.setGoodsPrice(goodsPrice);
+		goods.setId(id);
+		if(file.isEmpty() == false){
+			String fileName =  UUID.randomUUID()+file.getOriginalFilename();
+			String filePath = request.getSession().getServletContext().getRealPath("upload/");
+			try {
+			    FileUtils.uploadFile(file.getBytes(), filePath, fileName);
+			} catch (Exception e) {
+			        
+			}
+			goods.setGoodsImg(fileName);
+		
+		}
+		
+		
+		boolean flag = goodsService.updateGoods(goods);
+		if(flag == true){
+			ret.setResult(200);
+		}
+		return ret;
+	}
 	
+	@RequestMapping(value = "/delGoods",method = RequestMethod.POST)
+	public ReturnInfo<Business> delGoods(String id){
+		ReturnInfo<Business> ret = new ReturnInfo<Business>();
+		boolean flag = goodsService.delGoods(id);
+		if(flag == true){
+			ret.setResult(200);
+		}
+		return ret;
+	}
 }

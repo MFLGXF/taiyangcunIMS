@@ -89,4 +89,14 @@ public class BusinessController {
 		}
 		return ret;
 	}
+	@RequestMapping(value="/selGoodsBusiness",method=RequestMethod.GET)
+	public ReturnInfo<List<Goods>> selGoodsBusiness(HttpServletRequest request){
+		ReturnInfo<List<Goods>> ret = new ReturnInfo<List<Goods>>();
+		List<Goods> list = goodsService.selGoodsBusiness(request.getSession().getAttribute("businessname").toString());
+		if(list != null){
+			ret.setData(list);
+			ret.setResult(200);
+		}
+		return ret;
+	}
 }

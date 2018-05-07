@@ -30,4 +30,5 @@ public interface GoodsMapper {
     
     List<Goods> selGoodsLimit();
     List<Goods> selGoods();
+    List<Goods> selGoodsBusiness(String goodsProducer);
 }

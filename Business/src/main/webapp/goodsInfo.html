@@ -326,7 +326,7 @@
 						<li><a href="admin.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 首页</span></a></li>	
 						<li><a href="adminform.html"><i class="icon-edit"></i><span class="hidden-tablet"> 发布产品</span></a></li>
 						<li><a href="admintable.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> 审核企业</span></a></li>
-						<li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> 产品列表</span></a></li>
+						<li><a href="adminGoods.html"><i class="icon-font"></i><span class="hidden-tablet"> 产品列表</span></a></li>
 						
 					</ul>
 				</div>
@@ -360,7 +360,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>公司详情</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>产品详情</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -373,46 +373,39 @@
 							 
 							 
 							  <div class="control-group success">
-								<label class="control-label" for="inputSuccess">公司名称</label>
-								<div class="controls busName">
+								<label class="control-label" for="inputSuccess">产品名称</label>
+								<div class="controls goodsName">
 								  
 								 
 								</div>
 							  </div>
 							 
-							  <div class="control-group warning">
-								<label class="control-label" for="inputWarning">许可证号</label>
-								<div class="controls busLicense">
-								  
-								  
+	
+							  <div class="control-group error">
+								<label class="control-label" for="inputError">产品产地</label>
+								<div class="controls goodsPlace">
+								 
+								 
 								</div>
 							  </div>
-							  <div class="control-group error">
-								<label class="control-label" for="inputError">公司地址</label>
-								<div class="controls busAddress">
-								  <input type="text" id="inputError" name="goodsPrice">
+							   <div class="control-group error">
+								<label class="control-label" for="inputError">产品价格</label>
+								<div class="controls goodsPrice">
+								  
 								 
 								</div>
 							  </div>
 							  
+							  
 							   <div class="control-group error">
-								<label class="control-label" for="selectError"><font color="pink">LOGO</font></label>
-								<div class="controls busImg">
+								<label class="control-label" for="selectError"><font color="pink">产品照片</font></label>
+								<div class="controls goodsImg">
 								 
 								</div>
 							  </div>
 							 
 							   
-							   <div class="control-group ">
-								<label class="control-label" for="selectError">修改状态</label>
-								<div class="controls status">
-								 	<select name="status" id="status">
-								 		<option value="0">未审核</option>
-								 		<option value="1">通过</option>
-								 		<option value="2">拒绝</option>
-								 	</select>
-								</div>
-							  </div>
+							  
 							
 							  <div class="form-actions">
 								<button type="button" class="btn btn-primary" onclick="updateBusiness()">Save changes</button>
@@ -563,14 +556,14 @@
 	  	 
 	  	 $(".goodsName").html('').append(goodsName);
 	  	 
-	  	 busLicense = "<input type='text' id='inputWarning' name='busLicense' value='"+data.data.busLicense+"'>";
-	   	 $(".busLicense").html('').append(busLicense);
+	  	 goodsPlace = "<input type='text' id='inputWarning' name='goodsPlace' value='"+data.data.goodsPlace+"'>";
+	   	 $(".goodsPlace").html('').append(goodsPlace);
 	   	
-	   	 busAddress = "<input type='text' id='inputWarning' name='busAddress' value='"+data.data.busAddress+"'>";
-	   	 $(".busAddress").html('').append(busAddress);
+	   	 goodsPrice = "<input type='text' id='inputWarning' name='goodsPrice' value='"+data.data.goodsPrice+"'>";
+	   	 $(".goodsPrice").html('').append(goodsPrice);
 	   	 
-	   	 busImg = "<img src='upload/"+data.data.busImg+"' height='50' width='50'/><input type='file' name='file'/>";
-	     $(".busImg").html('').append(busImg);
+	   	 goodsImg = "<img src='goods/"+data.data.goodsImg+"' height='50' width='50'/><input type='file' name='file'/>";
+	     $(".goodsImg").html('').append(goodsImg);
 	     } 
 	     });  
 	     })
@@ -596,7 +589,7 @@
 		 var formData = new FormData($( "#businessInfo" )[0]);  
 		$.ajax({
 		    type : "POST",  
-            url : "admin/updateBusiness",//路径  
+            url : "admin/updateGoods",//路径  
             data : formData,
             async: false,  
             cache: false,  

@@ -10,4 +10,7 @@ public interface GoodsService {
 	public List<Goods> selGoods();
 	public List<Goods> selAllGoods();
 	public Goods selGoodsById(String id);
+	public boolean updateGoods(Goods goods);
+	public boolean delGoods(String id);
+	public List<Goods> selGoodsBusiness(String goodsProducer);
 }

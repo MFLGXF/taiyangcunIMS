@@ -54,5 +54,29 @@ public class goodsServiceImpl implements GoodsService {
 		}
 		return null;
 	}
+	@Override
+	public boolean updateGoods(Goods goods) {
+		int flag = goodsDao.updateByPrimaryKeySelective(goods);
+		if(flag > 0){
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean delGoods(String id) {
+		int flag = goodsDao.deleteByPrimaryKey(id);
+		if(flag > 0){
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public List<Goods> selGoodsBusiness(String goodsProducer) {
+		List<Goods> list = goodsDao.selGoodsBusiness(goodsProducer);
+		if(list.size()>0){
+			return list;
+		}
+		return null;
+	}
 	
 }
