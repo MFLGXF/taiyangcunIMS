@@ -21,6 +21,8 @@ public class Goods {
 
     private Date createTime;
 
+    private String content;
+
     public String getId() {
         return id;
     }
@@ -91,5 +93,13 @@ public class Goods {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 }

@@ -50,6 +50,9 @@ public class goodsServiceImpl implements GoodsService {
 	public Goods selGoodsById(String id) {
 		Goods goods = goodsDao.selectByPrimaryKey(id);
 		if(goods != null){
+			if(goods.getContent() == null){
+				goods.setContent("暂无详情");
+			}
 			return goods;
 		}
 		return null;
@@ -74,6 +77,11 @@ public class goodsServiceImpl implements GoodsService {
 	public List<Goods> selGoodsBusiness(String goodsProducer) {
 		List<Goods> list = goodsDao.selGoodsBusiness(goodsProducer);
 		if(list.size()>0){
+			for(int i=0 ; i<list.size() ; i++){
+				if(list.get(i).getContent() == null){
+					list.get(i).setContent("暂无详情");
+				}
+			}
 			return list;
 		}
 		return null;

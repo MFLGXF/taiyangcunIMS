@@ -12,6 +12,9 @@
     <result column="goods_price" property="goodsPrice" jdbcType="CHAR" />
     <result column="create_time" property="createTime" jdbcType="DATE" />
   </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cr.domain.Goods" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -72,8 +75,27 @@
   </sql>
   <sql id="Base_Column_List" >
     id, goods_name, goods_type, goods_img, goods_place, goods_producer, del_flag, goods_price, 
-    create_time
+    create_time,content
   </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.cr.domain.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cr.domain.GoodsExample" >
     select
     <if test="distinct" >
@@ -88,9 +110,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from goods
     where id = #{id,jdbcType=CHAR}
   </select>
@@ -107,12 +131,12 @@
   <insert id="insert" parameterType="com.cr.domain.Goods" >
     insert into goods (id, goods_name, goods_type, 
       goods_img, goods_place, goods_producer, 
-      del_flag, goods_price, create_time
-      )
+      del_flag, goods_price, create_time, 
+      content)
     values (#{id,jdbcType=CHAR}, #{goodsName,jdbcType=CHAR}, #{goodsType,jdbcType=CHAR}, 
       #{goodsImg,jdbcType=VARCHAR}, #{goodsPlace,jdbcType=CHAR}, #{goodsProducer,jdbcType=CHAR}, 
-      #{delFlag,jdbcType=CHAR}, #{goodsPrice,jdbcType=CHAR}, #{createTime,jdbcType=DATE}
-      )
+      #{delFlag,jdbcType=CHAR}, #{goodsPrice,jdbcType=CHAR}, #{createTime,jdbcType=DATE}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cr.domain.Goods" >
     insert into goods
@@ -144,6 +168,9 @@
       <if test="createTime != null" >
         create_time,
       </if>
+      <if test="content != null" >
+        content,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -172,6 +199,9 @@
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=DATE},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -211,7 +241,26 @@
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=DATE},
       </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update goods
+    set id = #{record.id,jdbcType=CHAR},
+      goods_name = #{record.goodsName,jdbcType=CHAR},
+      goods_type = #{record.goodsType,jdbcType=CHAR},
+      goods_img = #{record.goodsImg,jdbcType=VARCHAR},
+      goods_place = #{record.goodsPlace,jdbcType=CHAR},
+      goods_producer = #{record.goodsProducer,jdbcType=CHAR},
+      del_flag = #{record.delFlag,jdbcType=CHAR},
+      goods_price = #{record.goodsPrice,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=DATE},
+      content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -258,7 +307,23 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=DATE},
       </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cr.domain.Goods" >
+    update goods
+    set goods_name = #{goodsName,jdbcType=CHAR},
+      goods_type = #{goodsType,jdbcType=CHAR},
+      goods_img = #{goodsImg,jdbcType=VARCHAR},
+      goods_place = #{goodsPlace,jdbcType=CHAR},
+      goods_producer = #{goodsProducer,jdbcType=CHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      goods_price = #{goodsPrice,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cr.domain.Goods" >

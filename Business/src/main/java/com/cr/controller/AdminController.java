@@ -135,12 +135,13 @@ public class AdminController {
 		String goodsPlace = request.getParameter("goodsPlace").toString();
 		String goodsPrice = request.getParameter("goodsPrice").toString();
 		String id = request.getParameter("id").toString();
-		
+		String content = request.getParameter("content").toString();
 		Goods goods = new Goods();
 		goods.setGoodsName(goodsName);
 		goods.setGoodsPlace(goodsPlace);
 		goods.setGoodsPrice(goodsPrice);
 		goods.setId(id);
+		goods.setContent(content);
 		if(file.isEmpty() == false){
 			String fileName =  UUID.randomUUID()+file.getOriginalFilename();
 			String filePath = request.getSession().getServletContext().getRealPath("upload/");

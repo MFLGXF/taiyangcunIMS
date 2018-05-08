@@ -211,7 +211,7 @@
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
-										    	Dennis Ji
+										    	ZhangYing
 										     </span>
 											<span class="time">
 										    	6 min
@@ -323,10 +323,9 @@
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="admin.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 首页</span></a></li>	
-						<li><a href="adminform.html"><i class="icon-edit"></i><span class="hidden-tablet"> 发布产品</span></a></li>
-						<li><a href="admintable.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> 审核企业</span></a></li>
-						<li><a href="adminGoods.html"><i class="icon-font"></i><span class="hidden-tablet"> 产品列表</span></a></li>
+						<li><a href="business.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 首页</span></a></li>	
+						<li><a href="businessform.html"><i class="icon-edit"></i><span class="hidden-tablet"> 发布产品</span></a></li>
+						<li><a href="businessTable.html"><i class="icon-font"></i><span class="hidden-tablet"> 产品列表</span></a></li>
 						
 					</ul>
 				</div>
@@ -403,6 +402,10 @@
 								 
 								</div>
 							  </div>
+							  
+							    <div class="control-group error goodsContent">
+								
+							    </div>
 							 
 							   
 							  
@@ -564,6 +567,9 @@
 	   	 
 	   	 goodsImg = "<img src='goods/"+data.data.goodsImg+"' height='50' width='50'/><input type='file' name='file'/>";
 	     $(".goodsImg").html('').append(goodsImg);
+	     
+	     goodsContent = "<textarea class='cleditor' id='content' rows='1' name='content' style='width:300px;'>"+data.data.content+"</textarea>"
+	     $(".goodsContent").html('').append(goodsContent);
 	     } 
 	     });  
 	     })

@@ -31,7 +31,7 @@ public class BusinessController {
 		String goodsAddress = request.getParameter("goodsAddress");
 		String goodsPrice = request.getParameter("goodsPrice");
 		String goodsType = request.getParameter("goodsType");
-		
+		String goodsContent = request.getParameter("content");
 		if("".equals(goodsName) | "".equals(goodsAddress) | "".equals(goodsPrice) | "".equals(goodsType)){
 			ret.setResult(201);
 			return ret;
@@ -44,6 +44,7 @@ public class BusinessController {
 		goods.setGoodsPlace(goodsAddress);
 		goods.setGoodsType(goodsType);
 		goods.setCreateTime(new Date());
+		goods.setContent(goodsContent);
 		goods.setDelFlag("0");
 		if(file.isEmpty() == false){
 			String fileName =  UUID.randomUUID()+file.getOriginalFilename();
