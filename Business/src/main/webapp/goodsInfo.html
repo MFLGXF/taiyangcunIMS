@@ -403,6 +403,13 @@
 								</div>
 							  </div>
 							  
+							   <div class="control-group error">
+								<label class="control-label" for="selectError"></label>
+								<div class="controls qrcode">
+								 
+								</div>
+							  </div>
+							  
 							    <div class="control-group error goodsContent">
 								
 							    </div>
@@ -565,11 +572,14 @@
 	   	 goodsPrice = "<input type='text' id='inputWarning' name='goodsPrice' value='"+data.data.goodsPrice+"'>";
 	   	 $(".goodsPrice").html('').append(goodsPrice);
 	   	 
-	   	 goodsImg = "<img src='goods/"+data.data.goodsImg+"' height='50' width='50'/><input type='file' name='file'/>";
+	   	 goodsImg = "<img src='goods"+data.data.goodsImg+"' height='50' width='50'/><input type='file' name='file'/>";
 	     $(".goodsImg").html('').append(goodsImg);
 	     
 	     goodsContent = "<textarea class='cleditor' id='content' rows='1' name='content' style='width:300px;'>"+data.data.content+"</textarea>"
 	     $(".goodsContent").html('').append(goodsContent);
+	     
+	       qrcode = "<img src='goods"+data.data.qrcode+"' height='80' width='80'/>";
+	     $(".qrcode").html('').append(qrcode);
 	     } 
 	     });  
 	     })

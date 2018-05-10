@@ -21,6 +21,8 @@ public class Goods {
 
     private Date createTime;
 
+    private String qrcode;
+
     private String content;
 
     public String getId() {
@@ -93,6 +95,14 @@ public class Goods {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getQrcode() {
+        return qrcode;
+    }
+
+    public void setQrcode(String qrcode) {
+        this.qrcode = qrcode == null ? null : qrcode.trim();
     }
 
     public String getContent() {

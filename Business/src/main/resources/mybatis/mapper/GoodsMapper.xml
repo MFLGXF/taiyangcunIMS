@@ -11,6 +11,7 @@
     <result column="del_flag" property="delFlag" jdbcType="CHAR" />
     <result column="goods_price" property="goodsPrice" jdbcType="CHAR" />
     <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="qrcode" property="qrcode" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.cr.domain.Goods" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, goods_name, goods_type, goods_img, goods_place, goods_producer, del_flag, goods_price, 
-    create_time,content
+    create_time, qrcode
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -132,11 +133,11 @@
     insert into goods (id, goods_name, goods_type, 
       goods_img, goods_place, goods_producer, 
       del_flag, goods_price, create_time, 
-      content)
+      qrcode, content)
     values (#{id,jdbcType=CHAR}, #{goodsName,jdbcType=CHAR}, #{goodsType,jdbcType=CHAR}, 
       #{goodsImg,jdbcType=VARCHAR}, #{goodsPlace,jdbcType=CHAR}, #{goodsProducer,jdbcType=CHAR}, 
       #{delFlag,jdbcType=CHAR}, #{goodsPrice,jdbcType=CHAR}, #{createTime,jdbcType=DATE}, 
-      #{content,jdbcType=LONGVARCHAR})
+      #{qrcode,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cr.domain.Goods" >
     insert into goods
@@ -167,6 +168,9 @@
       </if>
       <if test="createTime != null" >
         create_time,
+      </if>
+      <if test="qrcode != null" >
+        qrcode,
       </if>
       <if test="content != null" >
         content,
@@ -199,6 +203,9 @@
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=DATE},
+      </if>
+      <if test="qrcode != null" >
+        #{qrcode,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
@@ -241,6 +248,9 @@
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=DATE},
       </if>
+      <if test="record.qrcode != null" >
+        qrcode = #{record.qrcode,jdbcType=VARCHAR},
+      </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=LONGVARCHAR},
       </if>
@@ -260,6 +270,7 @@
       del_flag = #{record.delFlag,jdbcType=CHAR},
       goods_price = #{record.goodsPrice,jdbcType=CHAR},
       create_time = #{record.createTime,jdbcType=DATE},
+      qrcode = #{record.qrcode,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -275,7 +286,8 @@
       goods_producer = #{record.goodsProducer,jdbcType=CHAR},
       del_flag = #{record.delFlag,jdbcType=CHAR},
       goods_price = #{record.goodsPrice,jdbcType=CHAR},
-      create_time = #{record.createTime,jdbcType=DATE}
+      create_time = #{record.createTime,jdbcType=DATE},
+      qrcode = #{record.qrcode,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -307,6 +319,9 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=DATE},
       </if>
+      <if test="qrcode != null" >
+        qrcode = #{qrcode,jdbcType=VARCHAR},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -323,6 +338,7 @@
       del_flag = #{delFlag,jdbcType=CHAR},
       goods_price = #{goodsPrice,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=DATE},
+      qrcode = #{qrcode,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -335,7 +351,8 @@
       goods_producer = #{goodsProducer,jdbcType=CHAR},
       del_flag = #{delFlag,jdbcType=CHAR},
       goods_price = #{goodsPrice,jdbcType=CHAR},
-      create_time = #{createTime,jdbcType=DATE}
+      create_time = #{createTime,jdbcType=DATE},
+      qrcode = #{qrcode,jdbcType=VARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
    <select id="selGoodsLimit" resultMap="BaseResultMap"  >

@@ -522,7 +522,7 @@
 	  	   color="blue";
 	  	  }
 	  	
-	  	  goods += "<li class='"+color+"'><a href='#'><img class='avatar' alt='"+data[i].goodsName+"' src='goods/"+data[i].goodsImg+"'></a><strong>商品名称:</strong> "+data[i].goodsName+"<br><strong>商品类型:</strong>"+data[i].goodsType+"<br><strong>商品产地:</strong>"+data[i].goodsPlace+"<br></li>"
+	  	  goods += "<li class='"+color+"'><a href='#'><img class='avatar' alt='"+data[i].goodsName+"' src='goods"+data[i].goodsImg+"'></a><strong>商品名称:</strong> "+data[i].goodsName+"<br><strong>商品类型:</strong>"+data[i].goodsType+"<br><strong>商品产地:</strong>"+data[i].goodsPlace+"<br></li>"
 	  	 }
 	  	 console.log(goods);
 	  	 $("#goods").html('').append(goods);

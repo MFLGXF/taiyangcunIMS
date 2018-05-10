@@ -569,8 +569,10 @@
 	   	 busAddress = "<input type='text' id='inputWarning' name='busAddress' value='"+data.data.busAddress+"'>";
 	   	 $(".busAddress").html('').append(busAddress);
 	   	 
-	   	 busImg = "<img src='upload/"+data.data.busImg+"' height='50' width='50'/><input type='file' name='file'/>";
+	   	 busImg = "<img src='upload"+data.data.busImg+"' height='50' width='50'/><input type='file' name='file'/>";
 	     $(".busImg").html('').append(busImg);
+	     
+	    
 	     } 
 	     });  
 	     })

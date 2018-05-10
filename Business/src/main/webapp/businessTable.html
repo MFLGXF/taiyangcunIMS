@@ -504,7 +504,7 @@
 	  	 console.log(data);
 	  	 for(var i=0;i<data.length;i++){
 	  	
-	  	  business += "<tr><td class='center'><input type='hidden' name='id' id='id' value='"+data[i].id+"' /><img src='goods/"+data[i].goodsImg+"' height='40' width='40'></td><td class='center'>"+data[i].goodsName+"</td><td class='center'>"+data[i].goodsType+"</td><td class='center'>"+data[i].goodsPlace+"</td><td class='center'>"+data[i].goodsProducer+"</td><td class='center'>￥："+data[i].goodsPrice+"（元）</td><td class='center'><a class='btn btn-success' href='goodsInfo.html?id="+data[i].id+"'><i class='halflings-icon white zoom-in'></i></a><button class='btn btn-danger' onclick='delBusiness()'><i class='halflings-icon white trash'></i></button></td></tr>"
+	  	  business += "<tr><td class='center'><input type='hidden' name='id' id='id' value='"+data[i].id+"' /><img src='goods"+data[i].goodsImg+"' height='40' width='40'></td><td class='center'>"+data[i].goodsName+"</td><td class='center'>"+data[i].goodsType+"</td><td class='center'>"+data[i].goodsPlace+"</td><td class='center'>"+data[i].goodsProducer+"</td><td class='center'>￥："+data[i].goodsPrice+"（元）</td><td class='center'><a class='btn btn-success' href='goodsInfo.html?id="+data[i].id+"'><i class='halflings-icon white zoom-in'></i></a><button class='btn btn-danger' onclick='delBusiness()'><i class='halflings-icon white trash'></i></button></td></tr>"
 	  	 }
 	  	
 	  	 $("#business").html('').append(business);

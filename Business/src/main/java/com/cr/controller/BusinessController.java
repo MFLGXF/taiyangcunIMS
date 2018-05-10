@@ -1,5 +1,7 @@
 package com.cr.controller;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cr.common.FileUtils;
+import com.cr.common.QRCodeUtils;
 import com.cr.common.ReturnInfo;
 import com.cr.common.UUIDUtils;
 import com.cr.domain.Goods;
@@ -25,7 +28,7 @@ public class BusinessController {
 	@Resource
 	private GoodsService goodsService;
 	@RequestMapping(value="/addproduce",method=RequestMethod.POST)
-	public ReturnInfo<Goods> addproduce(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request){
+	public ReturnInfo<Goods> addproduce(@RequestParam(value = "file") MultipartFile file,HttpServletRequest request) throws UnsupportedEncodingException, IOException{
 		ReturnInfo<Goods> ret = new ReturnInfo<Goods>();
 		String goodsName = request.getParameter("goodsName");
 		String goodsAddress = request.getParameter("goodsAddress");
@@ -45,10 +48,12 @@ public class BusinessController {
 		goods.setGoodsType(goodsType);
 		goods.setCreateTime(new Date());
 		goods.setContent(goodsContent);
+		
 		goods.setDelFlag("0");
+		String filePath = request.getSession().getServletContext().getRealPath("goods/");
 		if(file.isEmpty() == false){
 			String fileName =  UUID.randomUUID()+file.getOriginalFilename();
-			String filePath = request.getSession().getServletContext().getRealPath("goods/");
+			
 			try {
 			    FileUtils.uploadFile(file.getBytes(), filePath, fileName);
 			} catch (Exception e) {
@@ -59,7 +64,12 @@ public class BusinessController {
 			ret.setResult(202);
 			return ret;
 		}
+		String qrData = "【商品名称：】" + goodsName + "   【商品价格：】" + goodsPrice + "    【商品详情：】" + goodsContent;
+		String name =  "qr"+UUID.randomUUID()+".jpg";
+		String fileName =  filePath+ name;
 		
+		QRCodeUtils.createORcode(qrData, fileName);
+		goods.setQrcode(name);
 		boolean flag = goodsService.addProduce(goods);
 		if(flag == true){
 			ret.setResult(200);
