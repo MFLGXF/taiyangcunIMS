@@ -7,10 +7,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.cr.VO.CommentVO;
 import com.cr.common.UUIDUtils;
 import com.cr.dao.CommentMapper;
 import com.cr.domain.Comment;
+import com.cr.vo.CommentVO;
 @Service
 public class CommentServiceImpl implements CommentService {
 	@Resource

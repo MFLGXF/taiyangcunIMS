@@ -327,6 +327,7 @@
 						<li><a href="adminform.html"><i class="icon-edit"></i><span class="hidden-tablet"> 发布产品</span></a></li>
 						<li><a href="admintable.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> 审核企业</span></a></li>
 						<li><a href="adminGoods.html"><i class="icon-font"></i><span class="hidden-tablet"> 产品列表</span></a></li>
+						<li><a href="adminCategory.html"><i class="icon-reorder"></i><span class="hidden-tablet"> 类型管理</span></a></li>
 						
 					</ul>
 				</div>
@@ -505,7 +506,7 @@
 	  	 console.log(data);
 	  	 for(var i=0;i<data.length;i++){
 	  	
-	  	  business += "<tr><td class='center'><input type='hidden' name='id' id='id' value='"+data[i].id+"' /><img src='goods/"+data[i].goodsImg+"' height='40' width='40'></td><td class='center'>"+data[i].goodsName+"</td><td class='center'>"+data[i].goodsType+"</td><td class='center'>"+data[i].goodsPlace+"</td><td class='center'>"+data[i].goodsProducer+"</td><td class='center'>￥："+data[i].goodsPrice+"（元）</td><td class='center'><a class='btn btn-success' href='goodsInfo.html?id="+data[i].id+"'><i class='halflings-icon white zoom-in'></i></a><button class='btn btn-danger' onclick='delBusiness()'><i class='halflings-icon white trash'></i></button></td></tr>"
+	  	  business += "<tr><td class='center'><input type='hidden' name='id' id='id' value='"+data[i].id+"' /><img src='goods"+data[i].goodsImg+"' height='40' width='40'></td><td class='center'>"+data[i].goodsName+"</td><td class='center'>"+data[i].goodsType+"</td><td class='center'>"+data[i].goodsPlace+"</td><td class='center'>"+data[i].goodsProducer+"</td><td class='center'>￥："+data[i].goodsPrice+"（元）</td><td class='center'><a class='btn btn-success' href='goodsInfo.html?id="+data[i].id+"'><i class='halflings-icon white zoom-in'></i></a><button class='btn btn-danger' onclick='delBusiness()'><i class='halflings-icon white trash'></i></button></td></tr>"
 	  	 }
 	  	
 	  	 $("#business").html('').append(business);

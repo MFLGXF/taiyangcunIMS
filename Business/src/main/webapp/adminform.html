@@ -327,6 +327,7 @@
 						<li><a href="adminform.html"><i class="icon-edit"></i><span class="hidden-tablet"> 发布产品</span></a></li>
 						<li><a href="admintable.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> 审核企业</span></a></li>
 						<li><a href="adminGoods.html"><i class="icon-font"></i><span class="hidden-tablet"> 产品列表</span></a></li>
+						<li><a href="adminCategory.html"><i class="icon-reorder"></i><span class="hidden-tablet"> 类型管理</span></a></li>
 						
 					</ul>
 				</div>
@@ -373,12 +374,8 @@
 							  <div class="control-group">
 								<label class="control-label" for="selectError">产品类型</label>
 								<div class="controls">
-								  <select id="goodsType" data-rel="chosen" name="goodsType">
-									<option value="食品类型">食品类型</option>
-									<option value="工艺品">工艺品</option>
-									<option>Option 3</option>
-									<option>Option 4</option>
-									<option>Option 5</option>
+								  <select id="goodsType"  name="goodsType" class="category">
+									
 								  </select>
 								</div>
 							  </div>
@@ -409,7 +406,7 @@
 							   <div class="control-group error">
 								<label class="control-label" for="selectError"><font color="pink">所属公司</font></label>
 								<div class="controls">
-								  <select id="company" data-rel="chosen" name="business">
+								  <select id="company"  name="business" class="company">
 									
 								  </select>
 								</div>
@@ -557,12 +554,11 @@
 </script>
 <script>
 	$(document).ready(function(){
-	var id = getQueryVariable("id");
 		$.ajax({  
 	     type : "GET",  
 	     url : "admin/toSelBusinessChecked",//路径  
 	     dataType: "json",
-	     data:{id:id},
+	   
 	     success : function(data) {//返回数据根据结果进行相应的处理     
 	     var data = data.data;
 	  	 var business = "";
@@ -579,4 +575,25 @@
 	     })
 	
 	</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajax({  
+	     type : "GET",  
+	     url : "category/selCategory",//路径  
+	     dataType: "json",
+	     success : function(data) {//返回数据根据结果进行相应的处理     
+	     var data = data.data;
+	  	 var category = "";
+	  	 console.log(data);
+	  	 for(var i=0;i<data.length;i++){
+	  	
+	  	  category += "<option value='"+data[i].categoryName+"'>"+data[i].categoryName+"</option>"
+	  	 }
+	  	 console.log(category);
+	  	
+	  	 $(".category").html('').append(category);
+	     } 
+	     });
+})
+</script>
 </html>

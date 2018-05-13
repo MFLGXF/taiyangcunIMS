@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cr.VO.CommentVO;
 import com.cr.common.ReturnInfo;
 import com.cr.domain.Comment;
 import com.cr.service.impl.CommentService;
 import com.cr.service.impl.LoginService;
+import com.cr.vo.CommentVO;
 
 @RestController
 @RequestMapping("/comment")

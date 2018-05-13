@@ -2,8 +2,8 @@ package com.cr.service.impl;
 
 import java.util.List;
 
-import com.cr.VO.CommentVO;
 import com.cr.domain.Comment;
+import com.cr.vo.CommentVO;
 
 public interface CommentService {
 

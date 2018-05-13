@@ -327,6 +327,7 @@
 						<li><a href="adminform.html"><i class="icon-edit"></i><span class="hidden-tablet"> 发布产品</span></a></li>
 						<li><a href="admintable.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> 审核企业</span></a></li>
 						<li><a href="adminGoods.html"><i class="icon-font"></i><span class="hidden-tablet"> 产品列表</span></a></li>
+						<li><a href="adminCategory.html"><i class="icon-reorder"></i><span class="hidden-tablet"> 类型管理</span></a></li>
 						
 					</ul>
 				</div>
@@ -523,7 +524,7 @@
 	  	   color="blue";
 	  	  }
 	  	
-	  	  goods += "<li class='"+color+"'><a href='#'><img class='avatar' alt='"+data[i].goodsName+"' src='goods/"+data[i].goodsImg+"'></a><strong>商品名称:</strong> "+data[i].goodsName+"<br><strong>商品类型:</strong>"+data[i].goodsType+"<br><strong>商品产地:</strong>"+data[i].goodsPlace+"<br></li>"
+	  	  goods += "<li class='"+color+"'><a href='#'><img class='avatar' alt='"+data[i].goodsName+"' src='goods"+data[i].goodsImg+"'></a><strong>商品名称:</strong> "+data[i].goodsName+"<br><strong>商品类型:</strong>"+data[i].goodsType+"<br><strong>商品产地:</strong>"+data[i].goodsPlace+"<br></li>"
 	  	 }
 	  	 console.log(goods);
 	  	 $("#goods").html('').append(goods);

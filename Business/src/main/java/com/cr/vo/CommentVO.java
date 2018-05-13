@@ -1,4 +1,4 @@
-package com.cr.VO;
+package com.cr.vo;
 
 import java.util.List;
 
