@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2018-04-30 13:48:32
+Date: 2018-05-12 20:58:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,11 +21,11 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `balance_and_payment`;
 CREATE TABLE `balance_and_payment` (
   `id` varchar(32) NOT NULL,
-  `bp_name` varchar(200) NOT NULL DEFAULT '收支名称',
-  `bp_type` varchar(200) NOT NULL COMMENT '收支类型',
-  `bp_time` datetime NOT NULL,
-  `bp_count` int(11) DEFAULT NULL,
-  `delete_flag` int(11) DEFAULT NULL,
+  `bp_name` varchar(200) NOT NULL DEFAULT '收支名称' COMMENT '收支名称',
+  `bp_type` varchar(200) NOT NULL COMMENT '收支类型（支出和收入）',
+  `bp_time` datetime NOT NULL COMMENT '收支发生的时间',
+  `bp_count` int(11) DEFAULT NULL COMMENT '收支金额',
+  `delete_flag` int(11) DEFAULT NULL COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -109,15 +109,15 @@ INSERT INTO `device` VALUES ('09bbcf90af8b48f6a4ded9b54e1da38c', '单反相机',
 -- ----------------------------
 DROP TABLE IF EXISTS `economy`;
 CREATE TABLE `economy` (
-  `id` varchar(32) NOT NULL,
-  `e_name` varchar(200) NOT NULL,
+  `id` varchar(32) NOT NULL COMMENT '主键id',
+  `e_name` varchar(200) NOT NULL COMMENT '套系名称',
   `e_photographyer` int(11) DEFAULT NULL COMMENT '摄影师数量',
   `e_modelling` int(11) DEFAULT NULL COMMENT '是否需要化妆or造型',
   `e_price` int(11) DEFAULT NULL COMMENT '套系价格',
   `e_location` varchar(200) DEFAULT NULL COMMENT '内景或者外景',
   `e_discription` text COMMENT '套系描述',
-  `product_ids` text COMMENT '关联的产品的id串',
-  `delete_flag` int(11) NOT NULL,
+  `product_ids` text COMMENT '关联的产品外键',
+  `delete_flag` int(11) NOT NULL COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
@@ -132,15 +132,15 @@ INSERT INTO `economy` VALUES ('d89c670fe21d47c29c882124c006ce4b', '冯文秀', '
 -- ----------------------------
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
-  `id` varchar(32) NOT NULL,
-  `discount_id` varchar(32) NOT NULL,
-  `card_number` varchar(200) NOT NULL,
-  `username` varchar(200) NOT NULL,
-  `sex` int(11) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  `member_level` varchar(200) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `card_money` int(11) DEFAULT NULL,
+  `id` varchar(32) NOT NULL COMMENT '主键id',
+  `discount_id` varchar(32) NOT NULL COMMENT '折扣表主键',
+  `card_number` varchar(200) NOT NULL COMMENT '会员卡号',
+  `username` varchar(200) NOT NULL COMMENT '会员用户名',
+  `sex` int(11) DEFAULT NULL COMMENT '性别',
+  `age` int(11) DEFAULT NULL COMMENT '年龄',
+  `member_level` varchar(200) DEFAULT NULL COMMENT '会员级别',
+  `phone` varchar(20) DEFAULT NULL COMMENT '电话',
+  `card_money` int(11) DEFAULT NULL COMMENT '会员卡金额',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -158,7 +158,7 @@ CREATE TABLE `member_discount` (
   `card_type_name` varchar(200) DEFAULT NULL COMMENT '会员类型名称',
   `discount` int(11) DEFAULT NULL COMMENT '优惠折扣',
   `discription` text COMMENT '优惠方案',
-  `level` int(11) DEFAULT NULL COMMENT '会员等级',
+  `level` int(11) DEFAULT NULL COMMENT '会员等级（目前只设了金卡和银卡）',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -172,11 +172,11 @@ INSERT INTO `member_discount` VALUES ('53d828b9cd414cae8a27f463a1949194', '银�
 -- ----------------------------
 DROP TABLE IF EXISTS `orderdata`;
 CREATE TABLE `orderdata` (
-  `id` varchar(32) NOT NULL,
-  `username` varchar(200) NOT NULL,
-  `phone` varchar(200) NOT NULL,
-  `ordertime` datetime NOT NULL,
-  `price` int(11) NOT NULL,
+  `id` varchar(32) NOT NULL COMMENT '预约订单id',
+  `username` varchar(200) NOT NULL COMMENT '预约订单用户名',
+  `phone` varchar(200) NOT NULL COMMENT '预约用户电话',
+  `ordertime` datetime NOT NULL COMMENT '预约时间',
+  `price` int(11) NOT NULL COMMENT '预约价格',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
@@ -192,9 +192,9 @@ INSERT INTO `orderdata` VALUES ('d57e1fe43fd84c1db8db3fff7b1f662a', '再次测�
 -- ----------------------------
 DROP TABLE IF EXISTS `performance`;
 CREATE TABLE `performance` (
-  `id` varchar(32) NOT NULL,
+  `id` varchar(32) NOT NULL COMMENT '员工绩效表id',
   `worker_id` varchar(32) NOT NULL COMMENT '员工id',
-  `worker_name` varchar(200) DEFAULT NULL,
+  `worker_name` varchar(200) DEFAULT NULL COMMENT '员工姓名',
   `p_rating_num` int(11) NOT NULL COMMENT '绩效评分',
   `p_content` text COMMENT '绩效内容',
   `p_time` datetime DEFAULT NULL COMMENT '绩效时间',
@@ -235,6 +235,8 @@ INSERT INTO `photo` VALUES ('517481a232934caea41bcc756f991c77', '其他-20180404
 INSERT INTO `photo` VALUES ('5e8c4c60bfc746b5866f7dd5fded0fff', '风景-201804041648252105-13050GZ021.gif', '2018-04-04', '风景', '0', 'G:\\ChenruiWork\\PhotographySP\\src\\main\\webapp\\upload\\风景-201804041648252105-13050GZ021.gif', '测试', '冯文秀');
 INSERT INTO `photo` VALUES ('6986551ab7014bc588d5fae56acd0bc3', '其他-201804041650368785-1210311U119.gif', '2018-04-04', '其他', '0', 'G:\\ChenruiWork\\PhotographySP\\src\\main\\webapp\\upload\\其他-201804041650368785-1210311U119.gif', '阿斯顿发', 'wer');
 INSERT INTO `photo` VALUES ('76a737b49e0545e5a5dc72d3415a9702', '写真-201804212158013551 (5).png', '2018-04-21', '写真', '0', 'F:\\temp\\project2\\taiyangcunIMS\\PhotographySP\\src\\main\\webapp\\upload\\写真-201804212158013551 (5).png', '麻烦了', '你好');
+INSERT INTO `photo` VALUES ('a1a41bd60af74a53b782ccaffa658a8f', '写真-20180512163142944QQ图片20180428205903.jpg', '2018-05-12', '写真', '0', 'E:\\程序\\taiyangcunIMS\\PhotographySP\\src\\main\\webapp\\upload\\写真-20180512163142944QQ图片20180428205903.jpg', '结算单复合大师', '地方');
+INSERT INTO `photo` VALUES ('ad0ccdb66f37478a89e62b7d7effd0bb', '亲子-20180512164355635QQ图片20180429085815.jpg', '2018-05-12', '亲子', '0', 'E:\\程序\\taiyangcunIMS\\PhotographySP\\src\\main\\webapp\\upload\\亲子-20180512164355635QQ图片20180429085815.jpg', '娃儿我认为v', 'we\'ve');
 INSERT INTO `photo` VALUES ('b1c651d2141942eab4338c372bc6909a', '其他-201804041650368445-13050GZ017.jpg', '2018-04-04', '其他', '0', 'G:\\ChenruiWork\\PhotographySP\\src\\main\\webapp\\upload\\其他-201804041650368445-13050GZ017.jpg', '阿斯顿发', 'wer');
 INSERT INTO `photo` VALUES ('ba6fb910dd30480b8a74f1cd799c7274', '其他-201804041650369115-1502130QG7-51.jpg', '2018-04-04', '其他', '0', 'G:\\ChenruiWork\\PhotographySP\\src\\main\\webapp\\upload\\其他-201804041650369115-1502130QG7-51.jpg', '阿斯顿发', 'wer');
 INSERT INTO `photo` VALUES ('d4cacf4679204dafb934a503f7759d78', '婚庆-20180404164848977561ec93d70cf3bc7724858a0d200baa1cc112acd.jpg', '2018-04-04', '婚庆', '0', 'G:\\ChenruiWork\\PhotographySP\\src\\main\\webapp\\upload\\婚庆-20180404164848977561ec93d70cf3bc7724858a0d200baa1cc112acd.jpg', 'admin', '请问');
@@ -250,13 +252,13 @@ INSERT INTO `photo` VALUES ('fabb81e85d174be6b66c159ef4e642c5', '写真-20180404
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
-  `id` varchar(32) NOT NULL,
+  `id` varchar(32) NOT NULL COMMENT '产品id',
   `p_name` varchar(200) NOT NULL COMMENT '产品名称',
   `is_rent` int(11) DEFAULT NULL COMMENT '是否是出租的产品（0：用户自购，1：公司出租）',
   `p_price` int(11) NOT NULL COMMENT '产品价格',
   `p_category` varchar(200) NOT NULL COMMENT '产品类别',
   `discription` text COMMENT '产品描述',
-  `delete_flag` int(11) NOT NULL,
+  `delete_flag` int(11) NOT NULL COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -278,7 +280,7 @@ INSERT INTO `product` VALUES ('fd1b601fad774180b72c26f73dc9fe24', '相框4', '0'
 -- ----------------------------
 DROP TABLE IF EXISTS `product_category`;
 CREATE TABLE `product_category` (
-  `id` varchar(32) NOT NULL,
+  `id` varchar(32) NOT NULL COMMENT '产品分类表id',
   `pc_name` varchar(200) NOT NULL COMMENT '产品类型名称',
   `discription` text COMMENT '描述',
   `delete_flag` int(11) NOT NULL COMMENT '删除标记',
@@ -316,18 +318,18 @@ INSERT INTO `user` VALUES ('1', 'e10adc3949ba59abbe56e057f20f883e', 'fengwenxiu'
 -- ----------------------------
 DROP TABLE IF EXISTS `worker`;
 CREATE TABLE `worker` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `worker_name` char(10) NOT NULL,
-  `worker_idcard` varchar(255) NOT NULL,
-  `worker_post` char(32) NOT NULL,
-  `worker_phone` char(30) NOT NULL,
-  `join_time` date NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '员工id',
+  `worker_name` char(10) NOT NULL COMMENT '员工姓名',
+  `worker_idcard` varchar(255) NOT NULL COMMENT '员工身份证号码',
+  `worker_post` char(32) NOT NULL COMMENT '员工工资',
+  `worker_phone` char(30) NOT NULL COMMENT '员工电话',
+  `join_time` date NOT NULL COMMENT '入职时间',
   `wages` char(10) DEFAULT NULL,
-  `del_flag` char(2) NOT NULL,
+  `del_flag` char(2) NOT NULL COMMENT '删除标记',
   `ava_flag` char(2) NOT NULL COMMENT '0 离职 1在职 2休假',
-  `create_time` date DEFAULT NULL,
-  `worker_bank_card` varchar(32) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
+  `create_time` date DEFAULT NULL COMMENT '创建时间',
+  `worker_bank_card` varchar(32) DEFAULT NULL COMMENT '银行卡号',
+  `photo` varchar(255) DEFAULT NULL COMMENT '员工照片url地址',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 

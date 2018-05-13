@@ -416,7 +416,7 @@
                 stats = uploader.getStats();
                 text = '共' + fileCount + '个（' +
                         WebUploader.formatSize( fileSize )  +
-                        '），已上传' + stats.successNum + '个';
+                        '），已上传' + (stats.successNum+1) + '个';
 
                 if ( stats.uploadFailNum ) {
                     text += '，失败' + stats.uploadFailNum + '个';
