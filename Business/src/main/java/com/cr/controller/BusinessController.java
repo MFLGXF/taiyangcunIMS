@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cr.common.FileUtils;
+import com.cr.common.PageInfo;
 import com.cr.common.QRCodeUtils;
 import com.cr.common.ReturnInfo;
 import com.cr.common.UUIDUtils;
@@ -52,6 +53,14 @@ public class BusinessController {
 		goods.setDelFlag("0");
 		String filePath = request.getSession().getServletContext().getRealPath("goods/");
 		if(file.isEmpty() == false){
+		    
+		    //判断文件大小，30kb~1024kb
+		    if(file.getSize() < 30000 || file.getSize() > 1048576){
+		        ret.setMsg("文件大小在30KB~1MB之间");
+		        ret.setResult(201);
+		        return ret;
+		    }
+		    
 			String fileName =  UUID.randomUUID()+file.getOriginalFilename();
 			
 			try {
@@ -110,4 +119,28 @@ public class BusinessController {
 		}
 		return ret;
 	}
+	
+	/*分页查询商品信息*/
+	@RequestMapping(value="/datagrid",method=RequestMethod.POST)
+    public ReturnInfo<PageInfo<Goods>> dataGrid(String goodName, Integer pageNumber, Integer pageSize){
+        ReturnInfo<PageInfo<Goods>> ret = new ReturnInfo<PageInfo<Goods>>();
+        PageInfo<Goods> pageData = goodsService.dataGrid(goodName, pageNumber, pageSize);
+        if(pageData.getList() != null){
+            ret.setData(pageData);
+            ret.setResult(200);
+        }
+        return ret;
+    }
+	
+	/*分页查询商品信息*/
+    @RequestMapping(value="/findbyid",method=RequestMethod.GET)
+    public ReturnInfo<Goods> findById(String productId){
+        ReturnInfo<Goods> ret = new ReturnInfo<Goods>();
+        Goods pageData = goodsService.findById(productId);
+        if(pageData != null){
+            ret.setData(pageData);
+            ret.setResult(200);
+        }
+        return ret;
+    }
 }

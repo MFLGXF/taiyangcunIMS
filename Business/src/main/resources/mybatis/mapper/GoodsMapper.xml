@@ -76,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, goods_name, goods_type, goods_img, goods_place, goods_producer, del_flag, goods_price, 
-    create_time, qrcode
+    create_time
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -113,9 +113,7 @@
   </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
     select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
+    *
     from goods
     where id = #{id,jdbcType=CHAR}
   </select>
@@ -380,4 +378,39 @@
     order by create_time desc
     
   </select>
+  
+  <!-- 查询数量 -->
+  <select id="selectCount" resultType="Integer" parameterType="Map">
+
+  	select count(id)
+  	from goods
+  	where 1=1
+  		<if test="goodName != null and goodName != ''">
+  			and
+  			 goods_name = #{goodName}
+  		</if>
+
+  </select>
+
+	<!-- 查询相关数据 -->
+  <select id="findList" resultMap="BaseResultMap" parameterType="Map">
+
+  	select
+  		*
+  	from
+  		goods
+  	where
+  		1=1
+
+  		<if test="goodName != null and goodName != ''">
+  			and
+  			 goods_name = #{goodName}
+  		</if>
+  	<if test="start != -1 and end != -1">
+  		limit #{start},#{end}
+  	</if>
+
+
+  </select>
+  
 </mapper>

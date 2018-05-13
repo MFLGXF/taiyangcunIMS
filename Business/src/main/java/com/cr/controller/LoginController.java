@@ -185,4 +185,58 @@ public class LoginController {
 		}
 		return ret;
 	}
+	
+	@RequestMapping(value="/register",method=RequestMethod.POST)
+    public ReturnInfo<String> userRegister(User user){
+        ReturnInfo<String> ret = new ReturnInfo<String>();
+        
+        
+        if("".equals(user.getName()) | "".equals(user.getPassword()) | "".equals(user.getEmail())){
+            //非空判断
+            ret.setResult(201);
+            return ret;
+        }
+        
+        boolean emailFlag = IsEmail.isEmail(user.getEmail());
+        if(emailFlag == false){
+            ret.setMsg("邮件格式错误");
+            ret.setResult(204);
+            return ret;
+        }
+        boolean check = loginService.selUserByName(user);
+        if(check == false){
+            ret.setMsg("该账号已存在");
+            ret.setResult(206);
+            return ret;
+        }
+        user.setId(UUIDUtils.getUuid32());
+        user.setRole("User");
+                
+        boolean flag = loginService.userRegister(user);
+        if(flag == true){
+            ret.setMsg("注册成功");
+            ret.setData(user.getName());
+            ret.setResult(200);
+            return ret;
+        }
+        ret.setMsg("注册失败");
+        return ret;
+    }
+	
+	@RequestMapping(value="/userlogin",method=RequestMethod.POST)
+    public ReturnInfo<String> userLogin(User user,HttpServletRequest request){
+        ReturnInfo<String> ret = new ReturnInfo<String>();
+        boolean flag = loginService.login(request, user.getName(), user.getPassword(), "User");
+        if(flag == true){   
+            ret.setMsg("登录成功");
+            ret.setData(user.getName());
+            
+            ret.setResult(200);
+        }else{
+            ret.setMsg("不存在账号");
+            ret.setResult(201);
+        }
+        return ret;
+    }
+	
 }

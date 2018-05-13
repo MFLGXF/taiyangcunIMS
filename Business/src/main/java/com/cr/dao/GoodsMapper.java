@@ -3,6 +3,8 @@ package com.cr.dao;
 import com.cr.domain.Goods;
 import com.cr.domain.GoodsExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface GoodsMapper {
@@ -37,4 +39,17 @@ public interface GoodsMapper {
     List<Goods> selGoodsLimit();
     List<Goods> selGoods();
     List<Goods> selGoodsBusiness(String goodsProducer);
+
+    /**
+     * 分页查询数据
+     *  @param queryMap
+     *  @return    
+     * @exception/throws [违例类型] [违例说明]
+     * @see [类、类#方法、类#成员]
+     */
+    List<Goods> findList(Map<String, Object> queryMap);
+    /*
+     * 查询数量
+     */
+    Integer selectCount(Map<String, Object> queryMap);
 }

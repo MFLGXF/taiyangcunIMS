@@ -24,7 +24,7 @@ public class loginServiceImpl implements LoginService {
 	public boolean login(HttpServletRequest request,String username, String password, String type) {
 		if("User".equals(type)){
 			User user = new User();
-			user.setUsername(username);
+			user.setName(username);
 			user.setPassword(password);
 			User user1 = userDao.login(user);
 			request.getSession().setAttribute("username", username);
@@ -96,5 +96,13 @@ public class loginServiceImpl implements LoginService {
 		}
 		return false;
 	}
+    @Override
+    public boolean selUserByName(User user) {
+        User form = userDao.selUser(user.getName());
+        if(form == null){
+            return true;
+        }
+        return false;
+    }
 
 }

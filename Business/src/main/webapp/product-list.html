@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<!-- Head BEGIN -->
+<head>
+<meta charset="utf-8">
+<title>商品列表</title>
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta content="Metronic Shop UI description" name="description">
+<meta content="Metronic Shop UI keywords" name="keywords">
+<meta content="keenthemes" name="author">
+
+
+<link rel="shortcut icon" href="favicon.ico">
+<link href="/favicon.ico" rel="SHORTCUT ICON" type="image/ico">
+
+<!-- Fonts START -->
+<!--  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow&subset=all" rel="stylesheet" type="text/css"> -->
+<!-- Fonts END -->
+
+<!-- Global styles START -->
+<link rel="stylesheet" type="text/css"
+	href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+<link href="assets/plugins/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<!-- Global styles END -->
+
+<!-- Page level plugin styles START -->
+<link href="assets/plugins/fancybox/source/jquery.fancybox.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<!-- for slider-range -->
+<link href="assets/plugins/bxslider/jquery.bxslider.css"
+	rel="stylesheet">
+<link href="assets/plugins/rateit/src/rateit.css" rel="stylesheet"
+	type="text/css">
+<link href="assets/plugins/uniform/css/uniform.default.css"
+	rel="stylesheet" type="text/css">
+<!-- Page level plugin styles END -->
+
+<!-- Theme styles START -->
+<link href="assets/css/style-metronic.css" rel="stylesheet"
+	type="text/css">
+<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style-responsive.css" rel="stylesheet"
+	type="text/css">
+<link href="assets/css/custom.css" rel="stylesheet" type="text/css">
+
+<link href="assets/css/b.page.bootstrap3.css" rel="stylesheet"
+	type="text/css">
+<link href="assets/css/b.page.css" rel="stylesheet" type="text/css">
+<!-- Theme styles END -->
+</head>
+<!-- Head END -->
+
+<!-- Body BEGIN -->
+<body>
+	<!-- BEGIN TOP BAR -->
+	<div class="pre-header">
+		<div class="container">
+			<div class="row">
+				<!-- BEGIN TOP BAR LEFT PART -->
+				<div class="col-md-6 col-sm-6 additional-shop-info">
+					<ul class="list-unstyled list-inline">
+						<li><i class="fa fa-phone"></i><span>18654367543</span></li>
+
+
+					</ul>
+				</div>
+				<!-- END TOP BAR LEFT PART -->
+				<!-- BEGIN TOP BAR MENU -->
+				<div class="col-md-6 col-sm-6 additional-nav">
+					<ul class="list-unstyled list-inline pull-right" id="showtip">
+
+
+					</ul>
+				</div>
+				<!-- END TOP BAR MENU -->
+			</div>
+		</div>
+	</div>
+	<!-- END TOP BAR -->
+
+	<!-- BEGIN HEADER -->
+	<div role="navigation" class="navbar header no-margin">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+				<button data-target=".navbar-collapse" data-toggle="collapse"
+					class="navbar-toggle" type="button">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!-- END RESPONSIVE MENU TOGGLER -->
+				<a href="#" class="navbar-brand"><img
+					src="assets/img/logo_sc.png" width="300" alt="选你所选"></a>
+				<!-- LOGO -->
+			</div>
+			<!-- BEGIN CART -->
+
+			<!-- END CART -->
+			<!-- BEGIN NAVIGATION -->
+			<div class="collapse navbar-collapse mega-menu">
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<!-- BEGIN DROPDOWN MENU -->
+						<form action="#">
+							<div class="input-group"
+								style="width: 500px; padding-top: 30px; padding-bottom: 30px;">
+								<input type="text" placeholder="Search" id="searchData"
+									class="form-control"> <span class="input-group-btn">
+									<button class="btn btn-primary" type="button"
+										onclick="searchProductList()">Search</button>
+								</span>
+							</div>
+						</form> <!-- END DROPDOWN MENU -->
+					</li>
+
+					<li class="menu-search">
+
+						<div class="search-box"></div>
+					</li>
+					<!-- END TOP SEARCH -->
+				</ul>
+			</div>
+			<!-- END NAVIGATION -->
+		</div>
+	</div>
+	<!-- END HEADER -->
+
+
+
+	<div class="main">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">主页</a></li>
+				
+			</ul>
+			<!-- BEGIN SIDEBAR & CONTENT -->
+			<div class="row margin-bottom-40">
+				<!-- BEGIN SIDEBAR -->
+				<div class="sidebar col-md-3 col-sm-5">
+					<ul class="list-group margin-bottom-25 sidebar-menu">
+						<li class="list-group-item clearfix"><a
+							href="product-list.html"><i class="fa fa-angle-right"></i>
+								工艺品</a></li>
+						<li class="list-group-item clearfix"><a
+							href="product-list.html"><i class="fa fa-angle-right"></i>
+								工艺品</a></li>
+						<li class="list-group-item clearfix"><a
+							href="product-list.html"><i class="fa fa-angle-right"></i>
+								工艺品</a></li>
+						<li class="list-group-item clearfix"><a
+							href="product-list.html"><i class="fa fa-angle-right"></i>
+								工艺品</a></li>
+						<li class="list-group-item clearfix"><a
+							href="product-list.html"><i class="fa fa-angle-right"></i>
+								食品类型 </a></li>
+
+
+					</ul>
+
+
+
+					<div class="sidebar-products clearfix">
+						<h2>最近新增</h2>
+						<div id="currentProduct">
+							
+						</div>
+					</div>
+				</div>
+				<!-- END SIDEBAR -->
+				<!-- BEGIN CONTENT -->
+				<div class="col-md-9 col-sm-7">
+					<div class="row list-view-sorting clearfix">
+						<div class="col-md-2 col-sm-2 list-view">
+							<a href="#"><i class="fa fa-th-large"></i></a> <a href="#"><i
+								class="fa fa-th-list"></i></a>
+						</div>
+
+					</div>
+					<!-- BEGIN PRODUCT LIST -->
+					<div class="row product-list" id="productList">
+						<!-- PRODUCT ITEM START -->
+						
+						
+						
+						<div class="col-md-4 col-sm-6 col-xs-12">
+							<div class="product-item">
+								<div class="pi-img-wrapper">
+									<img src=""
+										class="img-responsive" alt="Berry Lace Dress">
+									<div>
+										<a href="#"
+											class="btn btn-default fancybox-button">Zoom</a> <a
+											href="product-detail.html"
+											class="btn btn-default fancybox-fast-view">View</a>
+									</div>
+								</div>
+								<h3>
+									<a href="item.html">Berry Lace Dress 2</a>
+								</h3>
+								<div class="pi-price">$29.00</div>
+								<a href="#" class="btn btn-default add2cart">Add to cart</a>
+							</div>
+						</div>
+						<!-- PRODUCT ITEM END -->
+
+						<!-- PRODUCT ITEM END -->
+					</div>
+					<!-- END PRODUCT LIST -->
+					<!-- BEGIN PAGINATOR -->
+					<div class="row">
+						<div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10
+							total</div>
+						<div class="col-md-8 col-sm-8">
+							<!-- <ul class="pagination pull-right">
+								<li><a href="#">&laquo;</a></li>
+								<li><a href="#">1</a></li>
+								<li><span>2</span></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">&raquo;</a></li>
+							</ul> -->
+							<div id="page3"></div>
+						</div>
+					</div>
+					<!-- END PAGINATOR -->
+				</div>
+				<!-- END CONTENT -->
+			</div>
+			<!-- END SIDEBAR & CONTENT -->
+		</div>
+	</div>
+
+	<!-- BEGIN BRANDS -->
+
+	<!-- END BRANDS -->
+
+	<!-- BEGIN STEPS -->
+	<!-- BEGIN PRE-FOOTER -->
+	<!-- BEGIN FOOTER -->
+
+	<!-- END FOOTER -->
+
+
+
+	<div class="footer padding-top-15">
+		<div class="container">
+			<div class="row">
+				<!-- BEGIN COPYRIGHT -->
+				<div class="col-md-6 col-sm-6 padding-top-10">2018 © 东北林业大学</div>
+				<!-- END COPYRIGHT -->
+				<!-- BEGIN PAYMENTS -->
+				<div class="col-md-6 col-sm-6">
+					<ul class="list-unstyled list-inline pull-right margin-bottom-15">
+						<li><img src="assets/img/payments/western-union.jpg"
+							alt="We accept Western Union" title="We accept Western Union"></li>
+						<li><img src="assets/img/payments/american-express.jpg"
+							alt="We accept American Express"
+							title="We accept American Express"></li>
+						<li><img src="assets/img/payments/MasterCard.jpg"
+							alt="We accept MasterCard" title="We accept MasterCard"></li>
+						<li><img src="assets/img/payments/PayPal.jpg"
+							alt="We accept PayPal" title="We accept PayPal"></li>
+						<li><img src="assets/img/payments/visa.jpg"
+							alt="We accept Visa" title="We accept Visa"></li>
+					</ul>
+				</div>
+				<!-- END PAYMENTS -->
+			</div>
+		</div>
+	</div>
+	<!-- END fast view of a product -->
+
+	<!-- Load javascripts at bottom, this will reduce page load time -->
+	<!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
+	<!--[if lt IE 9]>
+    <script src="assets/plugins/respond.min.js"></script>  
+    <![endif]-->
+	<script src="assets/plugins/jquery-1.10.2.min.js"
+		type="text/javascript"></script>
+	<script src="assets/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
+	<script type="text/javascript"
+		src="assets/plugins/jQuery-slimScroll/jquery.slimscroll.min.js"></script>
+	<!-- END CORE PLUGINS -->
+
+	<!-- BEGIN PAGE LEVEL JAVASCRIPTS(REQUIRED ONLY FOR CURRENT PAGE) -->
+	<script type="text/javascript"
+		src="assets/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+	<script type="text/javascript"
+		src="assets/plugins/bxslider/jquery.bxslider.min.js"></script>
+	<!-- slider for products -->
+	<script src="assets/plugins/rateit/src/jquery.rateit.js"
+		type="text/javascript"></script>
+	<script type="text/javascript"
+		src='assets/plugins/zoom/jquery.zoom.min.js'></script>
+	<!-- product zoom -->
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<!-- for slider-range -->
+	<script src="assets/plugins/uniform/jquery.uniform.min.js"
+		type="text/javascript"></script>
+	<script src="assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js"
+		type="text/javascript"></script>
+	<!-- Quantity -->
+	<script type="text/javascript" src="assets/scripts/app.js"></script>
+
+
+	<script type="text/javascript" src="assets/scripts/b.page.js"></script>
+
+	<script type="text/javascript" src="assets/scripts/userinfo.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			App.initBxSlider();
+			App.initImageZoom();
+			App.initSliderRange();
+			App.initUniform();
+			App.initTouchspin();
+		});
+		var urlData = '';
+		$(function() {
+			judgeLogin();
+			getNewGoods();
+			
+			var urlData=window.location.search;
+			
+			//alert(urlData);
+			alert(document.referrer);
+			if(urlData != null && urlData.length > 7){
+				var searchName = urlData.substring(8);
+				var name = decodeURIComponent(searchName);
+				var searchData = $("#searchData").val(name);
+				/* $('.bPageRight:first').remove();
+				loadModalData(); */
+				//return;
+			}
+
+			
+
+			//请求商品列表
+			loadModalData();
+
+			
+		});
+
+		function loadModalData() {
+			//每次方法执行之前把全局变量清空
+			dataObj = [];
+
+			$('#page3')
+					.bPage(
+							{
+								url : 'business/datagrid',
+								//开启异步处理模式
+								asyncLoad : true,
+								//关闭服务端页面模式
+								serverSidePage : false,
+								//数据自定义填充
+								render : function(data) {
+									var result = data.data;
+
+									console.log(result);
+									var productList = $('#productList');
+									$(productList).empty();
+									if (result && result.list
+											&& result.list.length > 0) {
+										$
+												.each(
+														result.list,
+														function(i, row) {
+															var singleData = row;
+															var productItem = '<div class="col-md-4 col-sm-6 col-xs-12">'
+																	+ '<div class="product-item" style="height:300px;">'
+																	+ '<div class="pi-img-wrapper">'
+																	+ '<img src="goods/' + singleData.goodsImg + '"' +
+																		'class="img-responsive" alt="Berry Lace Dress">'
+																	+ '<div>'
+																	+ '<a href="goods/' + singleData.goodsImg + '"' +
+																			'class="btn btn-default fancybox-button">Zoom</a>'
+																	+ '<a href="product-detail.html?productId=' + singleData.id + '"' +
+																			'class="btn btn-default fancybox-fast-view">View</a>'
+																	+ '</div>'
+																	+ '</div>'
+																	+ '<h3>'
+																	+ '<a href="item.html">'
+																	+ singleData.goodsName
+																	+ '</a>'
+																	+ '</h3>'
+																	+ '<div class="pi-price">'
+																	+ singleData.goodsType
+																	+ '</div>'
+																	+ '<a href="#" class="btn btn-default add2cart" disabled="disabled">'
+																	+ singleData.goodsPlace
+																	+ '</a>'
+																	+ '</div>'
+																	+ '</div>';
+
+															/*这边需要记住的一个问题是，在onclick中传字符串是可以的，但是传递object对象就会出现错误*/
+															$(productList)
+																	.append(
+																			productItem);
+															dataObj
+																	.push(singleData);
+
+														});
+									}
+								},
+								params : function() {
+									var searchData = $("#searchData").val();
+									//alert("assetNo="+assetNumber+",person="+assetPersonId+",assetStatus="+assetStatus);
+									return {
+										goodName : searchData
+									};
+								}
+							});
+
+		}
+
+		//点击按钮进行查询
+		function searchProductList() {
+			$('.bPageRight:first').remove();
+			loadModalData();
+		}
+
+		//填充最新增加的商品
+		function getNewGoods() {
+			var data = {
+				'goodName' : '',
+				'pageNumber' : 0,
+				'pageSize' : 3
+			};
+			//获取最新增加的三个商品进行查看
+			$.ajax({
+				url : 'business/datagrid',
+				type : 'POST',
+				data : data,
+				dataType : 'json',
+				success : function(data) {
+					//alert("获取成功");
+					console.log(data.data);
+					var result = data.data;
+					var currentProduct = $('#currentProduct');
+					currentProduct.empty();
+					$.each(result.list,function(i, row) {
+							var singleData = row;
+							
+							var text = '<div class="item">' +
+							'<a href="product-detail.html?productId=' + singleData.id + '"><img src="goods/' + singleData.goodsImg + '"' +
+							'alt=""></a>' +
+							'<h3>' +
+					   		'<a href="product-detail.html?productId=' + singleData.id + '">' + singleData.goodsName + '</a>' +
+							'</h3>' +
+							'<span style="margin-left:20px;padding-top:20px;">' + singleData.goodsType + '</span> ' +
+							'<div class="price" style="float:right">' + singleData.goodsPlace + '</div>' +
+							'</div>';
+							
+							currentProduct.append(text);
+							
+					});
+					
+					
+					
+
+				},
+				error : function() {
+					alert("失败");
+				}
+			})
+		}
+	</script>
+	<!-- END PAGE LEVEL JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

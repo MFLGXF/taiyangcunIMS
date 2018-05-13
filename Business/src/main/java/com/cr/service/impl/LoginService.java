@@ -12,4 +12,8 @@ public interface LoginService {
 	public boolean selUser(String username);
 	public boolean selBuniessByName(String name);
 	public boolean selBuniessByUsername(String name);
+	/*
+	 * 根据用户名检测用户是否存在
+	 */
+    public boolean selUserByName(User user);
 }

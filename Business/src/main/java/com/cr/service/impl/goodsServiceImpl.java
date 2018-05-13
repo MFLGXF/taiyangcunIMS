@@ -1,11 +1,14 @@
 package com.cr.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.cr.common.PageInfo;
 import com.cr.dao.GoodsMapper;
 import com.cr.domain.Goods;
 import com.cr.domain.GoodsExample;
@@ -86,5 +89,43 @@ public class goodsServiceImpl implements GoodsService {
 		}
 		return null;
 	}
+	
+	/**
+	 * 分页查询商品信息并进行展示
+	 */
+    @Override
+    public PageInfo<Goods> dataGrid(String goodName, Integer pageNumber, Integer pageSize) {
+        PageInfo<Goods> pageInfo = new PageInfo<>();
+        Integer start = 0;
+        Integer end = 0;
+        if(pageNumber == 0 && pageSize == 3){
+            start = 0;
+            end = 3;
+        }else if(pageNumber == 0 && pageSize == 10){
+            start = (pageNumber) * pageSize;
+            end = start + pageSize;
+        }else{
+            start = (pageNumber-1) * pageSize;
+            end = start + pageSize;
+        }
+        Map<String,Object> queryMap = new HashMap<>();
+        
+        queryMap.put("goodName", goodName);
+        
+        Integer count = goodsDao.selectCount(queryMap);
+        
+        queryMap.put("start", start);
+        queryMap.put("end", end);
+        List<Goods> list = goodsDao.findList(queryMap);
+        pageInfo.setTotalRow(count);
+        pageInfo.setPageNumber(pageNumber);
+        pageInfo.setPageSize(pageSize);
+        pageInfo.setList(list);
+        return pageInfo;
+    }
+    @Override
+    public Goods findById(String productId) {
+        return goodsDao.selectByPrimaryKey(productId);
+    }
 	
 }
