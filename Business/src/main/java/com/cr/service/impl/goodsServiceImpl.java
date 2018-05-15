@@ -94,7 +94,7 @@ public class goodsServiceImpl implements GoodsService {
 	 * 分页查询商品信息并进行展示
 	 */
     @Override
-    public PageInfo<Goods> dataGrid(String goodName, Integer pageNumber, Integer pageSize) {
+    public PageInfo<Goods> dataGrid(String goodName, String categoryType, Integer pageNumber, Integer pageSize) {
         PageInfo<Goods> pageInfo = new PageInfo<>();
         Integer start = 0;
         Integer end = 0;
@@ -111,6 +111,7 @@ public class goodsServiceImpl implements GoodsService {
         Map<String,Object> queryMap = new HashMap<>();
         
         queryMap.put("goodName", goodName);
+        queryMap.put("categoryType", categoryType);
         
         Integer count = goodsDao.selectCount(queryMap);
         

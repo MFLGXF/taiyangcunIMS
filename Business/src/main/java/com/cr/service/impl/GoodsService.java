@@ -15,7 +15,7 @@ public interface GoodsService {
 	public boolean delGoods(String id);
 	public List<Goods> selGoodsBusiness(String goodsProducer);
 	/*分页查询商品信息*/
-    public PageInfo<Goods> dataGrid(String goodName, Integer pageNumber, Integer pageSize);
+    public PageInfo<Goods> dataGrid(String goodName, String categoryType, Integer pageNumber, Integer pageSize);
     //查询相片详情
     public Goods findById(String productId);
 }

@@ -149,22 +149,8 @@
 			<div class="row margin-bottom-40">
 				<!-- BEGIN SIDEBAR -->
 				<div class="sidebar col-md-3 col-sm-5">
-					<ul class="list-group margin-bottom-25 sidebar-menu">
-						<li class="list-group-item clearfix"><a
-							href="product-list.html"><i class="fa fa-angle-right"></i>
-								工艺品</a></li>
-						<li class="list-group-item clearfix"><a
-							href="product-list.html"><i class="fa fa-angle-right"></i>
-								工艺品</a></li>
-						<li class="list-group-item clearfix"><a
-							href="product-list.html"><i class="fa fa-angle-right"></i>
-								工艺品</a></li>
-						<li class="list-group-item clearfix"><a
-							href="product-list.html"><i class="fa fa-angle-right"></i>
-								工艺品</a></li>
-						<li class="list-group-item clearfix"><a
-							href="product-list.html"><i class="fa fa-angle-right"></i>
-								食品类型 </a></li>
+					<ul class="list-group margin-bottom-25 sidebar-menu" id="listItems" >
+						
 
 
 					</ul>
@@ -242,6 +228,8 @@
 			<!-- END SIDEBAR & CONTENT -->
 		</div>
 	</div>
+	
+	<input type="hidden" id="hiddenVal"/>
 
 	<!-- BEGIN BRANDS -->
 
@@ -334,6 +322,7 @@
 		});
 		var urlData = '';
 		$(function() {
+			$('#hiddenVal').val('');
 			judgeLogin();
 			getNewGoods();
 			
@@ -351,15 +340,49 @@
 			}
 
 			
-
+			loadlistItems();
 			//请求商品列表
 			loadModalData();
 
 			
 		});
+		
+		
+		function loadlistItems(){
+			var listItems = $('#listItems');
+			listItems.empty();
+			$.ajax({
+				url : 'category/selCategory',
+				type : 'GET',
+				data : {},
+				dataType : 'json',
+				success : function(data) {
+					console.log(data);
+					if (data && data.data&& data.data.length > 0) {
+						$.each(data.data,function(i, row) {
+							var singleData = row;
+							console.log(row);
+							var text = '<li class="list-group-item clearfix"><a href="#" onclick="searchBycateName(\''+singleData.categoryName+'\')"><i class="fa"></i>' +
+							singleData.categoryName + '</a></li>';
+							listItems.append(text);
+						});
+					}
+					
+				}
+			});
+		}
+		
+		function searchBycateName(categoryName){
+			//alert(categoryName);
+			$('.bPageRight:first').remove();
+			$('#hiddenVal').val(categoryName);
+			loadModalData();
+		}
+		
 
 		function loadModalData() {
 			//每次方法执行之前把全局变量清空
+			//alert(categoryName);
 			dataObj = [];
 
 			$('#page3')
@@ -421,10 +444,13 @@
 									}
 								},
 								params : function() {
+									var categoryName = $('#hiddenVal').val();
+									//alert(categoryName);
 									var searchData = $("#searchData").val();
 									//alert("assetNo="+assetNumber+",person="+assetPersonId+",assetStatus="+assetStatus);
 									return {
-										goodName : searchData
+										goodName : searchData,
+										categoryType : categoryName
 									};
 								}
 							});
@@ -441,6 +467,7 @@
 		function getNewGoods() {
 			var data = {
 				'goodName' : '',
+				'categoryType' : '',
 				'pageNumber' : 0,
 				'pageSize' : 3
 			};

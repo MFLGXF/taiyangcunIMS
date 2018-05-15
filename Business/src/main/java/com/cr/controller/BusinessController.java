@@ -122,9 +122,9 @@ public class BusinessController {
 	
 	/*分页查询商品信息*/
 	@RequestMapping(value="/datagrid",method=RequestMethod.POST)
-    public ReturnInfo<PageInfo<Goods>> dataGrid(String goodName, Integer pageNumber, Integer pageSize){
+    public ReturnInfo<PageInfo<Goods>> dataGrid(String goodName, String categoryType, Integer pageNumber, Integer pageSize){
         ReturnInfo<PageInfo<Goods>> ret = new ReturnInfo<PageInfo<Goods>>();
-        PageInfo<Goods> pageData = goodsService.dataGrid(goodName, pageNumber, pageSize);
+        PageInfo<Goods> pageData = goodsService.dataGrid(goodName,categoryType, pageNumber, pageSize);
         if(pageData.getList() != null){
             ret.setData(pageData);
             ret.setResult(200);

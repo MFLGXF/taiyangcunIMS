@@ -387,7 +387,11 @@
   	where 1=1
   		<if test="goodName != null and goodName != ''">
   			and
-  			 goods_name = #{goodName}
+  			 goods_name like CONCAT('%','${goodName}','%')
+  		</if>
+  		<if test="categoryType != null and categoryType != ''">
+  			and
+  			 goods_type = #{categoryType}
   		</if>
 
   </select>
@@ -404,7 +408,11 @@
 
   		<if test="goodName != null and goodName != ''">
   			and
-  			 goods_name = #{goodName}
+  			 goods_name like CONCAT('%','${goodName}','%')
+  		</if>
+  		<if test="categoryType != null and categoryType != ''">
+  			and
+  			 goods_type = #{categoryType}
   		</if>
   	<if test="start != -1 and end != -1">
   		limit #{start},#{end}
