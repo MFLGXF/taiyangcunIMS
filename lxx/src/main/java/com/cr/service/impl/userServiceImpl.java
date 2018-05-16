@@ -211,8 +211,8 @@ public class userServiceImpl implements IuserService {
 	 */
 	@Override
 	public boolean selHouseholder(String id,String address,String householder) {
-		User user = userDao.selHouseholder(id, address,householder);
-		if(user == null){
+		List<User> user = userDao.selHouseholder(id, address,householder);
+		if(user.size() <= 0){
 			return true;
 		}
 		return false;

@@ -53,7 +53,7 @@ public interface UserMapper {
     //查户籍信息
     List<User> selHome();
     //查看一家是否有户主存在
-    User selHouseholder(@Param("id")String id,@Param("address")String address,@Param("householder")String householder);
+    List<User> selHouseholder(@Param("id")String id,@Param("address")String address,@Param("householder")String householder);
     //批量上传
     int addUserBatch(List<UserVO> list);
     
