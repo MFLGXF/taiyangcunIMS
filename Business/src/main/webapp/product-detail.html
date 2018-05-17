@@ -268,7 +268,8 @@
 										</div>
 										<div class="product-page-cart">
 											
-												添加时间：<span id="goodsTime">添加时间：</span> <br>
+												<img id="goodsQRCode" src=""
+												alt="" class="img-responsive"> <br>
 												<span></span><br>
 												<span></span><br>
 												生产企业：<span id="goodsProducer"></span> 
@@ -432,6 +433,8 @@
 							$('#goodsType').text(result.goodsType);
 							$('#goodsTime').text(result.createTime);
 							$('#goodsProducer').text(result.goodsProducer);
+							$('#goodsQRCode').attr('src','goods' + result.qrcode);
+		
 							App.initImageZoom();
 							
 						},

@@ -52,7 +52,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html"><span>管理员后台</span></a>
+				<a class="brand" href="index.html"><span>企业后台</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -211,7 +211,7 @@
 										<span class="avatar"><img src="img/avatar.jpg" alt="Avatar"></span>
 										<span class="header">
 											<span class="from">
-										    	admin
+										    	Dennis Ji
 										     </span>
 											<span class="time">
 										    	6 min
@@ -295,15 +295,11 @@
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> admin
+								<i class="halflings-icon white user"></i> ZhangYing
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li class="dropdown-menu-title">
- 									<span>Account Settings</span>
-								</li>
-								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="login.html"><i class="halflings-icon off"></i> 退出</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -323,13 +319,12 @@
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-										<li><a href="admin.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 首页</span></a></li>	
+									<li><a href="admin.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 首页</span></a></li>	
 						<li><a href="adminform.html"><i class="icon-edit"></i><span class="hidden-tablet"> 发布产品</span></a></li>
 						<li><a href="admintable.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> 审核企业</span></a></li>
 						<li><a href="adminGoods.html"><i class="icon-font"></i><span class="hidden-tablet"> 产品列表</span></a></li>
 						<li><a href="adminCategory.html"><i class="icon-reorder"></i><span class="hidden-tablet"> 类型管理</span></a></li>
 						<li><a href="adminTreaty.html"><i class="icon-reorder"></i><span class="hidden-tablet"> 发布条约</span></a></li>
-						
 					</ul>
 				</div>
 			</div>
@@ -362,7 +357,7 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon white edit"></i><span class="break"></span>发布产品</h2>
+						<h2><i class="halflings-icon white edit"></i><span class="break"></span>发布条约</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -372,56 +367,16 @@
 					<div class="box-content">
 						<form class="form-horizontal" id="addproduce">
 							<fieldset>
-							  <div class="control-group">
-								<label class="control-label" for="selectError">产品类型</label>
-								<div class="controls">
-								  <select id="goodsType"  name="goodsType" class="category">
-									
-								  </select>
-								</div>
-							  </div>
-							 
-							  <div class="control-group success">
-								<label class="control-label" for="inputSuccess">产品名称</label>
-								<div class="controls">
-								  <input type="text" id="inputSuccess" name="goodsName">
-								  <span class="help-inline">enter goods name</span>
-								</div>
-							  </div>
-							 
-							  <div class="control-group warning">
-								<label class="control-label" for="inputWarning">产品产地</label>
-								<div class="controls">
-								  <input type="text" id="inputWarning" name="goodsAddress">
-								  <span class="help-inline">enter goods place</span>
-								</div>
-							  </div>
-							  <div class="control-group error">
-								<label class="control-label" for="inputError">产品价格</label>
-								<div class="controls">
-								  <input type="text" id="inputError" name="goodsPrice">
-								  <span class="help-inline">enter goods price</span>
-								</div>
-							  </div>
-							  
-							   <div class="control-group error">
-								<label class="control-label" for="selectError"><font color="pink">所属公司</font></label>
-								<div class="controls">
-								  <select id="company"  name="business" class="company">
-									
-								  </select>
-								</div>
-							  </div>
-							  <div class="control-group">
-								  <label class="control-label" for="inputError"><font color="blue">产品图片</font></label>
+							
+							   <div class="control-group">
+								  <label class="control-label" for="inputError"><font color="pink">发布条约</font></label>
 								  <div class="controls">
-									 <input type="file" name="file"/>
+									 <textarea class="cleditor" id="textarea2" rows="3" name="content"></textarea>
 								  </div>								
 							  </div>
-							  
 							
 							  <div class="form-actions">
-								<button type="button" class="btn btn-primary" onclick="addproduce()">发布</button>
+								<button type="button" class="btn btn-primary" onclick="addproduce()">添加</button>
 								<button type="reset" class="btn">重置</button>
 							  </div>
 							</fieldset>
@@ -528,73 +483,6 @@
 	<!-- end: JavaScript-->
 	
 </body>
-<script>
-	 function addproduce(){
-	  var formData = new FormData($( "#addproduce" )[0]);  
-		$.ajax({
-		    type : "POST",  
-            url : "business/addproduce",//路径  
-            data : formData,
-            async: false,  
-            cache: false,  
-            contentType: false,  
-            processData: false,  
-            success : function(data){
-             if(data.result == 200){
-             	 sweetAlert("上传商品成功", "","success");
-             }else if(data.result == 202){
-             	 sweetAlert("请上传商品照片", "","warning");
-             }else if(data.result == 201){
-             	 sweetAlert("请填写商品信息", "","warning");
-             }else if(data.result == 500){
-                 sweetAlert("服务器错误", "","error");
-             }           
-            }
-		})
-		}
-</script>
-<script>
-	$(document).ready(function(){
-		$.ajax({  
-	     type : "GET",  
-	     url : "admin/toSelBusinessChecked",//路径  
-	     dataType: "json",
-	   
-	     success : function(data) {//返回数据根据结果进行相应的处理     
-	     var data = data.data;
-	  	 var business = "";
-	  	 console.log(data);
-	  	 for(var i=0;i<data.length;i++){
-	  	
-	  	  business += "<option value='"+data[i].busName+"'>"+data[i].busName+"</option>"
-	  	 }
-	  	 console.log(business);
-	  	
-	  	 $(".company").html('').append(business);
-	     } 
-	     });  
-	     })
-	
-	</script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$.ajax({  
-	     type : "GET",  
-	     url : "category/selCategory",//路径  
-	     dataType: "json",
-	     success : function(data) {//返回数据根据结果进行相应的处理     
-	     var data = data.data;
-	  	 var category = "";
-	  	 console.log(data);
-	  	 for(var i=0;i<data.length;i++){
-	  	
-	  	  category += "<option value='"+data[i].categoryName+"'>"+data[i].categoryName+"</option>"
-	  	 }
-	  	 console.log(category);
-	  	
-	  	 $(".category").html('').append(category);
-	     } 
-	     });
-})
-</script>
+
+
 </html>

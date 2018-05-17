@@ -55,30 +55,33 @@
 						<a href="#"><i class="halflings-icon home"></i></a>
 						<a href="#"><i class="halflings-icon cog"></i></a>
 					</div>
-					<h2>请选择登录方式</h2>
-					<form class="form-horizontal" action="index.html" method="post">
+					<h2 ></h2>
+					<form class="form-horizontal" id="role">
 						<fieldset>
 							
-							<div class="input-prepend" >
-								
-								<a href="product-list.html" class="btn btn-large btn-danger">用户登录</a>
-							</div>
+							
 							<div class="clearfix"></div>
 
-							<div class="input-prepend">
-								<a href="login.html?role=Business" class="btn btn-large btn-primary">企业登录</a>
+							
+							<div class="clearfix"><font size="6">《会员注册条款》</font></br>
+　　
+</br>
+1. 会员在注册会员资格时，所提交的资料必须真实有效，否则本网站有权拒绝其申请或者撤销其会员资格，并不予任何赔偿或者退还任何已缴纳的收费服务费用。</br></br>
+2. 若会员违反本服务条款的规定，将有权取消该会员的会员资格而无须给与任何补偿，也不予退还任何已缴纳的收费服务费用。</br></br>
+3. 会员对本服务条款的修改有任何异议，可自动放弃会员资格，但不退还任何已缴纳的收费服务费用。</br></br>
+4. 本会员资格只限本用户名使用，不得转让到其他用户名上。
+</div>
+							
+							
+
+							<div class="button-login">	
+								<a href="toRegister.html" class="btn btn-primary" >确认</a>
 							</div>
 							<div class="clearfix"></div>
-							
-							<div class="input-prepend" >
-								<a href="login.html?role=Admin" class="btn btn-large btn-warning">管理员登录</a>
-							</div>
 					</form>
 					<hr>
-					
-					<p>
-						<a href="treaty.html"><font color="green">立即注册</font></a> 
-					</p>	
+					<h3><a href="first.html"><font color="green">返回上级</font></a></h3>
+						
 				</div><!--/span-->
 			</div><!--/row-->
 			
@@ -153,4 +156,24 @@
 	<!-- end: JavaScript-->
 	
 </body>
+	<script >
+	 function check(){
+	   
+		$.ajax({
+		    type : "POST",  
+            url : "login/toRegister",//路径  
+            dataType: "json",
+            data:$('#role').serialize(),
+            success : function(data){
+             console.log(data);
+             if(data.result == 200){
+            
+              window.location.href='userRegister.html';
+              }else if(data.result == 201){
+              window.location.href='businessRegister.html';
+              }
+            }
+		})
+		}
+	</script>
 </html>
