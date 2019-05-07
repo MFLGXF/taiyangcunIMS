@@ -1,22 +1,21 @@
 package com.fwx.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import ch.qos.logback.classic.Logger;
+import com.fwx.common.PageInfo;
+import com.fwx.common.UUIDUtils;
+import com.fwx.dao.PerformanceMapper;
+import com.fwx.service.IperformanceService;
+import com.fwx.vo.PerformanceVO;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.solr.common.util.DateUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fwx.common.PageInfo;
-import com.fwx.common.UUIDUtils;
-import com.fwx.dao.PerformanceMapper;
-import com.fwx.domain.Economy;
-import com.fwx.domain.Member;
-import com.fwx.service.IperformanceService;
-import com.fwx.vo.PerformanceVO;
-
-import ch.qos.logback.classic.Logger;
+import java.text.ParseException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class PerformanceServiceImpl implements IperformanceService {
@@ -92,7 +91,13 @@ public class PerformanceServiceImpl implements IperformanceService {
 		queryMap.put("end", end);
 
 		List<PerformanceVO> result = performanceMapper.selectList(queryMap);
-
+		result.stream().forEach(it-> {
+			try {
+				it.setpTime(DateFormatUtils.format(DateUtil.parseDate(it.getpTime()),"yyyy-MM-dd"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		});
 		System.out.println("获取到后端歘出来的数据条数："+result.toString());
 
 		page.setList(result);

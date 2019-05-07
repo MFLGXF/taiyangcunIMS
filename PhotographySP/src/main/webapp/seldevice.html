@@ -429,6 +429,7 @@
 										console.log(data);
 										var customer = "";
 										if (data.result == 200) {
+											var statusId = "";
 											for (var i = 0; i < data.data.length; i++) {
 												var style = "";
 												if (data.data[i].deviceStatus == "正常") {
@@ -438,6 +439,8 @@
 												} else {
 													style = "btn btn-danger btn-mini"
 												}
+
+
 												customer += "<tr><td>"
 														+ (i + 1)
 														+ "</td><td>"
@@ -446,9 +449,9 @@
 														+ data.data[i].deviceNo
 														+ "</td><td>￥"
 														+ data.data[i].devicePrice
-														+ "</td><td><input type='hidden' name='id' id='id' value='"+data.data[i].id+"'><input type='hidden' id='status' name='status' value='"+data.data[i].deviceStatus+"'><button class='"
+														+ "</td><td><input type='hidden' name='id' id='" + i + "' value='" + data.data[i].id + "'><input type='hidden' id='" + i + "' name='status' value='" + data.data[i].deviceStatus + "'><button class='"
 														+ style
-														+ "' onclick='search()' >"
+														+ "' onclick='search(" + i + ",\''+aa+'\')' >"
 														+ data.data[i].deviceStatus
 														+ "</button></td></tr>";
 
@@ -462,9 +465,12 @@
 					})
 </script>
 <script>
-	function search() {
-		var id = document.getElementById('id').value;
-		var status = document.getElementById('status').value;
+	function search(i, statusId) {
+
+		console.log(statusId);
+
+		var id = document.getElementById(i).value;
+		var status = document.getElementById(a).value;
 		$.ajax({
 			type : "POST",
 			url : "device/updateDevice",//路径

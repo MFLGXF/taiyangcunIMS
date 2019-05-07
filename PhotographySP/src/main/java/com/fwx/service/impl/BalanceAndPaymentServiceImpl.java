@@ -1,11 +1,14 @@
 package com.fwx.service.impl;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.solr.common.util.DateUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -90,7 +93,13 @@ public class BalanceAndPaymentServiceImpl implements IbalanceAndPaymentService {
 		queryMap.put("end", end);
 
 		List<BalanceAndPayment> result = balanceAndPaymentMapper.selectList(queryMap);
-
+		result.stream().forEach(it-> {
+			try {
+				it.setBpTime(DateFormatUtils.format(DateUtil.parseDate(it.getBpTime()),"yyyy-MM-dd"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		});
 		System.out.println("获取到后端歘出来的数据条数："+result.toString());
 
 		page.setList(result);
